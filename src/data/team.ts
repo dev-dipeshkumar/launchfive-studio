@@ -6,11 +6,9 @@ export interface TeamMember {
   bio: string;
   skills: string[];
   socials: {
-    github?: string;
     linkedin?: string;
     twitter?: string;
-    dribbble?: string;
-    behance?: string;
+    portfolio?: string;
   };
   avatarInitials: string;
   color: string;
@@ -25,9 +23,9 @@ export const teamMembers: TeamMember[] = [
     bio: "Builds responsive web apps, dashboards, backend logic, and deployment-ready web experiences. Dipesh specializes in React, Next.js, and Node.js, delivering clean architecture and maintainable code across full-stack projects.",
     skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Git"],
     socials: {
-      github: "#",
       linkedin: "https://www.linkedin.com/in/dipeshkumar-dev/",
       twitter: "#",
+      portfolio: "#",
     },
     avatarInitials: "DB",
     color: "#7C3AED",
@@ -40,8 +38,9 @@ export const teamMembers: TeamMember[] = [
     bio: "Works on mobile app interfaces, user flows, Firebase integrations, and cross-platform app structures. Ronak builds with React Native and Flutter, creating app experiences that are smooth, functional, and platform-ready.",
     skills: ["React Native", "Flutter", "Firebase", "iOS", "Android", "REST APIs"],
     socials: {
-      github: "#",
       linkedin: "https://www.linkedin.com/in/ronak-jain-b49955289/",
+      twitter: "#",
+      portfolio: "#",
     },
     avatarInitials: "RJ",
     color: "#06B6D4",
@@ -54,9 +53,9 @@ export const teamMembers: TeamMember[] = [
     bio: "Designs clean user journeys, wireframes, prototypes, and product interfaces focused on clarity. Prince creates design systems and interaction patterns that make digital products intuitive and visually coherent.",
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems", "Accessibility"],
     socials: {
-      dribbble: "#",
       linkedin: "https://www.linkedin.com/in/prince-chouhan06/",
-      behance: "#",
+      twitter: "#",
+      portfolio: "#",
     },
     avatarInitials: "PC",
     color: "#10B981",
@@ -69,9 +68,9 @@ export const teamMembers: TeamMember[] = [
     bio: "Creates brand visuals, social media designs, templates, banners, and digital creative assets. Pooja works across Illustrator, Photoshop, and InDesign to produce consistent, on-brand graphics for digital and print platforms.",
     skills: ["Illustrator", "Photoshop", "InDesign", "Brand Identity", "Typography", "Print Design"],
     socials: {
-      behance: "#",
-      dribbble: "#",
       linkedin: "https://www.linkedin.com/in/pooja-kumavat-139b21302/",
+      twitter: "#",
+      portfolio: "#",
     },
     avatarInitials: "PK",
     color: "#F43F5E",
@@ -86,7 +85,7 @@ export const teamMembers: TeamMember[] = [
     socials: {
       linkedin: "https://www.linkedin.com/in/mehul-kumar-195939289/",
       twitter: "#",
-      behance: "#",
+      portfolio: "#",
     },
     avatarInitials: "MK",
     color: "#F97316",

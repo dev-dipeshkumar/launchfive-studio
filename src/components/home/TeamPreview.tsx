@@ -3,14 +3,12 @@
 import { motion } from "framer-motion";
 import { teamMembers } from "@/data/team";
 import SectionHeading from "@/components/common/SectionHeading";
-import { Github, Linkedin, Twitter, Dribbble, Globe } from "lucide-react";
+import { Linkedin, Twitter, Globe } from "lucide-react";
 
 const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
-  github: Github,
   linkedin: Linkedin,
   twitter: Twitter,
-  dribbble: Dribbble,
-  behance: Globe,
+  portfolio: Globe,
 };
 
 export default function TeamPreview() {
