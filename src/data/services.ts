@@ -28,7 +28,7 @@ export const services: Service[] = [
     title: "Full-Stack Development",
     icon: Code2,
     description:
-      "We build complete web applications from frontend to backend, delivering scalable, high-performance solutions that grow with your business.",
+      "We build complete web applications from frontend to backend. Trained in modern frameworks and eager to apply our skills on real projects — from simple sites to full-featured platforms.",
     features: [
       "Frontend UI with React & Next.js",
       "Backend APIs & microservices",
@@ -37,7 +37,7 @@ export const services: Service[] = [
       "Admin dashboards",
       "Deployment & DevOps",
     ],
-    bestFor: "Startups, SaaS products, and businesses needing complete web platforms",
+    bestFor: "Startups, small businesses, and anyone needing a complete web platform",
     color: "#7C3AED",
   },
   {
@@ -45,16 +45,16 @@ export const services: Service[] = [
     title: "Mobile App Development",
     icon: Smartphone,
     description:
-      "Cross-platform mobile applications built with React Native that deliver native-like experiences on both iOS and Android devices.",
+      "Cross-platform mobile applications built with React Native. We have built app prototypes in coursework and personal projects, and we are excited to bring that experience to real clients.",
     features: [
       "React Native development",
       "iOS & Android deployment",
       "Push notifications",
       "Offline capabilities",
-      "App Store optimization",
+      "App Store preparation",
       "Maintenance & updates",
     ],
-    bestFor: "Businesses reaching mobile users, on-demand apps, and MVPs",
+    bestFor: "Businesses reaching mobile users, MVPs, and app prototypes",
     color: "#06B6D4",
   },
   {
@@ -62,7 +62,7 @@ export const services: Service[] = [
     title: "Website Design",
     icon: Globe,
     description:
-      "Beautiful, responsive websites that capture your brand essence and convert visitors into loyal customers with modern design principles.",
+      "Beautiful, responsive websites that capture your brand essence with modern design principles. We focus on clean layouts, clear messaging, and fast performance.",
     features: [
       "Responsive layouts",
       "Landing page design",
@@ -71,7 +71,7 @@ export const services: Service[] = [
       "Performance tuning",
       "Analytics setup",
     ],
-    bestFor: "Small businesses, portfolios, and corporate websites",
+    bestFor: "Small businesses, portfolios, and personal brands",
     color: "#F97316",
   },
   {
@@ -79,7 +79,7 @@ export const services: Service[] = [
     title: "UI/UX Design",
     icon: Palette,
     description:
-      "User-centered design that combines aesthetics with functionality, creating intuitive interfaces that delight users and drive engagement.",
+      "User-centered design that combines aesthetics with functionality. We have practiced creating intuitive interfaces through academic and personal projects, and we bring fresh ideas to every design challenge.",
     features: [
       "User research & personas",
       "Wireframing & prototyping",
@@ -88,7 +88,7 @@ export const services: Service[] = [
       "Usability testing",
       "Design documentation",
     ],
-    bestFor: "Product teams, app redesigns, and digital transformation projects",
+    bestFor: "App redesigns, product concepts, and digital design projects",
     color: "#10B981",
   },
   {
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: "Graphic Design",
     icon: PenTool,
     description:
-      "Eye-catching visual designs for both digital and print media that communicate your message with clarity and creative flair.",
+      "Eye-catching visual designs for digital and print media that communicate your message with clarity and creative flair. We are constantly exploring new styles and techniques.",
     features: [
       "Social media graphics",
       "Print materials",
@@ -113,7 +113,7 @@ export const services: Service[] = [
     title: "Logo Design",
     icon: PenTool,
     description:
-      "Memorable, versatile logos that embody your brand identity and make a lasting impression across every touchpoint.",
+      "Memorable, versatile logos that embody your brand identity. We have developed logo concepts as practice projects and coursework, and we approach every new brief with fresh thinking.",
     features: [
       "Concept exploration",
       "Multiple design directions",
@@ -122,7 +122,7 @@ export const services: Service[] = [
       "Color palette definition",
       "Usage guidelines",
     ],
-    bestFor: "New businesses, rebrands, and startups establishing identity",
+    bestFor: "New businesses, startups, and anyone establishing a visual identity",
     color: "#8B5CF6",
   },
   {
@@ -130,7 +130,7 @@ export const services: Service[] = [
     title: "Ad Creatives",
     icon: Image,
     description:
-      "High-converting ad visuals for social media, display networks, and paid campaigns that stop the scroll and drive clicks.",
+      "Scroll-stopping ad visuals for social media, display networks, and paid campaigns. We study platform best practices and current trends to craft creatives that stand out.",
     features: [
       "Facebook & Instagram ads",
       "Google Display ads",
@@ -139,7 +139,7 @@ export const services: Service[] = [
       "Platform-specific sizing",
       "Animated creatives",
     ],
-    bestFor: "E-commerce, performance marketers, and growth teams",
+    bestFor: "Small businesses running their first ad campaigns and growing brands",
     color: "#EC4899",
   },
   {
@@ -147,7 +147,7 @@ export const services: Service[] = [
     title: "Ad Campaign Design",
     icon: Megaphone,
     description:
-      "Complete ad campaign visual strategies from concept to execution, ensuring consistency and impact across all channels.",
+      "Complete ad campaign visual strategies from concept to execution, ensuring consistency across all channels. We bring a fresh eye to campaign design and are eager to learn from real performance data.",
     features: [
       "Campaign visual strategy",
       "Multi-platform assets",
@@ -156,7 +156,7 @@ export const services: Service[] = [
       "Performance tracking setup",
       "Iterative optimization",
     ],
-    bestFor: "Agencies, product launches, and seasonal promotions",
+    bestFor: "Product launches, seasonal promotions, and first-time advertisers",
     color: "#14B8A6",
   },
   {
@@ -164,7 +164,7 @@ export const services: Service[] = [
     title: "Social Media Templates",
     icon: LayoutTemplate,
     description:
-      "Ready-to-use, on-brand social media templates that streamline your content creation and maintain visual consistency.",
+      "Ready-to-use, on-brand social media templates that streamline your content creation and maintain visual consistency across every post.",
     features: [
       "Instagram post & story templates",
       "LinkedIn banners",
@@ -181,7 +181,7 @@ export const services: Service[] = [
     title: "Branding Kits",
     icon: Layers,
     description:
-      "Comprehensive brand identity packages that define your visual language and ensure consistency across every medium and platform.",
+      "Comprehensive brand identity packages that define your visual language. We have built branding kits as concept projects and understand what goes into a cohesive, professional identity system.",
     features: [
       "Logo & variations",
       "Color system & typography",
@@ -190,7 +190,7 @@ export const services: Service[] = [
       "Stationery & business cards",
       "Digital brand assets",
     ],
-    bestFor: "New brands, startups, and businesses going through rebranding",
+    bestFor: "New brands, startups, and businesses building their first identity",
     color: "#6366F1",
   },
   {
@@ -198,9 +198,9 @@ export const services: Service[] = [
     title: "Landing Page Design",
     icon: Rocket,
     description:
-      "Conversion-optimized landing pages designed to capture leads, drive sign-ups, and maximize your campaign ROI with data-driven layouts.",
+      "Well-structured landing pages designed to present your offer clearly and encourage sign-ups. We apply best practices for layout, speed, and usability — and we are eager to test and refine with real data.",
     features: [
-      "Conversion-optimized layout",
+      "Clear, focused layout",
       "A/B testing design",
       "Responsive implementation",
       "Fast loading speed",

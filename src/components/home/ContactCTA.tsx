@@ -26,19 +26,25 @@ export default function ContactCTA() {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6"
             >
-              <MessageCircle size={14} />
-              Ready to Start?
+              <Zap size={14} />
+              Looking for Our First Client
             </motion.div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Let&apos;s Build Something
+              Be Part of Our
               <br />
-              <span className="text-white/80">Amazing Together</span>
+              <span className="text-white/80">First Success Story</span>
             </h2>
 
-            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-              Tell us what you want to build. We will review your idea and contact you
-              with the best solution. Your next big project starts with a conversation.
+            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-3 leading-relaxed">
+              We are looking for our first clients! If you have an idea for a website, app,
+              brand identity, or ad campaign, let&apos;s work together.
+            </p>
+
+            <p className="text-white/70 text-sm max-w-lg mx-auto mb-8 leading-relaxed">
+              Reach out and be part of the journey. We will bring the same energy, dedication,
+              and care to your project that we would bring to our own — because your success
+              is how we build our reputation.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

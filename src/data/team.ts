@@ -21,8 +21,8 @@ export const teamMembers: TeamMember[] = [
     id: "member-1",
     name: "Arjun Mehta",
     role: "Full-Stack Developer",
-    specialty: "Building scalable web platforms with modern frameworks",
-    bio: "A passionate full-stack developer with 6+ years of experience crafting high-performance web applications. Specializes in React, Next.js, Node.js, and cloud architecture. Arjun transforms complex requirements into clean, maintainable code that scales effortlessly.",
+    specialty: "Building web platforms with modern frameworks",
+    bio: "A passionate full-stack developer who has been coding since university, building personal projects and contributing to open-source along the way. Arjun specializes in React, Next.js, and Node.js — and is eager to apply these skills to his first professional client projects.",
     skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
     socials: {
       github: "#",
@@ -36,8 +36,8 @@ export const teamMembers: TeamMember[] = [
     id: "member-2",
     name: "Priya Sharma",
     role: "App Developer",
-    specialty: "Cross-platform mobile apps with native performance",
-    bio: "An expert mobile developer who brings ideas to life on iOS and Android using React Native and Flutter. With 5+ years of experience, Priya builds smooth, responsive mobile experiences that users love, from MVPs to enterprise-scale applications.",
+    specialty: "Cross-platform mobile apps with React Native",
+    bio: "An app developer who discovered mobile development during coursework and has been building prototypes ever since. Priya works with React Native and Flutter, and has published a campus event app as a university project — now she is ready to build for real clients.",
     skills: ["React Native", "Flutter", "Firebase", "iOS", "Android", "REST APIs"],
     socials: {
       github: "#",
@@ -50,8 +50,8 @@ export const teamMembers: TeamMember[] = [
     id: "member-3",
     name: "Kabir Verma",
     role: "UI/UX Designer",
-    specialty: "Creating intuitive interfaces that delight users",
-    bio: "A design thinker who bridges the gap between aesthetics and usability. Kabir has 7+ years of experience designing digital products for startups and Fortune 500 companies alike, with a focus on user research, interaction design, and design systems.",
+    specialty: "Creating intuitive, user-centered interfaces",
+    bio: "A design thinker who brings aesthetics and usability together. Kabir has designed UI concepts for personal projects and hackathons, with a focus on user research, interaction design, and building design systems from scratch. He is excited to design for real users and learn from real feedback.",
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems", "Accessibility"],
     socials: {
       dribbble: "#",
@@ -66,7 +66,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sara Khan",
     role: "Graphic Designer",
     specialty: "Visual storytelling through creative design",
-    bio: "A versatile graphic designer with an eye for detail and a passion for visual storytelling. Sara creates stunning brand identities, marketing materials, and digital assets that capture attention and communicate messages with clarity and impact.",
+    bio: "A versatile graphic designer with an eye for detail and a passion for visual storytelling. Sara has created brand concepts, social media content, and print layouts as personal projects — and is now looking forward to applying her skills to real brand identities and marketing materials.",
     skills: ["Illustrator", "Photoshop", "InDesign", "Brand Identity", "Typography", "Print Design"],
     socials: {
       behance: "#",
@@ -80,8 +80,8 @@ export const teamMembers: TeamMember[] = [
     id: "member-5",
     name: "Rohan Das",
     role: "Ads & Campaign Designer",
-    specialty: "High-converting ad creatives and campaign visuals",
-    bio: "A creative strategist who designs ad campaigns that convert. Rohan combines data-driven insights with compelling visuals to create ads that stop the scroll and drive action, managing end-to-end campaign design across all major platforms.",
+    specialty: "Compelling ad creatives and campaign visuals",
+    bio: "A creative strategist who has been designing ad concepts and campaign visuals for practice projects and university assignments. Rohan studies platform best practices and current trends closely — and is keen to apply that knowledge to real campaigns and learn from actual performance data.",
     skills: ["Ad Design", "Campaign Strategy", "Motion Graphics", "After Effects", "Copywriting", "Analytics"],
     socials: {
       linkedin: "#",
@@ -107,12 +107,12 @@ export const workProcess = [
   {
     step: 3,
     title: "Development & Production",
-    description: "Our developers and designers work in parallel, building the frontend, backend, and creative assets with clean, scalable code and pixel-perfect designs.",
+    description: "Our developers and designers work in parallel, building the frontend, backend, and creative assets with clean code and pixel-perfect designs.",
   },
   {
     step: 4,
     title: "Internal Review",
-    description: "Every project goes through rigorous internal review including code audits, design critiques, and quality assurance testing before client presentation.",
+    description: "Every project goes through internal review including code checks, design critiques, and quality testing before we present anything to you.",
   },
   {
     step: 5,
@@ -127,6 +127,6 @@ export const workProcess = [
   {
     step: 7,
     title: "Support & Upgrades",
-    description: "Our relationship does not end at delivery. We provide ongoing support, maintenance, and feature upgrades to keep your product ahead of the curve.",
+    description: "Our relationship does not end at delivery. We provide ongoing support, maintenance, and feature upgrades to keep your product running smoothly.",
   },
 ];

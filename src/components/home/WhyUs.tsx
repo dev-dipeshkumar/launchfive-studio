@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Clock, Users, Rocket, Headphones, Award } from "lucide-react";
+import { Shield, Clock, Users, Rocket, Headphones, Flame } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
 
 const reasons = [
@@ -21,9 +21,9 @@ const reasons = [
   },
   {
     icon: Shield,
-    title: "Quality Guaranteed",
+    title: "Quality-First Approach",
     description:
-      "Every project goes through internal review before delivery. Multiple team members review code, designs, and creative assets to ensure the highest quality standards are met.",
+      "Every project goes through internal review before delivery. Multiple team members review code, designs, and creative assets to ensure the highest quality standards are met — we treat your project like our own.",
     color: "#10B981",
   },
   {
@@ -41,10 +41,10 @@ const reasons = [
     color: "#F43F5E",
   },
   {
-    icon: Award,
-    title: "Proven Track Record",
+    icon: Flame,
+    title: "Fresh Perspective & Hungry to Prove Ourselves",
     description:
-      "With 50+ projects delivered and 30+ happy clients, our results speak for themselves. We bring years of collective experience across industries and project types.",
+      "We are new to the freelance market and that is our strength. Every project matters to us — we pour everything into our work because your success is the foundation of our reputation. We are committed to learning, growing, and over-delivering.",
     color: "#8B5CF6",
   },
 ];
@@ -59,7 +59,7 @@ export default function WhyUs() {
         <SectionHeading
           label="Why Choose Us"
           title="Why Work With Our Team"
-          description="We are not just individual freelancers — we are a coordinated team that combines diverse skills with a shared commitment to delivering outstanding results for every client."
+          description="We may be new, but we are dedicated, skilled, and genuinely excited about every project. Here is why taking a chance on a fresh team could be the best decision for your business."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -23,7 +23,7 @@ export default function TeamPreview() {
         <SectionHeading
           label="Our Team"
           title="Meet the Crew"
-          description="Five skilled freelancers working as one coordinated team. Each member brings unique expertise, and together we deliver complete solutions from concept to launch."
+          description="Five friends and colleagues who recently teamed up to take on real-world projects. Each member brings unique skills honed through personal and academic work — and together we cover the full stack of development, design, and marketing."
         />
 
         {/* Team Grid */}

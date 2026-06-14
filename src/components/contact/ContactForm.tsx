@@ -104,7 +104,7 @@ export default function ContactForm() {
         <SectionHeading
           label="Get in Touch"
           title="Start Your Project"
-          description="Tell us what you want to build. We will review your idea and contact you with the best solution. Fill out the form below and we will get back to you within 24 hours."
+          description="Have an idea? We would love to hear about it. Fill out the form below and we will get back to you within 24 hours. We are looking for our first clients — and we will bring everything we have to your project."
         />
 
         <div className="max-w-3xl mx-auto">

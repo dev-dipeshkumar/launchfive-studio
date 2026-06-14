@@ -14,7 +14,7 @@ export default function ProcessSection() {
         <SectionHeading
           label="Our Workflow"
           title="How We Deliver Results"
-          description="Our proven 7-step process ensures every project is delivered on time, on budget, and exceeds expectations. Here is how we take your idea from concept to reality."
+          description="Our structured 7-step process is designed to keep every project on track from initial concept to final delivery, with clear communication at every step."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -48,8 +48,8 @@ export default function Footer() {
               <span className="text-lg font-bold gradient-text">FreelancerTeam</span>
             </div>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-              A creative freelance team building websites, apps, brands, and campaigns.
-              We turn ideas into digital reality.
+              A fresh collective of five creatives building websites, apps, brands,
+              and campaigns. We are new, hungry, and ready to prove ourselves.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink, FlaskConical } from "lucide-react";
 
 export default function PortfolioPreview() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -22,9 +22,22 @@ export default function PortfolioPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Work"
-          title="Portfolio Showcase"
-          description="Explore our completed projects across web development, mobile apps, design, branding, and campaigns. Each project tells a story of creative problem-solving."
+          title="Sample Projects & Concepts"
+          description="These are personal, academic, and concept projects we have built to sharpen our skills. They are not paid client work — but they show what we can do. As we complete real projects, we will swap these in."
         />
+
+        {/* Sample projects notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-[#F97316]/10 border border-[#F97316]/20 max-w-md mx-auto"
+        >
+          <FlaskConical size={14} className="text-[#F97316]" />
+          <span className="text-xs text-[#F97316] font-medium">
+            Concept & practice work — not client projects (yet!)
+          </span>
+        </motion.div>
 
         {/* Category filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -80,7 +93,7 @@ export default function PortfolioPreview() {
                   </div>
 
                   {/* Category badge */}
-                  <div className="absolute top-3 left-3">
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span
                       className="px-3 py-1 text-xs font-medium rounded-full"
                       style={{
@@ -91,6 +104,11 @@ export default function PortfolioPreview() {
                     >
                       {project.category}
                     </span>
+                    {project.isSample && (
+                      <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#F97316]/15 text-[#F97316] border border-[#F97316]/25">
+                        SAMPLE
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -120,20 +138,20 @@ export default function PortfolioPreview() {
                     )}
                   </div>
 
-                  {/* Result */}
-                  <div className="flex items-center gap-2 mb-4">
+                  {/* Result / takeaway */}
+                  <div className="flex items-start gap-2 mb-4">
                     <div
-                      className="w-1 h-1 rounded-full"
+                      className="w-1 h-1 rounded-full mt-1.5 shrink-0"
                       style={{ backgroundColor: project.color }}
                     />
-                    <span className="text-xs text-[#94A3B8]">
+                    <span className="text-xs text-[#94A3B8] leading-relaxed">
                       {project.result}
                     </span>
                   </div>
 
                   {/* CTA */}
                   <button className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors">
-                    View Case Study
+                    View Details
                     <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </div>
