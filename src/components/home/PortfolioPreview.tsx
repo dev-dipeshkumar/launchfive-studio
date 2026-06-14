@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
-import { ExternalLink, Layers } from "lucide-react";
+import { ExternalLink, Layers, ArrowRight } from "lucide-react";
 
 export default function PortfolioPreview() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -14,6 +15,8 @@ export default function PortfolioPreview() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
+  const hasConcepts = filteredProjects.some((p) => p.isConcept);
+
   return (
     <section id="portfolio" className="section-padding relative overflow-hidden">
       {/* Background accent */}
@@ -22,22 +25,24 @@ export default function PortfolioPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Work"
-          title="Selected Concept Work"
-          description="A collection of internal concepts, design explorations, and demo builds created to show our thinking, style, and execution approach."
+          title="Selected Work"
+          description="Real projects, design systems, and creative builds — along with internal concepts that show our thinking and execution style."
         />
 
-        {/* Concept work notice — subtle */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
-        >
-          <Layers size={14} className="text-[#94A3B8] shrink-0" />
-          <span className="text-xs text-[#94A3B8]/70 text-center">
-            These concepts are created internally to demonstrate our capabilities and approach. Client case studies will be added as we complete live projects.
-          </span>
-        </motion.div>
+        {/* Concept work notice — only shown when filtered list includes concepts */}
+        {hasConcepts && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
+          >
+            <Layers size={14} className="text-[#94A3B8] shrink-0" />
+            <span className="text-xs text-[#94A3B8]/70 text-center">
+              Items marked CONCEPT are internal explorations. Client case studies will be added as we complete live projects.
+            </span>
+          </motion.div>
+        )}
 
         {/* Category filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -74,31 +79,44 @@ export default function PortfolioPreview() {
                 className="group rounded-2xl glass overflow-hidden hover:border-[#7C3AED]/30 transition-all duration-300"
                 data-cursor-hover
               >
-                {/* Project image placeholder */}
-                <div
-                  className="h-48 relative overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${project.color}20, ${project.color}05)`,
-                  }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
+                {/* Project thumbnail */}
+                <div className="h-52 relative overflow-hidden">
+                  {project.thumbnail ? (
+                    <Image
+                      src={project.thumbnail}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
                     <div
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center"
                       style={{
-                        backgroundColor: `${project.color}25`,
-                        border: `1px solid ${project.color}40`,
+                        background: `linear-gradient(135deg, ${project.color}20, ${project.color}05)`,
                       }}
                     >
-                      <span className="text-2xl font-bold" style={{ color: project.color }}>
-                        {project.title.charAt(0)}
-                      </span>
+                      <div
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                        style={{
+                          backgroundColor: `${project.color}25`,
+                          border: `1px solid ${project.color}40`,
+                        }}
+                      >
+                        <span className="text-2xl font-bold" style={{ color: project.color }}>
+                          {project.title.charAt(0)}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Category + Concept badge */}
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
+
+                  {/* Category + badges */}
                   <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span
-                      className="px-3 py-1 text-xs font-medium rounded-full"
+                      className="px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm"
                       style={{
                         backgroundColor: `${project.color}25`,
                         color: project.color,
@@ -107,9 +125,11 @@ export default function PortfolioPreview() {
                     >
                       {project.category}
                     </span>
-                    <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#06B6D4]/15 text-[#06B6D4] border border-[#06B6D4]/25">
-                      CONCEPT
-                    </span>
+                    {project.isConcept && (
+                      <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#06B6D4]/15 text-[#06B6D4] border border-[#06B6D4]/25 backdrop-blur-sm">
+                        CONCEPT
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -145,16 +165,31 @@ export default function PortfolioPreview() {
                     </span>
                   </div>
 
-                  {/* CTA */}
-                  <motion.button
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
-                    whileHover={{ x: 4 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  >
-                    View Concept
-                    <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
-                  </motion.button>
+                  {/* CTA — View Live / View Design / View Concept */}
+                  {project.projectUrl ? (
+                    <motion.a
+                      href={project.projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      {project.projectUrlLabel || "View Project"}
+                      <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                    </motion.a>
+                  ) : (
+                    <motion.button
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      View Concept
+                      <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
+                    </motion.button>
+                  )}
                 </div>
               </motion.div>
             ))}

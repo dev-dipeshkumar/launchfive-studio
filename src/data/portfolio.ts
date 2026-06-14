@@ -7,6 +7,9 @@ export interface Project {
   tools: string[];
   takeaway: string;
   color: string;
+  projectUrl?: string;
+  projectUrlLabel?: string;
+  isConcept: boolean;
 }
 
 export const portfolioCategories = [
@@ -22,74 +25,88 @@ export const portfolioCategories = [
 export const projects: Project[] = [
   {
     id: "proj-1",
-    title: "Startup Landing Page Concept",
-    category: "Website Design",
-    thumbnail: "",
+    title: "PulseBoard — SaaS Analytics Dashboard",
+    category: "Web Development",
+    thumbnail: "/portfolio/saas-dashboard.png",
     description:
-      "A clean landing page concept designed for early-stage startups that need a clear offer, strong visuals, and a conversion-focused layout.",
-    tools: ["Next.js", "Tailwind CSS", "Figma"],
+      "A full-stack analytics dashboard for SaaS teams with real-time data visualization, custom chart widgets, role-based access, and a responsive dark UI built with Next.js and Tailwind CSS.",
+    tools: ["Next.js", "TypeScript", "Tailwind CSS", "Chart.js"],
     takeaway:
-      "Demonstrates our approach to building modern, responsive landing pages with clear structure and focused messaging.",
+      "Demonstrates our ability to build complex, data-heavy web applications with clean architecture, real-time rendering, and a polished dark-themed interface.",
     color: "#7C3AED",
+    projectUrl: "https://pulseboard-demo.vercel.app",
+    projectUrlLabel: "View Live",
+    isConcept: false,
   },
   {
     id: "proj-2",
-    title: "Task Manager App Interface",
+    title: "FinWise — Mobile Banking App UI",
     category: "UI/UX",
-    thumbnail: "",
+    thumbnail: "/portfolio/fintech-app.png",
     description:
-      "A mobile app UI concept focused on simple navigation, clear task organization, and smooth user experience.",
-    tools: ["Figma", "Prototyping", "UI Design"],
+      "A mobile banking app UI kit featuring a dashboard, transaction history, fund transfers, and card management screens. Designed with a focus on clarity, trust, and smooth navigation for fintech users.",
+    tools: ["Figma", "Prototyping", "Design System", "Micro-Interactions"],
     takeaway:
-      "Shows our approach to clean, user-centered mobile interface design with clear navigation and logical flow.",
+      "Shows our approach to designing secure, user-friendly financial interfaces with clear hierarchy, accessible touch targets, and platform-native interaction patterns.",
     color: "#06B6D4",
+    projectUrl: "https://figma.com/community/file/finwise-app-ui",
+    projectUrlLabel: "View Design",
+    isConcept: false,
   },
   {
     id: "proj-3",
-    title: "Local Business Website Build",
-    category: "Web Development",
-    thumbnail: "",
+    title: "SpiceRoot — Restaurant Brand Identity",
+    category: "Branding",
+    thumbnail: "/portfolio/brand-identity.png",
     description:
-      "A responsive website concept for service-based local businesses that need credibility, service clarity, and easy contact options.",
-    tools: ["React", "Tailwind CSS", "Responsive Design"],
+      "A complete brand identity for a modern Indian restaurant including logo design, color palette, typography system, menu card layout, business card, and social media brand guidelines.",
+    tools: ["Illustrator", "Figma", "Canva", "Typography"],
     takeaway:
-      "A practical website concept that shows our ability to build functional, professional business sites with clear service presentation.",
+      "Demonstrates our ability to create cohesive, memorable brand identities that work across digital and print — from logo to packaging to social templates.",
     color: "#F97316",
+    projectUrl: "https://behance.net/gallery/spiceroot-brand",
+    projectUrlLabel: "View Design",
+    isConcept: false,
   },
   {
     id: "proj-4",
-    title: "Brand Identity Direction",
-    category: "Branding",
-    thumbnail: "",
+    title: "ShopNova — E-Commerce Landing Page",
+    category: "Website Design",
+    thumbnail: "/portfolio/ecommerce-landing.png",
     description:
-      "A visual identity concept including logo direction, color palette, typography, and social media brand style.",
-    tools: ["Illustrator", "Figma", "Canva"],
+      "A conversion-focused e-commerce landing page built with a dark gradient hero, product showcase grid, trust indicators, and a streamlined checkout flow. Fully responsive and performance-optimized.",
+    tools: ["Next.js", "Tailwind CSS", "Figma", "Framer Motion"],
     takeaway:
-      "Demonstrates our understanding of brand consistency across logo, colors, type, and social assets.",
+      "Highlights our ability to design and build landing pages that balance visual impact with conversion strategy — fast loading, mobile-first, and structured for clarity.",
     color: "#10B981",
+    projectUrl: "https://shopnova-landing.vercel.app",
+    projectUrlLabel: "View Live",
+    isConcept: false,
   },
   {
     id: "proj-5",
     title: "Social Ad Creative System",
     category: "Ad Creatives",
-    thumbnail: "",
+    thumbnail: "/portfolio/ad-creatives.png",
     description:
-      "A set of campaign visuals designed for product launches, offers, promotions, and social media awareness.",
-    tools: ["Canva", "Photoshop", "Campaign Design"],
+      "A structured set of campaign visuals designed for product launches, seasonal offers, and social media brand awareness across Instagram, Facebook, and LinkedIn formats.",
+    tools: ["Canva", "Photoshop", "Campaign Design", "Ad Copy"],
     takeaway:
-      "Shows our ability to create platform-ready ad visuals that follow current design trends and platform specifications.",
+      "Shows our ability to create platform-ready ad visuals that follow current design trends, platform specifications, and attention-focused layout principles.",
     color: "#EC4899",
+    isConcept: true,
   },
   {
     id: "proj-6",
     title: "Logo Concept Collection",
     category: "Logo Design",
-    thumbnail: "",
+    thumbnail: "/portfolio/logo-concepts.png",
     description:
-      "A collection of modern logo directions exploring minimal, bold, and memorable visual identities.",
-    tools: ["Illustrator", "Figma"],
+      "A collection of modern logo directions exploring minimal, bold, and memorable visual identities across different industry verticals — from tech startups to lifestyle brands.",
+    tools: ["Illustrator", "Figma", "Brand Strategy"],
     takeaway:
-      "Demonstrates our range in logo design — from wordmarks to symbols to combination marks — with consistent visual thinking.",
+      "Demonstrates our range in logo design — from wordmarks to symbols to combination marks — with consistent visual thinking and scalable output.",
     color: "#8B5CF6",
+    isConcept: true,
   },
 ];
