@@ -58,9 +58,10 @@ export default function Footer() {
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-[#7C3AED]/50 transition-all"
-                  whileHover={{ y: -3, scale: 1.1 }}
+                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-[#7C3AED]/50 hover:shadow-[0_0_16px_rgba(124,58,237,0.25)] transition-all"
+                  whileHover={{ y: -3, scale: 1.12 }}
                   whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
                   aria-label={social.label}
                 >
                   <social.icon size={16} />
@@ -95,9 +96,12 @@ export default function Footer() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="text-[#94A3B8] text-sm hover:text-white transition-colors"
+                    className="relative text-[#94A3B8] text-sm hover:text-white transition-colors inline-block"
                   >
-                    {link.label}
+                    <span className="relative">
+                      {link.label}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300 group-hover:w-full hover:w-full" />
+                    </span>
                   </a>
                 </li>
               ))}

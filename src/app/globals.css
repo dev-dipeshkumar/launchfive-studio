@@ -206,6 +206,28 @@ html {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Button shimmer effect on hover */
+@keyframes shimmer-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.hover-shimmer {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+}
+
+button:hover .hover-shimmer,
+a:hover .hover-shimmer {
+  animation: shimmer-slide 0.6s ease-in-out;
+}
+
 /* Hide cursor on desktop when custom cursor is active */
 @media (pointer: fine) {
   .custom-cursor-active * {

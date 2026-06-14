@@ -80,16 +80,19 @@ export default function TeamPreview() {
                   const IconComponent = socialIconMap[platform];
                   if (!IconComponent) return null;
                   return (
-                    <a
+                    <motion.a
                       key={platform}
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/10 transition-all"
+                      className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
+                      whileHover={{ y: -3, scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
                       aria-label={platform}
                     >
                       <IconComponent size={12} />
-                    </a>
+                    </motion.a>
                   );
                 })}
               </div>

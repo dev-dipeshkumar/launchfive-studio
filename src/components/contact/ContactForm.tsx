@@ -322,10 +322,12 @@ export default function ContactForm() {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              className="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-medium rounded-lg hover:shadow-[0_0_28px_rgba(124,58,237,0.35)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
+              whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -1 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
+              <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
               {isSubmitting ? (
                 <>
                   <Loader2 size={18} className="animate-spin" />

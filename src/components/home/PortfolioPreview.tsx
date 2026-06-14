@@ -42,7 +42,7 @@ export default function PortfolioPreview() {
         {/* Category filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {portfolioCategories.map((cat) => (
-            <button
+            <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 text-xs font-medium rounded-full transition-all duration-300 ${
@@ -50,9 +50,12 @@ export default function PortfolioPreview() {
                   ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
                   : "bg-white/5 text-[#94A3B8] hover:bg-white/10 hover:text-white"
               }`}
+              whileHover={activeCategory === cat ? {} : { scale: 1.08, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -143,10 +146,15 @@ export default function PortfolioPreview() {
                   </div>
 
                   {/* CTA */}
-                  <button className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors">
+                  <motion.button
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
+                    whileHover={{ x: 4 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
                     View Concept
                     <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
-                  </button>
+                  </motion.button>
                 </div>
               </motion.div>
             ))}

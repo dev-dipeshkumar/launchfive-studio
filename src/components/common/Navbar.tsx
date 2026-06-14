@@ -109,7 +109,7 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = activeSection === link.href;
             return (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => {
@@ -122,16 +122,18 @@ export default function Navbar() {
                     ? "text-white"
                     : "text-[#94A3B8] hover:text-white"
                 )}
+                whileHover={{ y: -1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 {link.label}
                 {/* Active indicator */}
                 <span
                   className={cn(
                     "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300",
-                    isActive ? "w-5 opacity-100" : "w-0 opacity-0"
+                    isActive ? "w-5 opacity-100" : "w-0 opacity-0 group-hover:w-3"
                   )}
                 />
-              </a>
+              </motion.a>
             );
           })}
         </nav>
@@ -144,20 +146,25 @@ export default function Navbar() {
               e.preventDefault();
               handleNavClick("#contact");
             }}
-            className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[#7C3AED]/40 transition-shadow duration-300"
-            whileHover={{ y: -1, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
+            whileHover={{ y: -2, scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
+            <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
             Start a Project
-            <ArrowRight size={15} />
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
           </motion.a>
         </div>
 
         {/* ─── Mobile: Hamburger Button ─── */}
-        <button
+        <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/5 transition-colors"
           aria-label="Toggle menu"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
           <AnimatePresence mode="wait" initial={false}>
             {isMenuOpen ? (
@@ -182,7 +189,7 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
-        </button>
+        </motion.button>
       </div>
 
       {/* ─── Mobile Menu Dropdown ─── */}
@@ -240,8 +247,11 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.04, duration: 0.25 }}
-                className="flex items-center justify-center gap-2 mt-3 px-6 py-3 text-[15px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20"
+                className="flex items-center justify-center gap-2 mt-3 px-6 py-3 text-[15px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
+                whileHover={{ scale: 1.04, y: -1 }}
+                whileTap={{ scale: 0.96 }}
               >
+                <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
                 Start a Project
                 <ArrowRight size={15} />
               </motion.a>

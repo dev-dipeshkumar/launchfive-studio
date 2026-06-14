@@ -70,7 +70,7 @@ export default function ServicesPreview() {
               </ul>
 
               {/* CTA */}
-              <a
+              <motion.a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
@@ -78,13 +78,16 @@ export default function ServicesPreview() {
                 }}
                 className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
                 style={{ color: service.color }}
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 Discuss Project
                 <ArrowRight
                   size={14}
                   className="transition-transform group-hover:translate-x-1"
                 />
-              </a>
+              </motion.a>
 
               {/* Hover glow */}
               <div
