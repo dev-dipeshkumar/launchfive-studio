@@ -39,7 +39,7 @@ export const reasons: WhyUsReason[] = [
     id: "focused-team",
     icon: Users,
     title: "Focused Team Structure",
-    headline: "5 members. Zero waste.",
+    headline: "Small team, sharp focus.",
     description:
       "A tight-knit team means every project gets dedicated attention across development, design, branding, and campaign visuals. No bloated workflows — just focused execution with clear accountability and direct ownership from start to finish.",
     color: "#7C3AED",
@@ -54,13 +54,13 @@ export const reasons: WhyUsReason[] = [
       "Direct access to the builder",
       "Faster decision-making",
     ],
-    badge: "Core Strength",
+    badge: "Strength",
   },
   {
     id: "clear-communication",
     icon: MessageSquare,
     title: "Clear Communication",
-    headline: "Always in the loop.",
+    headline: "No surprises. No gaps.",
     description:
       "You always know what stage the project is in, what is being worked on, and what comes next. We keep the process transparent with regular updates, clear timelines, and honest feedback — no surprises, no gaps, just straightforward conversation.",
     color: "#06B6D4",
@@ -75,13 +75,13 @@ export const reasons: WhyUsReason[] = [
       "Proactive status updates",
       "No ghosting or delays",
     ],
-    badge: "Client Favorite",
+    badge: "Priority",
   },
   {
     id: "modern-execution",
     icon: Cpu,
     title: "Modern Execution",
-    headline: "Built with today's tools.",
+    headline: "Current tools. Clean output.",
     description:
       "We use the latest design and development tools to create websites, apps, visuals, and digital assets that feel clean and relevant. Every output reflects modern standards — from responsive layouts and smooth interactions to optimized performance.",
     color: "#10B981",
@@ -96,13 +96,13 @@ export const reasons: WhyUsReason[] = [
       "Performance-first approach",
       "Mobile-responsive by default",
     ],
-    badge: "Tech Forward",
+    badge: "Approach",
   },
   {
     id: "ownership-mindset",
     icon: ShieldCheck,
     title: "Ownership Mindset",
-    headline: "We ship it like it's ours.",
+    headline: "Your project, our standard.",
     description:
       "We treat every project like a serious responsibility, not just a task list. The goal is to deliver work we are proud to show — and that you are confident to use. We stand behind our output and iterate until it meets the standard we would set for ourselves.",
     color: "#F97316",
@@ -117,13 +117,13 @@ export const reasons: WhyUsReason[] = [
       "Proactive problem-solving",
       "Proud-to-show output",
     ],
-    badge: "Promise",
+    badge: "Mindset",
   },
   {
     id: "process-driven",
     icon: ListChecks,
     title: "Process-Driven Delivery",
-    headline: "Structured. Reliable. Repeatable.",
+    headline: "Structured & reliable.",
     description:
       "Our workflow is built around understanding, planning, creating, reviewing, and improving before final delivery. Structure keeps quality consistent and timelines reliable. Every step has a purpose and every deliverable passes through quality checkpoints.",
     color: "#F43F5E",
@@ -138,13 +138,13 @@ export const reasons: WhyUsReason[] = [
       "Revision rounds built in",
       "Quality gates before delivery",
     ],
-    badge: "Method",
+    badge: "Process",
   },
   {
     id: "direct-collaboration",
     icon: Handshake,
     title: "Direct Collaboration",
-    headline: "Talk to the builder. Directly.",
+    headline: "No middlemen. Direct talk.",
     description:
       "You work closely with the people building your project, which keeps communication simple and decisions faster. No account managers, no handoffs, no lost context — just direct, productive conversation with the team that creates your product.",
     color: "#8B5CF6",
@@ -159,33 +159,33 @@ export const reasons: WhyUsReason[] = [
       "No miscommunication layers",
       "Collaborative decision-making",
     ],
-    badge: "Transparent",
+    badge: "Direct",
   },
 ];
 
 export const whyUsStats: WhyUsStat[] = [
   {
-    value: "20",
-    suffix: "+",
-    label: "Projects Delivered",
-    color: "#7C3AED",
-  },
-  {
     value: "5",
     suffix: "",
     label: "Team Specialists",
-    color: "#06B6D4",
+    color: "#7C3AED",
   },
   {
-    value: "100",
-    suffix: "%",
-    label: "Client Communication",
-    color: "#10B981",
+    value: "7",
+    suffix: "",
+    label: "Step Process",
+    color: "#06B6D4",
   },
   {
     value: "24",
     suffix: "h",
     label: "Avg. Response Time",
+    color: "#10B981",
+  },
+  {
+    value: "0",
+    suffix: "",
+    label: "Middlemen",
     color: "#F97316",
   },
 ];

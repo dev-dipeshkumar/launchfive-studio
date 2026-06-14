@@ -20,6 +20,11 @@ import {
   DollarSign,
   Clock,
   Link as LinkIcon,
+  MapPin,
+  ArrowRight,
+  MessageSquare,
+  Shield,
+  Zap,
 } from "lucide-react";
 
 const budgetRanges = [
@@ -40,6 +45,69 @@ const timelines = [
   "Flexible",
 ];
 
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "hello@launchfivestudio.com",
+    href: "mailto:hello@launchfivestudio.com",
+    color: "#7C3AED",
+  },
+  {
+    icon: Phone,
+    label: "WhatsApp",
+    value: "+91 98765 43210",
+    href: "https://wa.me/919876543210",
+    color: "#10B981",
+  },
+  {
+    icon: MapPin,
+    label: "Working Hours",
+    value: "Mon - Sat, 10AM - 7PM IST",
+    href: null,
+    color: "#06B6D4",
+  },
+];
+
+const assurances = [
+  {
+    icon: Zap,
+    text: "Response within 24 hours",
+    color: "#F59E0B",
+  },
+  {
+    icon: Shield,
+    text: "Your information is never shared",
+    color: "#10B981",
+  },
+  {
+    icon: MessageSquare,
+    text: "Free initial consultation",
+    color: "#7C3AED",
+  },
+];
+
+/* ─── Animated field wrapper ─── */
+function FormField({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── Main Component ─── */
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
@@ -97,8 +165,8 @@ export default function ContactForm() {
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C3AED]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#06B6D4]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#7C3AED]/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#06B6D4]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -107,244 +175,332 @@ export default function ContactForm() {
           description="Tell us what you want to build. We'll review your idea, understand your requirements, and suggest the best direction with clarity."
         />
 
-        <div className="max-w-3xl mx-auto">
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* ─── Left: Contact Info Panel ─── */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
-            onSubmit={handleSubmit(onSubmit)}
-            className="rounded-2xl glass p-6 md:p-8 space-y-6"
+            className="lg:col-span-1 space-y-6"
           >
-            {/* Success message */}
-            <AnimatePresence>
-              {formSuccess && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981]"
-                >
-                  <CheckCircle2 size={20} />
-                  <div>
-                    <p className="font-medium text-sm">Thanks for reaching out.</p>
-                    <p className="text-xs opacity-80">
-                      We'll review your project details and get back to you with the next steps.
-                    </p>
+            {/* Contact cards */}
+            {contactInfo.map((info, i) => (
+              <motion.div
+                key={info.label}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="group"
+              >
+                {info.href ? (
+                  <a
+                    href={info.href}
+                    target={info.href.startsWith("http") ? "_blank" : undefined}
+                    rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-3 p-4 rounded-xl glass hover:border-white/[0.15] transition-all duration-300"
+                  >
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
+                      style={{
+                        backgroundColor: `${info.color}12`,
+                        border: `1px solid ${info.color}20`,
+                      }}
+                    >
+                      <info.icon size={18} style={{ color: info.color }} />
+                    </div>
+                    <div>
+                      <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
+                      <p className="text-white text-sm font-medium group-hover:gradient-text transition-all">
+                        {info.value}
+                      </p>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="flex items-start gap-3 p-4 rounded-xl glass">
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                      style={{
+                        backgroundColor: `${info.color}12`,
+                        border: `1px solid ${info.color}20`,
+                      }}
+                    >
+                      <info.icon size={18} style={{ color: info.color }} />
+                    </div>
+                    <div>
+                      <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
+                      <p className="text-white text-sm font-medium">{info.value}</p>
+                    </div>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                )}
+              </motion.div>
+            ))}
 
-            {/* Error message */}
-            <AnimatePresence>
-              {formError && (
+            {/* Assurances */}
+            <div className="pt-4 space-y-3">
+              {assurances.map((item, i) => (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive"
+                  key={item.text}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                  className="flex items-center gap-2.5"
                 >
-                  <AlertCircle size={20} />
-                  <p className="text-sm">{formError}</p>
+                  <div
+                    className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
+                    style={{
+                      backgroundColor: `${item.color}10`,
+                      border: `1px solid ${item.color}15`,
+                    }}
+                  >
+                    <item.icon size={11} style={{ color: item.color }} />
+                  </div>
+                  <span className="text-xs text-[#94A3B8]">{item.text}</span>
                 </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Row 1: Name & Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <User size={14} />
-                  Full Name <span className="text-[#F43F5E]">*</span>
-                </label>
-                <input
-                  {...register("name")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                  placeholder="Your full name"
-                />
-                {errors.name && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.name.message}</p>
-                )}
-              </div>
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <Mail size={14} />
-                  Email <span className="text-[#F43F5E]">*</span>
-                </label>
-                <input
-                  {...register("email")}
-                  type="email"
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                  placeholder="you@company.com"
-                />
-                {errors.email && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.email.message}</p>
-                )}
-              </div>
+              ))}
             </div>
+          </motion.div>
 
-            {/* Row 2: Phone & Company */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <Phone size={14} />
-                  Phone / WhatsApp
-                </label>
-                <input
-                  {...register("phone")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                  placeholder="+91 98765 43210"
-                />
-              </div>
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <Building2 size={14} />
-                  Company Name
-                </label>
-                <input
-                  {...register("company")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                  placeholder="Your company name"
-                />
-              </div>
-            </div>
+          {/* ─── Right: Form ─── */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-2"
+          >
+            <div className="rounded-2xl glass p-6 md:p-8">
+              {/* Success message */}
+              <AnimatePresence>
+                {formSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] mb-6"
+                  >
+                    <CheckCircle2 size={20} />
+                    <div>
+                      <p className="font-medium text-sm">Thanks for reaching out.</p>
+                      <p className="text-xs opacity-80">
+                        We'll review your project details and get back to you with the next steps.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* Row 3: Service & Budget */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <FileText size={14} />
-                  Service Needed <span className="text-[#F43F5E]">*</span>
-                </label>
-                <select
-                  {...register("service")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all appearance-none"
-                  defaultValue=""
+              {/* Error message */}
+              <AnimatePresence>
+                {formError && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive mb-6"
+                  >
+                    <AlertCircle size={20} />
+                    <p className="text-sm">{formError}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                {/* Row 1: Name & Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField delay={0.05}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <User size={13} />
+                      Full Name <span className="text-[#F43F5E]">*</span>
+                    </label>
+                    <input
+                      {...register("name")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      placeholder="Your full name"
+                    />
+                    {errors.name && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.name.message}</p>
+                    )}
+                  </FormField>
+                  <FormField delay={0.1}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <Mail size={13} />
+                      Email <span className="text-[#F43F5E]">*</span>
+                    </label>
+                    <input
+                      {...register("email")}
+                      type="email"
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      placeholder="you@company.com"
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.email.message}</p>
+                    )}
+                  </FormField>
+                </div>
+
+                {/* Row 2: Phone & Company */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField delay={0.15}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <Phone size={13} />
+                      Phone / WhatsApp
+                    </label>
+                    <input
+                      {...register("phone")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      placeholder="+91 98765 43210"
+                    />
+                  </FormField>
+                  <FormField delay={0.2}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <Building2 size={13} />
+                      Company Name
+                    </label>
+                    <input
+                      {...register("company")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      placeholder="Your company name"
+                    />
+                  </FormField>
+                </div>
+
+                {/* Row 3: Service & Budget */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField delay={0.25}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <FileText size={13} />
+                      Service Needed <span className="text-[#F43F5E]">*</span>
+                    </label>
+                    <select
+                      {...register("service")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      defaultValue=""
+                    >
+                      <option value="" disabled className="bg-[#0F1629]">
+                        Select a service
+                      </option>
+                      {services.map((s) => (
+                        <option key={s.id} value={s.title} className="bg-[#0F1629]">
+                          {s.title}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.service && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.service.message}</p>
+                    )}
+                  </FormField>
+                  <FormField delay={0.3}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <DollarSign size={13} />
+                      Budget Range <span className="text-[#F43F5E]">*</span>
+                    </label>
+                    <select
+                      {...register("budget")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      defaultValue=""
+                    >
+                      <option value="" disabled className="bg-[#0F1629]">
+                        Select budget range
+                      </option>
+                      {budgetRanges.map((b) => (
+                        <option key={b} value={b} className="bg-[#0F1629]">
+                          {b}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.budget && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.budget.message}</p>
+                    )}
+                  </FormField>
+                </div>
+
+                {/* Row 4: Timeline & Reference */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField delay={0.35}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <Clock size={13} />
+                      Timeline <span className="text-[#F43F5E]">*</span>
+                    </label>
+                    <select
+                      {...register("timeline")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      defaultValue=""
+                    >
+                      <option value="" disabled className="bg-[#0F1629]">
+                        Select timeline
+                      </option>
+                      {timelines.map((t) => (
+                        <option key={t} value={t} className="bg-[#0F1629]">
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.timeline && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.timeline.message}</p>
+                    )}
+                  </FormField>
+                  <FormField delay={0.4}>
+                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                      <LinkIcon size={13} />
+                      Reference Link
+                    </label>
+                    <input
+                      {...register("referenceLink")}
+                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      placeholder="https://example.com"
+                    />
+                    {errors.referenceLink && (
+                      <p className="text-xs text-[#F43F5E] mt-1">{errors.referenceLink.message}</p>
+                    )}
+                  </FormField>
+                </div>
+
+                {/* Row 5: Description */}
+                <FormField delay={0.45}>
+                  <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
+                    <FileText size={13} />
+                    Project Description <span className="text-[#F43F5E]">*</span>
+                  </label>
+                  <textarea
+                    {...register("description")}
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
+                    placeholder="Describe your project, goals, and any specific requirements..."
+                  />
+                  {errors.description && (
+                    <p className="text-xs text-[#F43F5E] mt-1">{errors.description.message}</p>
+                  )}
+                </FormField>
+
+                {/* Submit */}
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.01, y: isSubmitting ? 0 : -1 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 >
-                  <option value="" disabled className="bg-[#0F1629]">
-                    Select a service
-                  </option>
-                  {services.map((s) => (
-                    <option key={s.id} value={s.title} className="bg-[#0F1629]">
-                      {s.title}
-                    </option>
-                  ))}
-                </select>
-                {errors.service && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.service.message}</p>
-                )}
-              </div>
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <DollarSign size={14} />
-                  Budget Range <span className="text-[#F43F5E]">*</span>
-                </label>
-                <select
-                  {...register("budget")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all appearance-none"
-                  defaultValue=""
-                >
-                  <option value="" disabled className="bg-[#0F1629]">
-                    Select budget range
-                  </option>
-                  {budgetRanges.map((b) => (
-                    <option key={b} value={b} className="bg-[#0F1629]">
-                      {b}
-                    </option>
-                  ))}
-                </select>
-                {errors.budget && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.budget.message}</p>
-                )}
-              </div>
+                  <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      Send Project Inquiry
+                      <ArrowRight size={14} className="ml-1" />
+                    </>
+                  )}
+                </motion.button>
+              </form>
             </div>
-
-            {/* Row 4: Timeline & Reference Link */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <Clock size={14} />
-                  Timeline <span className="text-[#F43F5E]">*</span>
-                </label>
-                <select
-                  {...register("timeline")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all appearance-none"
-                  defaultValue=""
-                >
-                  <option value="" disabled className="bg-[#0F1629]">
-                    Select timeline
-                  </option>
-                  {timelines.map((t) => (
-                    <option key={t} value={t} className="bg-[#0F1629]">
-                      {t}
-                    </option>
-                  ))}
-                </select>
-                {errors.timeline && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.timeline.message}</p>
-                )}
-              </div>
-              <div>
-                <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                  <LinkIcon size={14} />
-                  Reference Link
-                </label>
-                <input
-                  {...register("referenceLink")}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                  placeholder="https://example.com"
-                />
-                {errors.referenceLink && (
-                  <p className="text-xs text-[#F43F5E] mt-1">{errors.referenceLink.message}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Row 5: Description */}
-            <div>
-              <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                <FileText size={14} />
-                Project Description <span className="text-[#F43F5E]">*</span>
-              </label>
-              <textarea
-                {...register("description")}
-                rows={4}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-[#94A3B8]/50 focus:outline-none focus:border-[#7C3AED] focus:ring-1 focus:ring-[#7C3AED] transition-all resize-none"
-                placeholder="Describe your project, goals, and any specific requirements..."
-              />
-              {errors.description && (
-                <p className="text-xs text-[#F43F5E] mt-1">{errors.description.message}</p>
-              )}
-            </div>
-
-            {/* Submit button */}
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-medium rounded-lg hover:shadow-[0_0_28px_rgba(124,58,237,0.35)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
-              whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -1 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
-              <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
-              {isSubmitting ? (
-                <>
-                  <Loader2 size={18} className="animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <Send size={18} />
-                  Send Project Inquiry
-                </>
-              )}
-            </motion.button>
-
-            <p className="text-center text-xs text-[#94A3B8]">
-              We'll respond within 24 hours. Your information is safe and will never be shared.
-            </p>
-          </motion.form>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,12 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import CTAButton from "@/components/common/CTAButton";
-import { ArrowRight, MessageCircle, Rocket } from "lucide-react";
+import { ArrowRight, MessageCircle, Rocket, Sparkles } from "lucide-react";
 
 export default function ContactCTA() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const overlayY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section ref={sectionRef} className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -17,32 +25,73 @@ export default function ContactCTA() {
         >
           {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] opacity-90" />
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50" />
+
+          {/* Subtle grid overlay */}
+          <motion.div
+            style={{ y: overlayY }}
+            className="absolute inset-0 pointer-events-none"
+          >
+            <div
+              className="w-full h-full opacity-[0.04]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+              }}
+            />
+          </motion.div>
+
+          {/* Floating accent orbs */}
+          <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 
           <div className="relative z-10 py-16 md:py-20 px-8 md:px-16 text-center">
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6"
+              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm"
             >
-              <Rocket size={14} />
+              <Sparkles size={14} />
               LaunchFive Studio
             </motion.div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {/* Title */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
+            >
               Ready to Launch Something
               <br />
-              <span className="text-white/80">Clear, Modern & Useful?</span>
-            </h2>
+              <span className="text-white/70">Clear, Modern & Useful?</span>
+            </motion.h2>
 
-            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-white/70 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed"
+            >
               Whether you need a website, app interface, brand identity, logo, ad
               creative, or design system, LaunchFive Studio can help you shape the
               idea and turn it into a polished digital outcome.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
               <CTAButton
                 href="#contact"
                 size="lg"
@@ -60,7 +109,7 @@ export default function ContactCTA() {
                 <MessageCircle size={18} />
                 Contact the Team
               </CTAButton>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

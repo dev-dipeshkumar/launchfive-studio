@@ -22,6 +22,10 @@ function AnimatedCounter({
 
   useEffect(() => {
     if (!isInView) return;
+    if (target === 0) {
+      setCount(0);
+      return;
+    }
     let start = 0;
     const end = target;
     const incrementTime = (duration * 1000) / end;
@@ -40,7 +44,7 @@ function AnimatedCounter({
 
   return (
     <span ref={ref}>
-      {count}
+      {target === 0 ? "0" : count}
       {suffix}
     </span>
   );
@@ -54,67 +58,53 @@ function ReasonCard({
   reason: (typeof reasons)[0];
   index: number;
 }) {
-  const isEven = index % 2 === 0;
-
   return (
     <motion.div
-      initial={{ opacity: 0, x: isEven ? -60 : 60, y: 20 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
-        duration: 0.7,
-        delay: index * 0.1,
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
+        duration: 0.5,
+        delay: index * 0.08,
       }}
       className="group relative"
     >
       <motion.div
-        whileHover={{ y: -6, scale: 1.01 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="relative rounded-2xl glass overflow-hidden hover:border-[#7C3AED]/30 transition-all duration-500"
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="relative rounded-2xl glass overflow-hidden hover:border-white/[0.15] transition-all duration-300"
         data-cursor-hover
       >
-        {/* Top gradient accent bar */}
+        {/* Subtle top accent line */}
         <div
-          className="h-1 w-full"
+          className="h-0.5 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: `linear-gradient(90deg, ${reason.color}, ${reason.color}00)`,
+            background: `linear-gradient(90deg, ${reason.color}, transparent)`,
           }}
         />
 
         <div className="p-6">
-          {/* Header: Badge + Icon */}
+          {/* Header: Icon + Title + Stat */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
-              {/* Animated icon container */}
-              <motion.div
-                className="relative w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
                 style={{
-                  background: `linear-gradient(135deg, ${reason.color}20, ${reason.color}08)`,
-                  border: `1px solid ${reason.color}30`,
+                  backgroundColor: `${reason.color}12`,
+                  border: `1px solid ${reason.color}20`,
                 }}
-                whileHover={{ rotate: 5, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
-                <reason.icon size={24} style={{ color: reason.color }} />
-                {/* Pulse ring on hover */}
-                <div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse-glow"
-                  style={{
-                    boxShadow: `0 0 20px ${reason.color}40`,
-                  }}
-                />
-              </motion.div>
+                <reason.icon size={20} style={{ color: reason.color }} />
+              </div>
 
               <div>
-                <h3 className="text-white font-semibold text-base leading-tight mb-0.5">
+                <h3 className="text-white font-semibold text-sm leading-tight mb-0.5">
                   {reason.title}
                 </h3>
                 <p
-                  className="text-xs font-semibold"
-                  style={{ color: reason.color }}
+                  className="text-[11px] font-medium"
+                  style={{ color: `${reason.color}CC` }}
                 >
                   {reason.headline}
                 </p>
@@ -123,19 +113,19 @@ function ReasonCard({
 
             {/* Stat pill */}
             <div
-              className="px-3 py-1.5 rounded-lg text-center shrink-0"
+              className="px-2.5 py-1 rounded-md text-center shrink-0"
               style={{
-                backgroundColor: `${reason.color}12`,
-                border: `1px solid ${reason.color}25`,
+                backgroundColor: `${reason.color}0A`,
+                border: `1px solid ${reason.color}15`,
               }}
             >
               <span
-                className="text-sm font-bold block leading-none"
-                style={{ color: reason.color }}
+                className="text-xs font-bold block leading-none"
+                style={{ color: `${reason.color}CC` }}
               >
                 {reason.stat.value}
               </span>
-              <span className="text-[9px] text-[#94A3B8] leading-none">
+              <span className="text-[8px] text-[#94A3B8] leading-none">
                 {reason.stat.label}
               </span>
             </div>
@@ -146,39 +136,26 @@ function ReasonCard({
             {reason.description}
           </p>
 
-          {/* Feature pills */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {reason.features.map((feature, fi) => (
-              <motion.span
-                key={feature}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 + fi * 0.05, duration: 0.3 }}
-                className="px-2.5 py-1 text-[10px] font-medium rounded-full flex items-center gap-1"
-                style={{
-                  backgroundColor: `${reason.color}10`,
-                  color: `${reason.color}CC`,
-                  border: `1px solid ${reason.color}20`,
-                }}
-              >
+          {/* Feature list */}
+          <div className="space-y-1.5 mb-4">
+            {reason.features.map((feature) => (
+              <div key={feature} className="flex items-center gap-2">
                 <span
-                  className="w-1 h-1 rounded-full"
-                  style={{ backgroundColor: reason.color }}
+                  className="w-1 h-1 rounded-full shrink-0"
+                  style={{ backgroundColor: `${reason.color}80` }}
                 />
-                {feature}
-              </motion.span>
+                <span className="text-xs text-[#94A3B8]">{feature}</span>
+              </div>
             ))}
           </div>
 
-          {/* Bottom row: Badge + CTA */}
-          <div className="flex items-center justify-between">
+          {/* Bottom: Badge + CTA */}
+          <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
             <span
-              className="px-2.5 py-1 text-[10px] font-semibold rounded-full uppercase tracking-wider"
+              className="px-2 py-0.5 text-[9px] font-semibold rounded uppercase tracking-wider"
               style={{
-                backgroundColor: `${reason.color}15`,
-                color: reason.color,
-                border: `1px solid ${reason.color}25`,
+                backgroundColor: `${reason.color}0A`,
+                color: `${reason.color}BB`,
               }}
             >
               {reason.badge}
@@ -191,34 +168,19 @@ function ReasonCard({
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center gap-1 text-xs font-medium transition-colors"
-              style={{ color: reason.color }}
-              whileHover={{ x: 4 }}
-              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-1 text-xs font-medium text-[#94A3B8] hover:text-white transition-colors"
+              whileHover={{ x: 3 }}
+              whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               Learn More
               <ArrowRight
-                size={12}
+                size={11}
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </motion.a>
           </div>
         </div>
-
-        {/* Hover glow overlay */}
-        <div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            boxShadow: `0 0 40px ${reason.color}12, 0 0 80px ${reason.color}06`,
-          }}
-        />
-
-        {/* Floating accent orb */}
-        <div
-          className="absolute -top-8 -right-8 w-24 h-24 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl pointer-events-none"
-          style={{ backgroundColor: `${reason.color}15` }}
-        />
       </motion.div>
     </motion.div>
   );
@@ -231,7 +193,7 @@ export default function WhyUs() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
     <section
@@ -239,31 +201,13 @@ export default function WhyUs() {
       ref={sectionRef}
       className="section-padding relative overflow-hidden"
     >
-      {/* Parallax background accents */}
+      {/* Subtle background accent */}
       <motion.div
         style={{ y: backgroundY }}
-        className="absolute top-1/4 -left-20 w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none"
       >
-        <div className="w-full h-full bg-[#7C3AED]/[0.04] rounded-full blur-[140px]" />
+        <div className="w-full h-full bg-[#7C3AED]/[0.03] rounded-full blur-[120px]" />
       </motion.div>
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] rounded-full pointer-events-none"
-      >
-        <div className="w-full h-full bg-[#06B6D4]/[0.04] rounded-full blur-[120px]" />
-      </motion.div>
-
-      {/* Floating grid dots pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, #7C3AED 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -274,29 +218,23 @@ export default function WhyUs() {
 
         {/* ─── Stats Bar ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
         >
           {whyUsStats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group relative text-center p-5 rounded-2xl glass hover:border-[#7C3AED]/20 transition-all duration-300"
-              data-cursor-hover
+              transition={{ delay: i * 0.08, duration: 0.4 }}
+              className="group text-center p-4 rounded-xl glass"
             >
-              {/* Top accent line */}
               <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: stat.color }}
-              />
-              <div
-                className="text-3xl md:text-4xl font-bold mb-1"
+                className="text-2xl md:text-3xl font-bold mb-0.5"
                 style={{ color: stat.color }}
               >
                 <AnimatedCounter
@@ -304,65 +242,49 @@ export default function WhyUs() {
                   suffix={stat.suffix}
                 />
               </div>
-              <p className="text-[#94A3B8] text-xs font-medium uppercase tracking-wider">
+              <p className="text-[#94A3B8] text-[11px] font-medium uppercase tracking-wider">
                 {stat.label}
               </p>
-              {/* Hover glow */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  boxShadow: `0 0 30px ${stat.color}10`,
-                }}
-              />
             </motion.div>
           ))}
         </motion.div>
 
         {/* ─── Reason Cards Grid ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
           {reasons.map((reason, i) => (
             <ReasonCard key={reason.id} reason={reason} index={i} />
           ))}
         </div>
 
-        {/* ─── Trust Signals Bar ─── */}
+        {/* ─── Trust Signals ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-6 md:gap-10"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-8"
         >
           {trustSignals.map((signal, i) => (
-            <motion.div
+            <div
               key={signal.text}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.1, type: "spring", stiffness: 200 }}
               className="flex items-center gap-2 group"
             >
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                className="w-7 h-7 rounded-md flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
                 style={{
-                  backgroundColor: `${signal.color}15`,
-                  border: `1px solid ${signal.color}25`,
+                  backgroundColor: `${signal.color}10`,
+                  border: `1px solid ${signal.color}18`,
                 }}
               >
-                <signal.icon size={14} style={{ color: signal.color }} />
+                <signal.icon size={12} style={{ color: signal.color }} />
               </div>
               <span className="text-sm font-medium text-[#94A3B8] group-hover:text-white transition-colors duration-300">
                 {signal.text}
               </span>
-            </motion.div>
+            </div>
           ))}
 
-          {/* Center divider dots */}
-          <div className="hidden md:flex items-center gap-1">
-            <span className="w-1 h-1 rounded-full bg-[#7C3AED]/40" />
-            <span className="w-1 h-1 rounded-full bg-[#7C3AED]/25" />
-            <span className="w-1 h-1 rounded-full bg-[#7C3AED]/10" />
-          </div>
+          <div className="hidden md:block w-px h-5 bg-white/10" />
 
           <motion.a
             href="#contact"
@@ -372,8 +294,8 @@ export default function WhyUs() {
                 .querySelector("#contact")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white text-sm font-semibold shadow-lg shadow-[#7C3AED]/20 hover:shadow-[#7C3AED]/40 transition-shadow duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white text-sm font-semibold hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-shadow duration-300"
+            whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
