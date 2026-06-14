@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
-import { ExternalLink, Layers, ArrowRight } from "lucide-react";
+import { ExternalLink, Layers, ArrowRight, Calendar } from "lucide-react";
 
 export default function PortfolioPreview() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -29,7 +29,7 @@ export default function PortfolioPreview() {
           description="Real projects, design systems, and creative builds — along with internal concepts that show our thinking and execution style."
         />
 
-        {/* Concept work notice — only shown when filtered list includes concepts */}
+        {/* Concept work notice */}
         {hasConcepts && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -113,7 +113,7 @@ export default function PortfolioPreview() {
                   {/* Gradient overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
 
-                  {/* Category + badges */}
+                  {/* Top badges */}
                   <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span
                       className="px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm"
@@ -131,6 +131,22 @@ export default function PortfolioPreview() {
                       </span>
                     )}
                   </div>
+
+                  {/* Year badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full bg-black/30 text-white/70 backdrop-blur-sm">
+                      <Calendar size={9} />
+                      {project.year}
+                    </span>
+                  </div>
+
+                  {/* Bottom gradient line */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(90deg, ${project.color}, transparent)`,
+                    }}
+                  />
                 </div>
 
                 {/* Content */}
@@ -143,13 +159,30 @@ export default function PortfolioPreview() {
                   </p>
 
                   {/* Tools */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tools.map((tool) => (
                       <span
                         key={tool}
                         className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
                       >
                         {tool}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-1.5 py-0.5 text-[9px] rounded-sm font-medium"
+                        style={{
+                          backgroundColor: `${project.color}12`,
+                          color: `${project.color}CC`,
+                          border: `1px solid ${project.color}20`,
+                        }}
+                      >
+                        {tag}
                       </span>
                     ))}
                   </div>

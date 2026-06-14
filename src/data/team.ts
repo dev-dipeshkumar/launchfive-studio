@@ -2,9 +2,11 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
+  tagline: string;
   specialty: string;
   bio: string;
   skills: string[];
+  highlight: string;
   socials: {
     linkedin?: string;
     twitter?: string;
@@ -12,6 +14,7 @@ export interface TeamMember {
   };
   avatarInitials: string;
   color: string;
+  gradient: string;
 }
 
 export const teamMembers: TeamMember[] = [
@@ -19,9 +22,11 @@ export const teamMembers: TeamMember[] = [
     id: "member-1",
     name: "Dipesh Borana",
     role: "Full-Stack Developer",
+    tagline: "Builds it. Ships it. Owns it.",
     specialty: "Web apps, dashboards & deployment-ready builds",
     bio: "Builds responsive web apps, dashboards, backend logic, and deployment-ready web experiences. Dipesh specializes in React, Next.js, and Node.js, delivering clean architecture and maintainable code across full-stack projects.",
     skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Git"],
+    highlight: "3+ years building production web apps",
     socials: {
       linkedin: "https://www.linkedin.com/in/dipeshkumar-dev/",
       twitter: "#",
@@ -29,14 +34,17 @@ export const teamMembers: TeamMember[] = [
     },
     avatarInitials: "DB",
     color: "#7C3AED",
+    gradient: "from-[#7C3AED] to-[#3B82F6]",
   },
   {
     id: "member-2",
     name: "Ronak Jain",
     role: "App Developer",
+    tagline: "Cross-platform. Smooth. Ready.",
     specialty: "Mobile interfaces & cross-platform apps",
     bio: "Works on mobile app interfaces, user flows, Firebase integrations, and cross-platform app structures. Ronak builds with React Native and Flutter, creating app experiences that are smooth, functional, and platform-ready.",
     skills: ["React Native", "Flutter", "Firebase", "iOS", "Android", "REST APIs"],
+    highlight: "Published apps on Play Store & App Store",
     socials: {
       linkedin: "https://www.linkedin.com/in/ronak-jain-b49955289/",
       twitter: "#",
@@ -44,14 +52,17 @@ export const teamMembers: TeamMember[] = [
     },
     avatarInitials: "RJ",
     color: "#06B6D4",
+    gradient: "from-[#06B6D4] to-[#10B981]",
   },
   {
     id: "member-3",
     name: "Prince Chauhan",
     role: "UI/UX Designer",
+    tagline: "Designs for humans first.",
     specialty: "User journeys, wireframes & product interfaces",
     bio: "Designs clean user journeys, wireframes, prototypes, and product interfaces focused on clarity. Prince creates design systems and interaction patterns that make digital products intuitive and visually coherent.",
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems", "Accessibility"],
+    highlight: "Designed interfaces for 10+ product concepts",
     socials: {
       linkedin: "https://www.linkedin.com/in/prince-chouhan06/",
       twitter: "#",
@@ -59,14 +70,17 @@ export const teamMembers: TeamMember[] = [
     },
     avatarInitials: "PC",
     color: "#10B981",
+    gradient: "from-[#10B981] to-[#06B6D4]",
   },
   {
     id: "member-4",
     name: "Pooja Kumawat",
     role: "Graphic Designer",
+    tagline: "Visuals that speak before words.",
     specialty: "Brand visuals, social designs & digital assets",
     bio: "Creates brand visuals, social media designs, templates, banners, and digital creative assets. Pooja works across Illustrator, Photoshop, and InDesign to produce consistent, on-brand graphics for digital and print platforms.",
     skills: ["Illustrator", "Photoshop", "InDesign", "Brand Identity", "Typography", "Print Design"],
+    highlight: "Created brand identities for 8+ businesses",
     socials: {
       linkedin: "https://www.linkedin.com/in/pooja-kumavat-139b21302/",
       twitter: "#",
@@ -74,14 +88,17 @@ export const teamMembers: TeamMember[] = [
     },
     avatarInitials: "PK",
     color: "#F43F5E",
+    gradient: "from-[#F43F5E] to-[#EC4899]",
   },
   {
     id: "member-5",
     name: "Mehul Kumar",
     role: "Ads & Campaign Designer",
+    tagline: "Stops the scroll. Drives the click.",
     specialty: "Campaign visuals, ad creatives & launch graphics",
     bio: "Designs campaign visuals, ad creatives, launch graphics, and promotional content for digital platforms. Mehul creates attention-focused creatives sized and styled for social, display, and paid media channels.",
     skills: ["Ad Design", "Campaign Strategy", "Motion Graphics", "After Effects", "Copywriting", "Analytics"],
+    highlight: "Designed ad campaigns with 2M+ impressions",
     socials: {
       linkedin: "https://www.linkedin.com/in/mehul-kumar-195939289/",
       twitter: "#",
@@ -89,6 +106,7 @@ export const teamMembers: TeamMember[] = [
     },
     avatarInitials: "MK",
     color: "#F97316",
+    gradient: "from-[#F97316] to-[#F59E0B]",
   },
 ];
 

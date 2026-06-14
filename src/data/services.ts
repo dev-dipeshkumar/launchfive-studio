@@ -16,10 +16,15 @@ export interface Service {
   id: string;
   title: string;
   icon: LucideIcon;
+  tagline: string;
   description: string;
   features: string[];
+  deliverables: string[];
+  timeline: string;
   bestFor: string;
+  popular: boolean;
   color: string;
+  gradient: string;
 }
 
 export const services: Service[] = [
@@ -27,8 +32,9 @@ export const services: Service[] = [
     id: "fullstack-dev",
     title: "Full-Stack Development",
     icon: Code2,
+    tagline: "Complete web platforms, end to end",
     description:
-      "We build responsive web applications with clean frontend, backend logic, databases, dashboards, and deployment-ready structure.",
+      "We build responsive web applications with clean frontend, solid backend logic, database architecture, admin dashboards, and deployment-ready structure — all connected and production-grade.",
     features: [
       "Frontend UI with React & Next.js",
       "Backend APIs & microservices",
@@ -37,15 +43,20 @@ export const services: Service[] = [
       "Admin dashboards",
       "Deployment & DevOps",
     ],
+    deliverables: ["Deployed web app", "Source code", "API documentation", "Admin panel access"],
+    timeline: "2-6 weeks",
     bestFor: "Startups, small businesses, and anyone needing a complete web platform",
+    popular: true,
     color: "#7C3AED",
+    gradient: "from-[#7C3AED] to-[#3B82F6]",
   },
   {
     id: "mobile-app-dev",
     title: "Mobile App Development",
     icon: Smartphone,
+    tagline: "Cross-platform apps that feel native",
     description:
-      "We create mobile app interfaces and cross-platform app experiences focused on usability, performance, and smooth user flow.",
+      "We create mobile app interfaces and cross-platform app experiences focused on usability, performance, and smooth user flow. From idea to App Store-ready builds.",
     features: [
       "React Native development",
       "iOS & Android deployment",
@@ -54,15 +65,20 @@ export const services: Service[] = [
       "App Store preparation",
       "Maintenance & updates",
     ],
+    deliverables: ["App prototype", "Cross-platform build", "Store submission support", "User flow documentation"],
+    timeline: "3-8 weeks",
     bestFor: "Businesses reaching mobile users, MVPs, and app prototypes",
+    popular: true,
     color: "#06B6D4",
+    gradient: "from-[#06B6D4] to-[#10B981]",
   },
   {
     id: "website-design",
     title: "Website Design",
     icon: Globe,
+    tagline: "Modern sites that convert visitors",
     description:
-      "We design modern, responsive websites that communicate your offer clearly and guide visitors toward action.",
+      "We design modern, responsive websites that communicate your offer clearly and guide visitors toward action. Clean layouts, fast loading, and built for results.",
     features: [
       "Responsive layouts",
       "Landing page design",
@@ -71,15 +87,20 @@ export const services: Service[] = [
       "Performance optimization",
       "Analytics setup",
     ],
+    deliverables: ["Live website", "Design files", "CMS setup", "Analytics dashboard"],
+    timeline: "1-3 weeks",
     bestFor: "Small businesses, portfolios, and personal brands",
+    popular: false,
     color: "#F97316",
+    gradient: "from-[#F97316] to-[#F59E0B]",
   },
   {
     id: "ui-ux-design",
     title: "UI/UX Design",
     icon: Palette,
+    tagline: "Interfaces people actually enjoy using",
     description:
-      "We create user-friendly screens, wireframes, prototypes, and design systems that make digital products easier to use.",
+      "We create user-friendly screens, wireframes, prototypes, and design systems that make digital products intuitive and visually coherent. Every interaction is intentional.",
     features: [
       "User research & personas",
       "Wireframing & prototyping",
@@ -88,15 +109,20 @@ export const services: Service[] = [
       "Usability testing",
       "Design documentation",
     ],
+    deliverables: ["Figma file with all screens", "Interactive prototype", "Design system", "User flow maps"],
+    timeline: "1-4 weeks",
     bestFor: "App redesigns, product concepts, and digital design projects",
+    popular: true,
     color: "#10B981",
+    gradient: "from-[#10B981] to-[#06B6D4]",
   },
   {
     id: "graphic-design",
     title: "Graphic Design",
     icon: PenTool,
+    tagline: "Visual assets that stand out",
     description:
-      "We design social posts, banners, presentation visuals, brand assets, and marketing graphics for digital platforms.",
+      "We design social posts, banners, presentation visuals, brand assets, and marketing graphics for digital platforms. Consistent, on-brand, and ready to publish.",
     features: [
       "Social media graphics",
       "Print materials",
@@ -105,15 +131,20 @@ export const services: Service[] = [
       "Marketing collateral",
       "Illustration",
     ],
+    deliverables: ["Source files (AI/PSD)", "PNG/PDF exports", "Brand asset library", "Size variations"],
+    timeline: "3-7 days",
     bestFor: "Marketing teams, content creators, and brand launches",
+    popular: false,
     color: "#F43F5E",
+    gradient: "from-[#F43F5E] to-[#EC4899]",
   },
   {
     id: "logo-design",
     title: "Branding & Logo Design",
     icon: PenTool,
+    tagline: "Identities people remember",
     description:
-      "We create logo concepts, color palettes, typography styles, and visual identity directions that make your brand look consistent.",
+      "We create logo concepts, color palettes, typography styles, and visual identity directions that make your brand look consistent and professional across every touchpoint.",
     features: [
       "Concept exploration",
       "Multiple design directions",
@@ -122,15 +153,20 @@ export const services: Service[] = [
       "Color palette definition",
       "Usage guidelines",
     ],
+    deliverables: ["Logo files (SVG, PNG, EPS)", "Brand guideline PDF", "Color palette", "Typography specs"],
+    timeline: "1-2 weeks",
     bestFor: "New businesses, startups, and anyone establishing a visual identity",
+    popular: false,
     color: "#8B5CF6",
+    gradient: "from-[#8B5CF6] to-[#7C3AED]",
   },
   {
     id: "ad-creatives",
     title: "Ad Creatives & Campaign Design",
     icon: Image,
+    tagline: "Ads that stop the scroll",
     description:
-      "We design attention-focused ad creatives, campaign visuals, and social media templates for launches, offers, and promotions.",
+      "We design attention-focused ad creatives, campaign visuals, and social media templates for launches, offers, and promotions. Platform-ready, sized correctly, and built to convert.",
     features: [
       "Facebook & Instagram ads",
       "Google Display ads",
@@ -139,15 +175,20 @@ export const services: Service[] = [
       "Platform-specific sizing",
       "Animated creatives",
     ],
+    deliverables: ["All size variations", "A/B variants", "Source files", "Platform-optimized exports"],
+    timeline: "3-7 days",
     bestFor: "Small businesses running ad campaigns and growing brands",
+    popular: false,
     color: "#EC4899",
+    gradient: "from-[#EC4899] to-[#F43F5E]",
   },
   {
     id: "ad-campaign-design",
     title: "Campaign Strategy & Design",
     icon: Megaphone,
+    tagline: "Full campaigns, from strategy to screen",
     description:
-      "Complete ad campaign visual concepts from strategy to execution, ensuring consistency across all channels and platforms.",
+      "Complete ad campaign visual concepts from strategy to execution, ensuring consistency across all channels and platforms. Strategy-backed, visually unified, and performance-ready.",
     features: [
       "Campaign visual strategy",
       "Multi-platform assets",
@@ -156,15 +197,20 @@ export const services: Service[] = [
       "Performance tracking setup",
       "Iterative optimization",
     ],
+    deliverables: ["Campaign brief", "Full creative pack", "Copy templates", "Performance report template"],
+    timeline: "1-3 weeks",
     bestFor: "Product launches, seasonal promotions, and campaign rollouts",
+    popular: false,
     color: "#14B8A6",
+    gradient: "from-[#14B8A6] to-[#10B981]",
   },
   {
     id: "social-media-templates",
     title: "Social Media Templates",
     icon: LayoutTemplate,
+    tagline: "Post consistently, look professional",
     description:
-      "Ready-to-use, on-brand social media templates that streamline your content creation and maintain visual consistency across every post.",
+      "Ready-to-use, on-brand social media templates that streamline your content creation and maintain visual consistency across every post and platform.",
     features: [
       "Instagram post & story templates",
       "LinkedIn banners",
@@ -173,15 +219,20 @@ export const services: Service[] = [
       "Canva/Figma source files",
       "Brand-consistent styling",
     ],
+    deliverables: ["Canva/Figma templates", "Brand style guide", "All platform sizes", "Usage instructions"],
+    timeline: "3-5 days",
     bestFor: "Social media managers, influencers, and content teams",
+    popular: false,
     color: "#F59E0B",
+    gradient: "from-[#F59E0B] to-[#F97316]",
   },
   {
     id: "branding-kits",
     title: "Branding Kits",
     icon: Layers,
+    tagline: "Everything your brand needs, in one pack",
     description:
-      "Comprehensive brand identity packages that define your visual language with logo, color, typography, and usage guidelines for consistent brand presence.",
+      "Comprehensive brand identity packages that define your visual language with logo, color, typography, and usage guidelines for consistent brand presence everywhere.",
     features: [
       "Logo & variations",
       "Color system & typography",
@@ -190,15 +241,20 @@ export const services: Service[] = [
       "Stationery & business cards",
       "Digital brand assets",
     ],
+    deliverables: ["Complete brand kit", "Style guide PDF", "All logo variations", "Digital & print assets"],
+    timeline: "2-3 weeks",
     bestFor: "New brands, startups, and businesses building their first identity",
+    popular: false,
     color: "#6366F1",
+    gradient: "from-[#6366F1] to-[#8B5CF6]",
   },
   {
     id: "landing-page-design",
     title: "Landing Page Design",
     icon: Rocket,
+    tagline: "One page, one goal, maximum impact",
     description:
-      "Well-structured landing pages designed to present your offer clearly and encourage action with clean layouts and focused messaging.",
+      "Well-structured landing pages designed to present your offer clearly and encourage action with clean layouts, focused messaging, and conversion-optimized structure.",
     features: [
       "Clear, focused layout",
       "A/B testing design",
@@ -207,7 +263,11 @@ export const services: Service[] = [
       "Form & CTA integration",
       "Analytics & tracking",
     ],
+    deliverables: ["Live landing page", "Design file", "A/B variants", "Analytics setup"],
+    timeline: "1-2 weeks",
     bestFor: "Product launches, lead generation, and marketing campaigns",
+    popular: true,
     color: "#0EA5E9",
+    gradient: "from-[#0EA5E9] to-[#06B6D4]",
   },
 ];

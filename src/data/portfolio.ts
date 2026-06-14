@@ -7,6 +7,9 @@ export interface Project {
   tools: string[];
   takeaway: string;
   color: string;
+  gradient: string;
+  tags: string[];
+  year: string;
   projectUrl?: string;
   projectUrlLabel?: string;
   isConcept: boolean;
@@ -34,6 +37,9 @@ export const projects: Project[] = [
     takeaway:
       "Demonstrates our ability to build complex, data-heavy web applications with clean architecture, real-time rendering, and a polished dark-themed interface.",
     color: "#7C3AED",
+    gradient: "from-[#7C3AED] to-[#3B82F6]",
+    tags: ["Dashboard", "Full-Stack", "Dark UI", "Real-time"],
+    year: "2025",
     projectUrl: "https://pulseboard-demo.vercel.app",
     projectUrlLabel: "View Live",
     isConcept: false,
@@ -49,6 +55,9 @@ export const projects: Project[] = [
     takeaway:
       "Shows our approach to designing secure, user-friendly financial interfaces with clear hierarchy, accessible touch targets, and platform-native interaction patterns.",
     color: "#06B6D4",
+    gradient: "from-[#06B6D4] to-[#10B981]",
+    tags: ["Fintech", "Mobile", "UI Kit", "Prototyping"],
+    year: "2025",
     projectUrl: "https://figma.com/community/file/finwise-app-ui",
     projectUrlLabel: "View Design",
     isConcept: false,
@@ -64,6 +73,9 @@ export const projects: Project[] = [
     takeaway:
       "Demonstrates our ability to create cohesive, memorable brand identities that work across digital and print — from logo to packaging to social templates.",
     color: "#F97316",
+    gradient: "from-[#F97316] to-[#F59E0B]",
+    tags: ["Restaurant", "Brand Identity", "Print + Digital", "Logo"],
+    year: "2025",
     projectUrl: "https://behance.net/gallery/spiceroot-brand",
     projectUrlLabel: "View Design",
     isConcept: false,
@@ -79,6 +91,9 @@ export const projects: Project[] = [
     takeaway:
       "Highlights our ability to design and build landing pages that balance visual impact with conversion strategy — fast loading, mobile-first, and structured for clarity.",
     color: "#10B981",
+    gradient: "from-[#10B981] to-[#06B6D4]",
+    tags: ["E-Commerce", "Landing Page", "Conversion", "Responsive"],
+    year: "2025",
     projectUrl: "https://shopnova-landing.vercel.app",
     projectUrlLabel: "View Live",
     isConcept: false,
@@ -94,6 +109,9 @@ export const projects: Project[] = [
     takeaway:
       "Shows our ability to create platform-ready ad visuals that follow current design trends, platform specifications, and attention-focused layout principles.",
     color: "#EC4899",
+    gradient: "from-[#EC4899] to-[#F43F5E]",
+    tags: ["Social Ads", "Campaign", "Multi-platform", "Creatives"],
+    year: "2025",
     isConcept: true,
   },
   {
@@ -107,6 +125,9 @@ export const projects: Project[] = [
     takeaway:
       "Demonstrates our range in logo design — from wordmarks to symbols to combination marks — with consistent visual thinking and scalable output.",
     color: "#8B5CF6",
+    gradient: "from-[#8B5CF6] to-[#7C3AED]",
+    tags: ["Logo", "Brand Marks", "Wordmarks", "Identity"],
+    year: "2025",
     isConcept: true,
   },
 ];

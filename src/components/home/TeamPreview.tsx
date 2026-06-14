@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { teamMembers } from "@/data/team";
 import SectionHeading from "@/components/common/SectionHeading";
-import { Linkedin, Twitter, Globe } from "lucide-react";
+import { Linkedin, Twitter, Globe, Star } from "lucide-react";
 
 const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   linkedin: Linkedin,
@@ -34,40 +34,67 @@ export default function TeamPreview() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -8 }}
-              className="group rounded-2xl glass p-5 text-center hover:border-[#7C3AED]/30 transition-all duration-300"
+              className="group relative rounded-2xl glass p-5 text-center hover:border-[#7C3AED]/30 transition-all duration-300 overflow-hidden"
               data-cursor-hover
             >
-              {/* Avatar */}
+              {/* Gradient top accent line */}
               <div
-                className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-lg font-bold transition-transform duration-300 group-hover:scale-110"
+                className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  backgroundColor: `${member.color}20`,
-                  color: member.color,
-                  border: `2px solid ${member.color}40`,
+                  background: `linear-gradient(90deg, ${member.color}, transparent)`,
                 }}
-              >
-                {member.avatarInitials}
+              />
+
+              {/* Avatar with gradient ring */}
+              <div className="relative mx-auto mb-4 w-16 h-16">
+                <div
+                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
+                  style={{ backgroundColor: `${member.color}40` }}
+                />
+                <div
+                  className="relative w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold transition-transform duration-300 group-hover:scale-110"
+                  style={{
+                    backgroundColor: `${member.color}20`,
+                    color: member.color,
+                    border: `2px solid ${member.color}40`,
+                  }}
+                >
+                  {member.avatarInitials}
+                </div>
               </div>
 
-              <h3 className="text-white font-semibold text-sm mb-1">
+              <h3 className="text-white font-semibold text-sm mb-0.5">
                 {member.name}
               </h3>
               <p
-                className="text-xs font-medium mb-2"
+                className="text-xs font-medium mb-1"
                 style={{ color: member.color }}
               >
                 {member.role}
               </p>
+              <p className="text-[#94A3B8]/70 text-[10px] font-medium mb-2 italic">
+                &ldquo;{member.tagline}&rdquo;
+              </p>
               <p className="text-[#94A3B8] text-xs leading-relaxed mb-3">
                 {member.specialty}
               </p>
+
+              {/* Highlight badge */}
+              <div className="flex items-center justify-center gap-1 mb-3 px-2 py-1 rounded-md bg-white/[0.03] border border-white/[0.06]">
+                <Star size={10} style={{ color: member.color }} />
+                <span className="text-[10px] text-[#94A3B8]">{member.highlight}</span>
+              </div>
 
               {/* Skills */}
               <div className="flex flex-wrap justify-center gap-1 mb-3">
                 {member.skills.slice(0, 3).map((skill) => (
                   <span
                     key={skill}
-                    className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-[#94A3B8]"
+                    className="px-2 py-0.5 text-[10px] rounded-full text-[#94A3B8]"
+                    style={{
+                      backgroundColor: `${member.color}10`,
+                      border: `1px solid ${member.color}15`,
+                    }}
                   >
                     {skill}
                   </span>
