@@ -26,7 +26,7 @@ export const teamMembers: TeamMember[] = [
     skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Git"],
     socials: {
       github: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/dipeshkumar-dev/",
       twitter: "#",
     },
     avatarInitials: "DB",
@@ -41,7 +41,7 @@ export const teamMembers: TeamMember[] = [
     skills: ["React Native", "Flutter", "Firebase", "iOS", "Android", "REST APIs"],
     socials: {
       github: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/ronak-jain-b49955289/",
     },
     avatarInitials: "RJ",
     color: "#06B6D4",
@@ -55,7 +55,7 @@ export const teamMembers: TeamMember[] = [
     skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems", "Accessibility"],
     socials: {
       dribbble: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/prince-chouhan06/",
       behance: "#",
     },
     avatarInitials: "PC",
@@ -71,7 +71,7 @@ export const teamMembers: TeamMember[] = [
     socials: {
       behance: "#",
       dribbble: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/pooja-kumavat-139b21302/",
     },
     avatarInitials: "PK",
     color: "#F43F5E",
@@ -84,7 +84,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Designs campaign visuals, ad creatives, launch graphics, and promotional content for digital platforms. Mehul creates attention-focused creatives sized and styled for social, display, and paid media channels.",
     skills: ["Ad Design", "Campaign Strategy", "Motion Graphics", "After Effects", "Copywriting", "Analytics"],
     socials: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/mehul-kumar-195939289/",
       twitter: "#",
       behance: "#",
     },
