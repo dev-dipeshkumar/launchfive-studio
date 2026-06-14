@@ -24,7 +24,7 @@ const socialLinks = [
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Github, href: "#", label: "GitHub" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:hello@freelancerteam.com", label: "Email" },
+  { icon: Mail, href: "mailto:hello@launchfivestudio.com", label: "Email" },
 ];
 
 export default function Footer() {
@@ -43,13 +43,14 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">FT</span>
+                <span className="text-white font-bold text-sm">L5</span>
               </div>
-              <span className="text-lg font-bold gradient-text">FreelancerTeam</span>
+              <span className="text-lg font-bold gradient-text">LaunchFive Studio</span>
             </div>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-              A fresh collective of five creatives building websites, apps, brands,
-              and campaigns. We are new, hungry, and ready to prove ourselves.
+              A fresh 5-member creative-tech studio helping clients launch websites,
+              apps, brands, UI/UX, graphics, logos, templates, and ad creatives with
+              honest effort and modern tools.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -107,7 +108,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Get in Touch</h4>
             <div className="space-y-3">
               <p className="text-[#94A3B8] text-sm">
-                <span className="text-white">Email:</span> hello@freelancerteam.com
+                <span className="text-white">Email:</span> hello@launchfivestudio.com
               </p>
               <p className="text-[#94A3B8] text-sm">
                 <span className="text-white">Phone:</span> +91 98765 43210
@@ -125,10 +126,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#94A3B8] text-sm">
-            &copy; {new Date().getFullYear()} FreelancerTeam. All rights reserved.
+            &copy; {new Date().getFullYear()} LaunchFive Studio. All rights reserved.
           </p>
           <p className="text-[#94A3B8] text-sm flex items-center gap-1">
-            Made with <Heart size={14} className="text-[#F43F5E] fill-[#F43F5E]" /> by FreelancerTeam
+            Made with <Heart size={14} className="text-[#F43F5E] fill-[#F43F5E]" /> by LaunchFive Studio
           </p>
         </div>
       </div>

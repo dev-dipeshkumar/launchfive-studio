@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { teamMembers, workProcess } from "@/data/team";
+import { teamMembers } from "@/data/team";
 import SectionHeading from "@/components/common/SectionHeading";
 import { Github, Linkedin, Twitter, Dribbble, Globe } from "lucide-react";
 
@@ -22,12 +22,12 @@ export default function TeamPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Team"
-          title="Meet the Crew"
-          description="Five friends and colleagues who recently teamed up to take on real-world projects. Each member brings unique skills honed through personal and academic work — and together we cover the full stack of development, design, and marketing."
+          title="Meet the LaunchFive Team"
+          description="Five fresh creative minds working together to learn, build, design, improve, and deliver meaningful digital work for our first clients."
         />
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.id}
@@ -93,36 +93,6 @@ export default function TeamPreview() {
                   );
                 })}
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* How We Work Together */}
-        <SectionHeading
-          label="Our Process"
-          title="How We Work Together"
-          description="Our structured workflow ensures every project moves smoothly from initial concept to final delivery, with clear communication at every step."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {workProcess.slice(0, 4).map((step, i) => (
-            <motion.div
-              key={step.step}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative rounded-2xl glass p-6 group hover:border-[#7C3AED]/30 transition-all duration-300"
-            >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] flex items-center justify-center text-white font-bold text-sm mb-4">
-                {step.step}
-              </div>
-              <h4 className="text-white font-semibold text-sm mb-2">
-                {step.title}
-              </h4>
-              <p className="text-[#94A3B8] text-xs leading-relaxed">
-                {step.description}
-              </p>
             </motion.div>
           ))}
         </div>

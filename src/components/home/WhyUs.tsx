@@ -1,50 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Clock, Users, Rocket, Headphones, Flame } from "lucide-react";
+import { Lightbulb, Users, MessageSquareHeart, Flame, Wrench, TrendingUp } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
 
 const reasons = [
   {
-    icon: Users,
-    title: "Complete Team Under One Roof",
+    icon: Lightbulb,
+    title: "Fresh Perspective",
     description:
-      "No need to hire and coordinate separate freelancers. Our 5-member team covers development, design, branding, and marketing, working together seamlessly on every project.",
+      "We are new, curious, and ready to approach every project with fresh ideas and full attention. No recycled templates or autopilot thinking — every brief gets our genuine creative effort.",
     color: "#7C3AED",
   },
   {
-    icon: Rocket,
-    title: "Fast Turnaround Times",
+    icon: Users,
+    title: "A Coordinated 5-Member Team",
     description:
-      "With a dedicated team working in parallel, we deliver projects significantly faster than individual freelancers. Development and design happen simultaneously, not sequentially.",
+      "Our team brings together development, app building, UI/UX, graphics, branding, and campaign design. Instead of juggling multiple freelancers, you get one team that works together seamlessly.",
     color: "#06B6D4",
   },
   {
-    icon: Shield,
-    title: "Quality-First Approach",
+    icon: MessageSquareHeart,
+    title: "Honest Communication",
     description:
-      "Every project goes through internal review before delivery. Multiple team members review code, designs, and creative assets to ensure the highest quality standards are met — we treat your project like our own.",
+      "We will clearly explain what we can do, what we are learning, and how we will deliver the project. No over-promising, no vague timelines — just straightforward, respectful dialogue.",
     color: "#10B981",
   },
   {
-    icon: Clock,
-    title: "Reliable & Transparent",
+    icon: Flame,
+    title: "Dedicated Effort",
     description:
-      "We provide clear timelines, regular progress updates, and honest communication throughout the project. No surprises, no ghosting, no hidden costs. What we agree is what we deliver.",
+      "Since we are looking for our first client success story, every project matters deeply to us. Your project is not just another job — it is the foundation of our reputation, and we will treat it that way.",
     color: "#F97316",
   },
   {
-    icon: Headphones,
-    title: "Ongoing Support",
+    icon: Wrench,
+    title: "Skill-Based Execution",
     description:
-      "Our relationship does not end at delivery. We provide post-launch support, maintenance, and feature upgrades to ensure your product continues to perform at its best.",
+      "Even though we are starting professionally, we are trained in modern tools and ready to apply our skills to real client work. We practice daily, learn continuously, and deliver with care.",
     color: "#F43F5E",
   },
   {
-    icon: Flame,
-    title: "Fresh Perspective & Hungry to Prove Ourselves",
+    icon: TrendingUp,
+    title: "Long-Term Growth Mindset",
     description:
-      "We are new to the freelance market and that is our strength. Every project matters to us — we pour everything into our work because your success is the foundation of our reputation. We are committed to learning, growing, and over-delivering.",
+      "We want to build trust, improve with every project, and grow through real client results. When you work with us, you are not just getting a one-time service — you are helping launch a team that will keep getting better.",
     color: "#8B5CF6",
   },
 ];
@@ -58,7 +58,7 @@ export default function WhyUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Why Choose Us"
-          title="Why Work With Our Team"
+          title="Why Work With LaunchFive Studio"
           description="We may be new, but we are dedicated, skilled, and genuinely excited about every project. Here is why taking a chance on a fresh team could be the best decision for your business."
         />
 

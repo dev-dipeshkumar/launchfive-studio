@@ -14,11 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FreelancerTeam — A Fresh Creative Team | Websites, Apps, Brands & Campaigns",
+  title: "LaunchFive Studio – Fresh Creative-Tech Team for Websites, Apps, Design & Branding",
   description:
-    "A newly-formed freelance team of five creatives building websites, mobile apps, UI/UX designs, brand identities, ad creatives, and marketing campaigns. Hungry for our first success story — let us make it yours.",
+    "LaunchFive Studio is a fresh 5-member creative-tech team helping clients build websites, apps, UI/UX, branding, graphics, logos, templates, and ad creatives with dedication and modern tools.",
   keywords: [
-    "freelance team",
+    "LaunchFive Studio",
+    "creative tech team",
     "web development",
     "mobile app development",
     "UI/UX design",
@@ -26,29 +27,30 @@ export const metadata: Metadata = {
     "branding",
     "ad creatives",
     "campaign design",
-    "digital agency",
     "website design",
     "logo design",
     "landing page",
+    "freelance team",
+    "startup studio",
   ],
-  authors: [{ name: "FreelancerTeam" }],
+  authors: [{ name: "LaunchFive Studio" }],
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237C3AED'/><text x='50' y='65' font-size='45' font-weight='bold' text-anchor='middle' fill='white'>FT</text></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237C3AED'/><text x='50' y='65' font-size='45' font-weight='bold' text-anchor='middle' fill='white'>L5</text></svg>",
   },
   openGraph: {
-    title: "FreelancerTeam — A Fresh Creative Team",
+    title: "LaunchFive Studio – Fresh Creative-Tech Team",
     description:
-      "A newly-formed freelance team of five creatives building websites, apps, brands, and campaigns. Looking for our first client!",
-    url: "https://freelancerteam.com",
-    siteName: "FreelancerTeam",
+      "A fresh 5-member creative-tech team helping clients build websites, apps, brands, and campaigns. Looking for our first client!",
+    url: "https://launchfivestudio.com",
+    siteName: "LaunchFive Studio",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FreelancerTeam — A Fresh Creative Team",
+    title: "LaunchFive Studio – Fresh Creative-Tech Team",
     description:
-      "A newly-formed freelance team of five creatives. Looking for our first client!",
+      "A fresh 5-member creative-tech team. Looking for our first client!",
   },
   robots: {
     index: true,

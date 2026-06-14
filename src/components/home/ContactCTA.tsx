@@ -31,20 +31,20 @@ export default function ContactCTA() {
             </motion.div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Be Part of Our
+              Be Our First Client
               <br />
-              <span className="text-white/80">First Success Story</span>
+              <span className="text-white/80">Success Story</span>
             </h2>
 
             <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-3 leading-relaxed">
-              We are looking for our first clients! If you have an idea for a website, app,
-              brand identity, or ad campaign, let&apos;s work together.
+              Have an idea for a website, app, brand, logo, UI/UX design, ad creative,
+              or social media template? We are ready to work with full dedication and
+              build something meaningful with you.
             </p>
 
             <p className="text-white/70 text-sm max-w-lg mx-auto mb-8 leading-relaxed">
-              Reach out and be part of the journey. We will bring the same energy, dedication,
-              and care to your project that we would bring to our own — because your success
-              is how we build our reputation.
+              Reach out and be part of the journey. Your project will be our priority —
+              because your success is how we build our reputation.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,7 +54,7 @@ export default function ContactCTA() {
                 className="bg-white text-[#7C3AED] hover:shadow-xl hover:shadow-black/20"
               >
                 <Zap size={18} />
-                Start a Project
+                Start Our First Project Together
                 <ArrowRight size={18} />
               </CTAButton>
               <CTAButton
@@ -63,7 +63,7 @@ export default function ContactCTA() {
                 className="bg-white/10 text-white hover:bg-white/20 border-white/20"
               >
                 <MessageCircle size={18} />
-                Chat on WhatsApp
+                Chat With LaunchFive
               </CTAButton>
             </div>
           </div>

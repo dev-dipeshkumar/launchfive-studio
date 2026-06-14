@@ -60,10 +60,10 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">FT</span>
+              <span className="text-white font-bold text-sm">L5</span>
             </div>
             <span className="text-lg font-bold gradient-text hidden sm:block">
-              FreelancerTeam
+              LaunchFive Studio
             </span>
           </motion.a>
 

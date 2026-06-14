@@ -28,7 +28,7 @@ export const services: Service[] = [
     title: "Full-Stack Development",
     icon: Code2,
     description:
-      "We build complete web applications from frontend to backend. Trained in modern frameworks and eager to apply our skills on real projects — from simple sites to full-featured platforms.",
+      "We build complete web applications from frontend to backend. Trained in modern frameworks and focused on writing clean, maintainable code — eager to apply our skills on real client projects.",
     features: [
       "Frontend UI with React & Next.js",
       "Backend APIs & microservices",
@@ -62,13 +62,13 @@ export const services: Service[] = [
     title: "Website Design",
     icon: Globe,
     description:
-      "Beautiful, responsive websites that capture your brand essence with modern design principles. We focus on clean layouts, clear messaging, and fast performance.",
+      "Clean, responsive websites that present your brand clearly and professionally. We focus on modern layouts, fast performance, and clear messaging.",
     features: [
       "Responsive layouts",
       "Landing page design",
       "CMS integration",
-      "SEO optimization",
-      "Performance tuning",
+      "SEO fundamentals",
+      "Performance optimization",
       "Analytics setup",
     ],
     bestFor: "Small businesses, portfolios, and personal brands",
@@ -79,7 +79,7 @@ export const services: Service[] = [
     title: "UI/UX Design",
     icon: Palette,
     description:
-      "User-centered design that combines aesthetics with functionality. We have practiced creating intuitive interfaces through academic and personal projects, and we bring fresh ideas to every design challenge.",
+      "Simple, clean, and user-friendly interface design. We have practiced creating intuitive interfaces through academic and personal projects, and we bring fresh ideas to every design challenge.",
     features: [
       "User research & personas",
       "Wireframing & prototyping",
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: "Graphic Design",
     icon: PenTool,
     description:
-      "Eye-catching visual designs for digital and print media that communicate your message with clarity and creative flair. We are constantly exploring new styles and techniques.",
+      "Visual designs, brand elements, social posts, and creative assets that communicate your message clearly. We are constantly exploring new styles and techniques to expand our creative range.",
     features: [
       "Social media graphics",
       "Print materials",
@@ -113,7 +113,7 @@ export const services: Service[] = [
     title: "Logo Design",
     icon: PenTool,
     description:
-      "Memorable, versatile logos that embody your brand identity. We have developed logo concepts as practice projects and coursework, and we approach every new brief with fresh thinking.",
+      "Modern, minimal, and memorable logo concepts. We have developed logo directions as practice projects and coursework, and we approach every new brief with fresh thinking and attention to detail.",
     features: [
       "Concept exploration",
       "Multiple design directions",
@@ -147,7 +147,7 @@ export const services: Service[] = [
     title: "Ad Campaign Design",
     icon: Megaphone,
     description:
-      "Complete ad campaign visual strategies from concept to execution, ensuring consistency across all channels. We bring a fresh eye to campaign design and are eager to learn from real performance data.",
+      "Complete ad campaign visual concepts from concept to execution, ensuring consistency across all channels. We bring a fresh eye to campaign design and are eager to learn from real performance data.",
     features: [
       "Campaign visual strategy",
       "Multi-platform assets",
@@ -198,7 +198,7 @@ export const services: Service[] = [
     title: "Landing Page Design",
     icon: Rocket,
     description:
-      "Well-structured landing pages designed to present your offer clearly and encourage sign-ups. We apply best practices for layout, speed, and usability — and we are eager to test and refine with real data.",
+      "Well-structured landing pages designed to present your offer clearly and encourage action. We apply best practices for layout, speed, and usability — and we are eager to test and refine with real data.",
     features: [
       "Clear, focused layout",
       "A/B testing design",

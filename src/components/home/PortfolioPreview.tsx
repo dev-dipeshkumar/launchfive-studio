@@ -22,8 +22,8 @@ export default function PortfolioPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Work"
-          title="Sample Projects & Concepts"
-          description="These are personal, academic, and concept projects we have built to sharpen our skills. They are not paid client work — but they show what we can do. As we complete real projects, we will swap these in."
+          title="Sample Work & Practice Projects"
+          description="We are currently building our first client portfolio. Until then, this section shows sample projects, concept designs, practice builds, and creative experiments that demonstrate what we can create."
         />
 
         {/* Sample projects notice */}
@@ -31,11 +31,11 @@ export default function PortfolioPreview() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-[#F97316]/10 border border-[#F97316]/20 max-w-md mx-auto"
+          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-[#F97316]/10 border border-[#F97316]/20 max-w-lg mx-auto"
         >
-          <FlaskConical size={14} className="text-[#F97316]" />
-          <span className="text-xs text-[#F97316] font-medium">
-            Concept & practice work — not client projects (yet!)
+          <FlaskConical size={14} className="text-[#F97316] shrink-0" />
+          <span className="text-xs text-[#F97316] font-medium text-center">
+            These are practice & concept projects — not client work (yet!)
           </span>
         </motion.div>
 
@@ -92,7 +92,7 @@ export default function PortfolioPreview() {
                     </div>
                   </div>
 
-                  {/* Category badge */}
+                  {/* Category + Sample badge */}
                   <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span
                       className="px-3 py-1 text-xs font-medium rounded-full"
@@ -104,11 +104,9 @@ export default function PortfolioPreview() {
                     >
                       {project.category}
                     </span>
-                    {project.isSample && (
-                      <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#F97316]/15 text-[#F97316] border border-[#F97316]/25">
-                        SAMPLE
-                      </span>
-                    )}
+                    <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#F97316]/15 text-[#F97316] border border-[#F97316]/25">
+                      SAMPLE
+                    </span>
                   </div>
                 </div>
 
@@ -117,13 +115,13 @@ export default function PortfolioPreview() {
                   <h3 className="text-white font-semibold text-sm mb-2 group-hover:gradient-text transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-[#94A3B8] text-xs leading-relaxed mb-3 line-clamp-2">
-                    {project.problem}
+                  <p className="text-[#94A3B8] text-xs leading-relaxed mb-3">
+                    {project.description}
                   </p>
 
                   {/* Tools */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tools.slice(0, 3).map((tool) => (
+                    {project.tools.map((tool) => (
                       <span
                         key={tool}
                         className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
@@ -131,27 +129,22 @@ export default function PortfolioPreview() {
                         {tool}
                       </span>
                     ))}
-                    {project.tools.length > 3 && (
-                      <span className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-[#94A3B8]">
-                        +{project.tools.length - 3}
-                      </span>
-                    )}
                   </div>
 
-                  {/* Result / takeaway */}
+                  {/* Takeaway */}
                   <div className="flex items-start gap-2 mb-4">
                     <div
                       className="w-1 h-1 rounded-full mt-1.5 shrink-0"
                       style={{ backgroundColor: project.color }}
                     />
                     <span className="text-xs text-[#94A3B8] leading-relaxed">
-                      {project.result}
+                      {project.takeaway}
                     </span>
                   </div>
 
                   {/* CTA */}
                   <button className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors">
-                    View Details
+                    View Sample
                     <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </div>

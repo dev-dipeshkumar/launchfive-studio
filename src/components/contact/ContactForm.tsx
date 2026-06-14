@@ -23,12 +23,11 @@ import {
 } from "lucide-react";
 
 const budgetRanges = [
-  "Under $1,000",
-  "$1,000 - $5,000",
-  "$5,000 - $10,000",
-  "$10,000 - $25,000",
-  "$25,000 - $50,000",
-  "$50,000+",
+  "Small starter project",
+  "Basic website/design work",
+  "App or full-stack project",
+  "Branding/design package",
+  "Not sure yet",
 ];
 
 const timelines = [
