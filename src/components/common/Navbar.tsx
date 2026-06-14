@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Logo from "@/components/common/Logo";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -84,23 +85,23 @@ export default function Navbar() {
       }}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-[76px] lg:px-8">
-        {/* ─── Left: Logo + Brand ─── */}
+        {/* ─── Left: Logo ─── */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick("#hero");
           }}
-          className="flex items-center gap-3 shrink-0"
+          className="shrink-0"
         >
-          <div
-            className="flex items-center justify-center rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 transition-transform duration-300 hover:scale-105 w-9 h-9 lg:w-11 lg:h-11"
-          >
-            <span className="text-sm font-bold text-white select-none">L5</span>
-          </div>
-          <span className="text-[17px] font-bold gradient-text hidden sm:block select-none">
-            LaunchFive Studio
-          </span>
+          <Logo
+            iconSize={36}
+            wordmarkLayout="horizontal"
+            wordmarkSize="default"
+            showWordmark={true}
+            wordmarkClassName="hidden sm:flex"
+            animate={true}
+          />
         </a>
 
         {/* ─── Center: Navigation Links ─── */}
@@ -123,15 +124,13 @@ export default function Navbar() {
                 )}
               >
                 {link.label}
-                {/* Active indicator dot */}
+                {/* Active indicator */}
                 <span
                   className={cn(
                     "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300",
                     isActive ? "w-5 opacity-100" : "w-0 opacity-0"
                   )}
                 />
-                {/* Hover underline */}
-                <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-white/30 w-0 group-hover:w-5 transition-all duration-300" />
               </a>
             );
           })}
@@ -150,7 +149,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.97 }}
           >
             Start a Project
-            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight size={15} />
           </motion.a>
         </div>
 

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import Logo from "@/components/common/Logo";
 
 const footerLinks = {
   services: [
@@ -41,12 +42,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">L5</span>
-              </div>
-              <span className="text-lg font-bold gradient-text">LaunchFive Studio</span>
-            </div>
+            <Logo
+              iconSize={36}
+              wordmarkLayout="stacked"
+              wordmarkSize="default"
+              className="mb-4"
+            />
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
               LaunchFive Studio is a focused 5-member creative-tech studio helping
               businesses build websites, apps, UI/UX, branding, graphics, logos,
