@@ -85,7 +85,8 @@ export default function TeamPreview() {
                     <a
                       key={platform}
                       href={url}
-                      target="_self"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/10 transition-all"
                       aria-label={platform}
                     >
