@@ -109,10 +109,10 @@ function FormField({
 
 /* ─── Shared input class ─── */
 const inputBaseClass =
-  "w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all";
+  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all";
 
 const selectBaseClass =
-  "w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none";
+  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none";
 
 /* ─── Main Component ─── */
 export default function ContactForm() {
@@ -182,17 +182,17 @@ export default function ContactForm() {
           description="Tell us what you want to build. We'll review your idea, understand your requirements, and suggest the best direction with clarity."
         />
 
-        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {/* ─── Left: Contact Info Panel ─── */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-1 space-y-6"
+            className="lg:col-span-1 space-y-4 sm:space-y-6"
           >
-            {/* Contact cards - 2-col grid on mobile */}
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-0 lg:space-y-0">
+            {/* Contact cards - stacked on mobile, 2-col on tablet, 1-col on desktop */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2 sm:gap-3 lg:gap-3">
               {contactInfo.map((info, i) => (
                 <motion.div
                   key={info.label}
@@ -207,38 +207,38 @@ export default function ContactForm() {
                       href={info.href}
                       target={info.href.startsWith("http") ? "_blank" : undefined}
                       rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-start gap-3 p-3 lg:p-4 rounded-xl glass hover:border-white/[0.15] transition-all duration-300"
+                      className="flex items-center gap-2.5 sm:gap-3 p-3 lg:p-4 rounded-xl glass hover:border-white/[0.15] transition-all duration-300"
                     >
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
                         style={{
                           backgroundColor: `${info.color}12`,
                           border: `1px solid ${info.color}20`,
                         }}
                       >
-                        <info.icon size={18} style={{ color: info.color }} />
+                        <info.icon size={16} style={{ color: info.color }} className="sm:!w-[18px] sm:!h-[18px]" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
-                        <p className="text-white text-sm font-medium group-hover:gradient-text transition-all truncate">
+                        <p className="text-[#94A3B8] text-[10px] sm:text-xs mb-0.5">{info.label}</p>
+                        <p className="text-white text-xs sm:text-sm font-medium group-hover:gradient-text transition-all truncate">
                           {info.value}
                         </p>
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-start gap-3 p-3 lg:p-4 rounded-xl glass">
+                    <div className="flex items-center gap-2.5 sm:gap-3 p-3 lg:p-4 rounded-xl glass">
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0"
                         style={{
                           backgroundColor: `${info.color}12`,
                           border: `1px solid ${info.color}20`,
                         }}
                       >
-                        <info.icon size={18} style={{ color: info.color }} />
+                        <info.icon size={16} style={{ color: info.color }} className="sm:!w-[18px] sm:!h-[18px]" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
-                        <p className="text-white text-sm font-medium truncate">{info.value}</p>
+                        <p className="text-[#94A3B8] text-[10px] sm:text-xs mb-0.5">{info.label}</p>
+                        <p className="text-white text-xs sm:text-sm font-medium truncate">{info.value}</p>
                       </div>
                     </div>
                   )}
@@ -247,7 +247,7 @@ export default function ContactForm() {
             </div>
 
             {/* Assurances */}
-            <div className="pt-4 space-y-3">
+            <div className="pt-2 sm:pt-4 space-y-2 sm:space-y-3">
               {assurances.map((item, i) => (
                 <motion.div
                   key={item.text}
@@ -255,18 +255,18 @@ export default function ContactForm() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                  className="flex items-center gap-2.5"
+                  className="flex items-center gap-2 sm:gap-2.5"
                 >
                   <div
-                    className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
+                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-md flex items-center justify-center shrink-0"
                     style={{
                       backgroundColor: `${item.color}10`,
                       border: `1px solid ${item.color}15`,
                     }}
                   >
-                    <item.icon size={11} style={{ color: item.color }} />
+                    <item.icon size={10} style={{ color: item.color }} className="sm:!w-[11px] sm:!h-[11px]" />
                   </div>
-                  <span className="text-xs text-[#94A3B8]">{item.text}</span>
+                  <span className="text-[11px] sm:text-xs text-[#94A3B8]">{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -288,12 +288,12 @@ export default function ContactForm() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] mb-6"
+                    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] mb-4 sm:mb-6"
                   >
-                    <CheckCircle2 size={20} />
+                    <CheckCircle2 size={18} className="shrink-0 sm:!w-[20px] sm:!h-[20px]" />
                     <div>
-                      <p className="font-medium text-sm">Thanks for reaching out.</p>
-                      <p className="text-xs opacity-80">
+                      <p className="font-medium text-xs sm:text-sm">Thanks for reaching out.</p>
+                      <p className="text-[10px] sm:text-xs opacity-80">
                         We&apos;ll review your project details and get back to you with the next steps.
                       </p>
                     </div>
@@ -308,20 +308,20 @@ export default function ContactForm() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive mb-6"
+                    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive mb-4 sm:mb-6"
                   >
-                    <AlertCircle size={20} />
-                    <p className="text-sm">{formError}</p>
+                    <AlertCircle size={18} className="shrink-0 sm:!w-[20px] sm:!h-[20px]" />
+                    <p className="text-xs sm:text-sm">{formError}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
                 {/* Row 1: Name & Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.05}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <User size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <User size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Full Name <span className="text-[#F43F5E]">*</span>
                     </label>
                     <input
@@ -331,12 +331,12 @@ export default function ContactForm() {
                       placeholder="Your full name"
                     />
                     {errors.name && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.name.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.name.message}</p>
                     )}
                   </FormField>
                   <FormField delay={0.1}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <Mail size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <Mail size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Email <span className="text-[#F43F5E]">*</span>
                     </label>
                     <input
@@ -347,16 +347,16 @@ export default function ContactForm() {
                       placeholder="you@company.com"
                     />
                     {errors.email && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.email.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.email.message}</p>
                     )}
                   </FormField>
                 </div>
 
                 {/* Row 2: Phone & Company */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.15}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <Phone size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <Phone size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Phone / WhatsApp
                     </label>
                     <input
@@ -367,8 +367,8 @@ export default function ContactForm() {
                     />
                   </FormField>
                   <FormField delay={0.2}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <Building2 size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <Building2 size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Company Name
                     </label>
                     <input
@@ -381,10 +381,10 @@ export default function ContactForm() {
                 </div>
 
                 {/* Row 3: Service & Budget */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.25}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <FileText size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <FileText size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Service Needed <span className="text-[#F43F5E]">*</span>
                     </label>
                     <select
@@ -403,12 +403,12 @@ export default function ContactForm() {
                       ))}
                     </select>
                     {errors.service && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.service.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.service.message}</p>
                     )}
                   </FormField>
                   <FormField delay={0.3}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <DollarSign size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <DollarSign size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Budget Range <span className="text-[#F43F5E]">*</span>
                     </label>
                     <select
@@ -427,16 +427,16 @@ export default function ContactForm() {
                       ))}
                     </select>
                     {errors.budget && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.budget.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.budget.message}</p>
                     )}
                   </FormField>
                 </div>
 
                 {/* Row 4: Timeline & Reference */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.35}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <Clock size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <Clock size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Timeline <span className="text-[#F43F5E]">*</span>
                     </label>
                     <select
@@ -455,12 +455,12 @@ export default function ContactForm() {
                       ))}
                     </select>
                     {errors.timeline && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.timeline.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.timeline.message}</p>
                     )}
                   </FormField>
                   <FormField delay={0.4}>
-                    <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                      <LinkIcon size={13} />
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                      <LinkIcon size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Reference Link
                     </label>
                     <input
@@ -470,26 +470,26 @@ export default function ContactForm() {
                       placeholder="https://example.com"
                     />
                     {errors.referenceLink && (
-                      <p className="text-xs text-[#F43F5E] mt-1">{errors.referenceLink.message}</p>
+                      <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.referenceLink.message}</p>
                     )}
                   </FormField>
                 </div>
 
                 {/* Row 5: Description */}
                 <FormField delay={0.45}>
-                  <label className="flex items-center gap-1.5 text-sm text-[#94A3B8] mb-2">
-                    <FileText size={13} />
+                  <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <FileText size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                     Project Description <span className="text-[#F43F5E]">*</span>
                   </label>
                   <textarea
                     {...register("description")}
                     aria-label="Project description"
                     rows={4}
-                    className="w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
+                    className="w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
                     placeholder="Describe your project, goals, and any specific requirements..."
                   />
                   {errors.description && (
-                    <p className="text-xs text-[#F43F5E] mt-1">{errors.description.message}</p>
+                    <p className="text-[10px] sm:text-xs text-[#F43F5E] mt-1">{errors.description.message}</p>
                   )}
                 </FormField>
 
@@ -498,7 +498,7 @@ export default function ContactForm() {
                   type="submit"
                   disabled={isSubmitting}
                   aria-label="Submit project inquiry"
-                  className="w-full py-4 min-h-[48px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
+                  className="w-full py-3.5 sm:py-4 min-h-[48px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden text-sm sm:text-base"
                   whileHover={{ scale: isSubmitting ? 1 : 1.01, y: isSubmitting ? 0 : -1 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -506,14 +506,14 @@ export default function ContactForm() {
                   <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
                   {isSubmitting ? (
                     <>
-                      <Loader2 size={18} className="animate-spin" />
+                      <Loader2 size={16} className="animate-spin sm:!w-[18px] sm:!h-[18px]" />
                       Sending...
                     </>
                   ) : (
                     <>
-                      <Send size={18} />
+                      <Send size={16} className="sm:!w-[18px] sm:!h-[18px]" />
                       Send Project Inquiry
-                      <ArrowRight size={14} className="ml-1" />
+                      <ArrowRight size={13} className="ml-1 sm:!w-[14px] sm:!h-[14px]" />
                     </>
                   )}
                 </motion.button>

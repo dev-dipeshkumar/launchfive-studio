@@ -51,11 +51,11 @@ const engagementConfig = {
 function EngagementBar({ level, color }: { level: "low" | "medium" | "high"; color: string }) {
   const config = engagementConfig[level];
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex items-center gap-1">
       {[1, 2, 3].map((bar) => (
         <motion.div
           key={bar}
-          className="h-1.5 rounded-full w-3"
+          className="h-1.5 rounded-full w-2.5 sm:w-3"
           style={{
             backgroundColor: bar <= config.bars ? color : "rgba(255,255,255,0.08)",
           }}
@@ -65,7 +65,7 @@ function EngagementBar({ level, color }: { level: "low" | "medium" | "high"; col
           transition={{ duration: 0.3, delay: bar * 0.1 }}
         />
       ))}
-      <span className="text-[10px] font-medium ml-1" style={{ color }}>
+      <span className="text-[9px] sm:text-[10px] font-medium ml-1" style={{ color }}>
         {config.label}
       </span>
     </div>
@@ -102,28 +102,28 @@ export default function ProcessSection() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12"
+          className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-8 sm:mb-12"
         >
-          <div className="flex items-center gap-2 text-xs text-[#94A3B8]">
-            <User size={14} className="text-[#7C3AED]" />
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[#94A3B8]">
+            <User size={12} className="text-[#7C3AED] sm:!w-[14px] sm:!h-[14px]" />
             <span>Your involvement:</span>
           </div>
           {(["high", "medium", "low"] as const).map((level) => {
             const config = engagementConfig[level];
             return (
-              <div key={level} className="flex items-center gap-1.5">
+              <div key={level} className="flex items-center gap-1">
                 <div className="flex gap-0.5">
                   {[1, 2, 3].map((bar) => (
                     <div
                       key={bar}
-                      className="w-2 h-1.5 rounded-full"
+                      className="w-1.5 h-1.5 sm:w-2 sm:h-1.5 rounded-full"
                       style={{
                         backgroundColor: bar <= config.bars ? config.color : "rgba(255,255,255,0.08)",
                       }}
                     />
                   ))}
                 </div>
-                <span className="text-[10px]" style={{ color: config.color }}>{config.label}</span>
+                <span className="text-[9px] sm:text-[10px]" style={{ color: config.color }}>{config.label}</span>
               </div>
             );
           })}
@@ -189,32 +189,33 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* ─── Mobile Timeline: Left dots + cards ─── */}
+        {/* ─── Mobile/Tablet Timeline: Left dots + cards ─── */}
         <div className="lg:hidden relative">
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-white/10" />
+          {/* Left vertical line */}
+          <div className="absolute left-[18px] top-0 bottom-0 w-px bg-white/10" />
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {workProcess.map((step, i) => {
               const IconComponent = iconMap[step.icon] || Search;
               const engConfig = engagementConfig[step.engagement];
 
               return (
-                <div key={step.step} className="flex gap-4">
+                <div key={step.step} className="flex gap-3 sm:gap-4">
                   {/* Dot */}
-                  <div className="flex flex-col items-center shrink-0 pt-1 relative z-10">
+                  <div className="flex flex-col items-center shrink-0 pt-3 relative z-10">
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ type: "spring", stiffness: 300, damping: 20, delay: i * 0.06 }}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${engConfig.dotPulse ? "animate-pulse-glow" : ""}`}
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border-2 ${engConfig.dotPulse ? "animate-pulse-glow" : ""}`}
                       style={{
                         backgroundColor: `${step.color}15`,
                         borderColor: `${step.color}40`,
                         boxShadow: engConfig.dotPulse ? `0 0 16px ${step.color}30` : "none",
                       }}
                     >
-                      <IconComponent size={15} style={{ color: step.color }} />
+                      <IconComponent size={14} style={{ color: step.color }} className="sm:!w-[15px] sm:!h-[15px]" />
                     </motion.div>
                   </div>
 
@@ -224,11 +225,11 @@ export default function ProcessSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-30px" }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="flex-1 rounded-2xl glass p-5 group hover:border-[#7C3AED]/30 transition-all duration-300"
+                    className="flex-1 rounded-2xl glass p-4 sm:p-5 group hover:border-[#7C3AED]/30 transition-all duration-300"
                   >
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                       <span
-                        className="text-xs font-bold px-2.5 py-1 rounded-md"
+                        className="text-[10px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md"
                         style={{ backgroundColor: `${step.color}20`, color: step.color }}
                       >
                         Step {step.step}
@@ -236,21 +237,21 @@ export default function ProcessSection() {
                       <EngagementBar level={step.engagement} color={engConfig.color} />
                     </div>
 
-                    <h4 className="text-white font-semibold mb-1.5">{step.title}</h4>
-                    <p className="text-[#94A3B8] text-sm leading-relaxed mb-3">{step.description}</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base mb-1 sm:mb-1.5">{step.title}</h4>
+                    <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">{step.description}</p>
 
-                    <div className="space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <Clock size={11} className="text-[#94A3B8] shrink-0" />
-                        <span className="text-[11px] text-[#94A3B8]">{step.duration}</span>
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <Clock size={10} className="text-[#94A3B8] shrink-0 sm:!w-[11px] sm:!h-[11px]" />
+                        <span className="text-[10px] sm:text-[11px] text-[#94A3B8]">{step.duration}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <User size={11} style={{ color: engConfig.color }} className="shrink-0" />
-                        <span className="text-[11px]" style={{ color: engConfig.color }}>{step.clientAction}</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <User size={10} style={{ color: engConfig.color }} className="shrink-0 sm:!w-[11px] sm:!h-[11px]" />
+                        <span className="text-[10px] sm:text-[11px]" style={{ color: engConfig.color }}>{step.clientAction}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Users size={11} className="text-[#94A3B8] shrink-0" />
-                        <span className="text-[11px] text-[#94A3B8]">{step.teamAction}</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <Users size={10} className="text-[#94A3B8] shrink-0 sm:!w-[11px] sm:!h-[11px]" />
+                        <span className="text-[10px] sm:text-[11px] text-[#94A3B8]">{step.teamAction}</span>
                       </div>
                     </div>
                   </motion.div>

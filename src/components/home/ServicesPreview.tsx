@@ -22,7 +22,8 @@ export default function ServicesPreview() {
           description="From development to design and campaign creatives, we cover the core digital needs of modern businesses with a coordinated team approach."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* Responsive grid: 1 col mobile → 2 col tablet → 3 col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {previewServices.map((service, i) => (
             <motion.div
               key={service.id}
@@ -31,46 +32,46 @@ export default function ServicesPreview() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative rounded-2xl glass p-6 hover:border-[#7C3AED]/30 transition-all duration-300 min-h-0"
+              className="group relative rounded-2xl glass p-5 sm:p-6 hover:border-[#7C3AED]/30 transition-all duration-300 min-h-0 flex flex-col"
               data-cursor-hover
             >
               {/* Popular badge */}
               {service.popular && (
-                <div className="absolute -top-2.5 right-4 z-10">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white shadow-lg shadow-[#7C3AED]/30">
-                    <Sparkles size={10} />
+                <div className="absolute -top-2.5 right-3 sm:right-4 z-10">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white shadow-lg shadow-[#7C3AED]/30">
+                    <Sparkles size={9} />
                     Popular
                   </span>
                 </div>
               )}
 
-              {/* Icon + Gradient background */}
-              <div className="flex items-start gap-4 mb-4">
+              {/* Icon + Title */}
+              <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
                   style={{
                     background: `linear-gradient(135deg, ${service.color}20, ${service.color}08)`,
                     border: `1px solid ${service.color}30`,
                   }}
                 >
-                  <service.icon size={22} style={{ color: service.color }} />
+                  <service.icon size={18} style={{ color: service.color }} className="sm:!w-[22px] sm:!h-[22px]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-semibold text-lg mb-0.5 group-hover:gradient-text transition-all">
+                  <h3 className="text-white font-semibold text-base sm:text-lg mb-0.5 group-hover:gradient-text transition-all">
                     {service.title}
                   </h3>
-                  <p className="text-xs font-medium" style={{ color: service.color }}>
+                  <p className="text-[11px] sm:text-xs font-medium" style={{ color: service.color }}>
                     {service.tagline}
                   </p>
                 </div>
               </div>
 
-              <p className="text-[#94A3B8] text-sm leading-relaxed mb-4">
+              <p className="text-[#94A3B8] text-sm leading-relaxed mb-3 sm:mb-4">
                 {service.description}
               </p>
 
               {/* Features list */}
-              <ul className="space-y-1.5 mb-4">
+              <ul className="space-y-1 sm:space-y-1.5 mb-3 sm:mb-4 flex-1">
                 {service.features.slice(0, 4).map((feature) => (
                   <li
                     key={feature}
@@ -86,20 +87,20 @@ export default function ServicesPreview() {
               </ul>
 
               {/* Bottom meta: Timeline + Deliverables */}
-              <div className="flex items-center gap-3 mb-4 text-[11px]">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4 text-[10px] sm:text-[11px]">
                 <div className="flex items-center gap-1 text-[#94A3B8]">
-                  <Clock size={11} />
+                  <Clock size={10} className="sm:!w-[11px] sm:!h-[11px]" />
                   <span>{service.timeline}</span>
                 </div>
                 <div className="flex items-center gap-1" style={{ color: service.color }}>
-                  <Package size={11} />
+                  <Package size={10} className="sm:!w-[11px] sm:!h-[11px]" />
                   <span>{service.deliverables.length} deliverables</span>
                 </div>
               </div>
 
               {/* Gradient divider */}
               <div
-                className="h-px mb-4 opacity-20"
+                className="h-px mb-3 sm:mb-4 opacity-20"
                 style={{
                   background: `linear-gradient(90deg, ${service.color}, transparent)`,
                 }}
@@ -142,7 +143,7 @@ export default function ServicesPreview() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-10"
+          className="text-center mt-8 sm:mt-10"
         >
           <CTAButton href="#contact" variant="outline" className="w-full sm:w-auto justify-center">
             Explore All Services

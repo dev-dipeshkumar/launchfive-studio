@@ -24,8 +24,8 @@ export default function TeamPreview() {
           description="A compact creative-tech team combining development, product design, visual design, branding, and campaign creative skills."
         />
 
-        {/* Desktop: 3+2 layout, Tablet: 2-col, Mobile: 1-col */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* Mobile: 1-col, Tablet: 2-col, Desktop: 3-col with last 2 centered */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.id}
@@ -49,7 +49,7 @@ export default function TeamPreview() {
               />
 
               {/* Avatar with gradient ring */}
-              <div className="relative mx-auto mb-4 w-14 h-14 sm:w-16 sm:h-16">
+              <div className="relative mx-auto mb-3 sm:mb-4 w-14 h-14 sm:w-16 sm:h-16">
                 <div
                   className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
                   style={{ backgroundColor: `${member.color}40` }}

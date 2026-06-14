@@ -35,17 +35,17 @@ export default function PortfolioPreview() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
+            className="flex items-center justify-center gap-2 mb-6 sm:mb-8 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
           >
-            <Layers size={14} className="text-[#94A3B8] shrink-0" />
-            <span className="text-xs text-[#94A3B8]/70 text-center">
+            <Layers size={13} className="text-[#94A3B8] shrink-0" />
+            <span className="text-[10px] sm:text-xs text-[#94A3B8]/70 text-center">
               Items marked CONCEPT are internal explorations. Client case studies will be added as we complete live projects.
             </span>
           </motion.div>
         )}
 
-        {/* Category filter */}
-        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10">
+        {/* Category filter — scrollable on mobile */}
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 lg:mb-10">
           {portfolioCategories.map((cat) => (
             <motion.button
               key={cat}
@@ -64,8 +64,8 @@ export default function PortfolioPreview() {
           ))}
         </div>
 
-        {/* Projects grid */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* Projects grid — 1 col mobile → 2 col tablet → 3 col desktop */}
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, i) => (
               <motion.div
@@ -80,7 +80,7 @@ export default function PortfolioPreview() {
                 data-cursor-hover
               >
                 {/* Project thumbnail */}
-                <div className="h-44 sm:h-48 md:h-52 relative overflow-hidden">
+                <div className="h-40 sm:h-48 md:h-52 relative overflow-hidden">
                   {project.thumbnail ? (
                     <Image
                       src={project.thumbnail}
@@ -97,13 +97,13 @@ export default function PortfolioPreview() {
                       }}
                     >
                       <div
-                        className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center"
                         style={{
                           backgroundColor: `${project.color}25`,
                           border: `1px solid ${project.color}40`,
                         }}
                       >
-                        <span className="text-2xl font-bold" style={{ color: project.color }}>
+                        <span className="text-xl sm:text-2xl font-bold" style={{ color: project.color }}>
                           {project.title.charAt(0)}
                         </span>
                       </div>
@@ -114,9 +114,9 @@ export default function PortfolioPreview() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
 
                   {/* Top badges */}
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex items-center gap-1 sm:gap-1.5">
                     <span
-                      className="px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm"
+                      className="px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-medium rounded-full backdrop-blur-sm"
                       style={{
                         backgroundColor: `${project.color}25`,
                         color: project.color,
@@ -126,16 +126,16 @@ export default function PortfolioPreview() {
                       {project.category}
                     </span>
                     {project.isConcept && (
-                      <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#06B6D4]/15 text-[#06B6D4] border border-[#06B6D4]/25 backdrop-blur-sm">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] font-semibold rounded-full bg-[#06B6D4]/15 text-[#06B6D4] border border-[#06B6D4]/25 backdrop-blur-sm">
                         CONCEPT
                       </span>
                     )}
                   </div>
 
                   {/* Year badge */}
-                  <div className="absolute top-3 right-3">
-                    <span className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full bg-black/30 text-white/70 backdrop-blur-sm">
-                      <Calendar size={9} />
+                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
+                    <span className="flex items-center gap-1 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[9px] sm:text-[10px] font-medium rounded-full bg-black/30 text-white/70 backdrop-blur-sm">
+                      <Calendar size={8} className="sm:!w-[9px] sm:!h-[9px]" />
                       {project.year}
                     </span>
                   </div>
@@ -151,19 +151,19 @@ export default function PortfolioPreview() {
 
                 {/* Content */}
                 <div className="p-4 sm:p-5">
-                  <h3 className="text-white font-semibold text-sm sm:text-base mb-2 group-hover:gradient-text transition-all">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:gradient-text transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-3">
+                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2.5 sm:mb-3">
                     {project.description}
                   </p>
 
                   {/* Tools */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-3">
                     {project.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="px-2 py-0.5 text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
+                        className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
                       >
                         {tool}
                       </span>
@@ -171,11 +171,11 @@ export default function PortfolioPreview() {
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-2.5 sm:mb-4">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-1.5 py-0.5 text-[9px] rounded-sm font-medium"
+                        className="px-1 py-0.5 text-[8px] sm:text-[9px] rounded-sm font-medium"
                         style={{
                           backgroundColor: `${project.color}12`,
                           color: `${project.color}CC`,
@@ -188,12 +188,12 @@ export default function PortfolioPreview() {
                   </div>
 
                   {/* Takeaway */}
-                  <div className="flex items-start gap-2 mb-4">
+                  <div className="flex items-start gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     <div
                       className="w-1 h-1 rounded-full mt-1.5 shrink-0"
                       style={{ backgroundColor: project.color }}
                     />
-                    <span className="text-xs text-[#94A3B8] leading-relaxed">
+                    <span className="text-[11px] sm:text-xs text-[#94A3B8] leading-relaxed">
                       {project.takeaway}
                     </span>
                   </div>
@@ -204,7 +204,7 @@ export default function PortfolioPreview() {
                       href={project.projectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors min-h-[44px] sm:min-h-0"
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.96 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -214,7 +214,7 @@ export default function PortfolioPreview() {
                     </motion.a>
                   ) : (
                     <motion.button
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors min-h-[44px] sm:min-h-0"
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.96 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
