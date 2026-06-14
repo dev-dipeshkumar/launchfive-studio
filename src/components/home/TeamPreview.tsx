@@ -23,7 +23,7 @@ export default function TeamPreview() {
         <SectionHeading
           label="Our Team"
           title="Meet the LaunchFive Team"
-          description="Five fresh creative minds working together to learn, build, design, improve, and deliver meaningful digital work for our first clients."
+          description="A compact creative-tech team combining development, product design, visual design, branding, and campaign creative skills."
         />
 
         {/* Team Grid */}

@@ -25,59 +25,71 @@ export const projects: Project[] = [
     title: "Startup Landing Page Concept",
     category: "Website Design",
     thumbnail: "",
-    description: "A modern landing page concept for startups that need a clean, responsive, and conversion-focused web presence. Designed with clear sections, smooth scrolling, and mobile-first layout.",
+    description:
+      "A clean landing page concept designed for early-stage startups that need a clear offer, strong visuals, and a conversion-focused layout.",
     tools: ["Next.js", "Tailwind CSS", "Figma"],
-    takeaway: "Demonstrates our ability to design and build modern, responsive landing pages from scratch.",
+    takeaway:
+      "Demonstrates our approach to building modern, responsive landing pages with clear structure and focused messaging.",
     color: "#7C3AED",
   },
   {
     id: "proj-2",
-    title: "Task Manager App UI",
+    title: "Task Manager App Interface",
     category: "UI/UX",
     thumbnail: "",
-    description: "A mobile app interface concept focused on simple task organization, clean screens, and beginner-friendly user flow. Includes wireframes, high-fidelity mockups, and an interactive prototype.",
+    description:
+      "A mobile app UI concept focused on simple navigation, clear task organization, and smooth user experience.",
     tools: ["Figma", "Prototyping", "UI Design"],
-    takeaway: "Shows our approach to clean, user-centered mobile interface design with clear navigation.",
+    takeaway:
+      "Shows our approach to clean, user-centered mobile interface design with clear navigation and logical flow.",
     color: "#06B6D4",
   },
   {
     id: "proj-3",
-    title: "Local Business Website Demo",
+    title: "Local Business Website Build",
     category: "Web Development",
     thumbnail: "",
-    description: "A sample responsive website layout for local businesses such as cafes, gyms, salons, or service providers. Features a hero section, service cards, contact form, and map integration.",
+    description:
+      "A responsive website concept for service-based local businesses that need credibility, service clarity, and easy contact options.",
     tools: ["React", "Tailwind CSS", "Responsive Design"],
-    takeaway: "A practical website template that shows we can build functional, good-looking business sites.",
+    takeaway:
+      "A practical website concept that shows our ability to build functional, professional business sites with clear service presentation.",
     color: "#F97316",
   },
   {
     id: "proj-4",
-    title: "Brand Identity Practice Kit",
+    title: "Brand Identity Direction",
     category: "Branding",
     thumbnail: "",
-    description: "A practice branding kit including logo direction, color palette, typography style, and social media usage examples. Created as a concept project to explore cohesive brand system design.",
+    description:
+      "A visual identity concept including logo direction, color palette, typography, and social media brand style.",
     tools: ["Illustrator", "Figma", "Canva"],
-    takeaway: "Demonstrates our understanding of brand consistency across logo, colors, type, and social assets.",
+    takeaway:
+      "Demonstrates our understanding of brand consistency across logo, colors, type, and social assets.",
     color: "#10B981",
   },
   {
     id: "proj-5",
-    title: "Social Media Ad Creative Set",
+    title: "Social Ad Creative System",
     category: "Ad Creatives",
     thumbnail: "",
-    description: "A concept set of social media ad designs for product launches, offers, and awareness campaigns. Includes static and animated formats sized for Instagram, Facebook, and Google Display.",
+    description:
+      "A set of campaign visuals designed for product launches, offers, promotions, and social media awareness.",
     tools: ["Canva", "Photoshop", "Campaign Design"],
-    takeaway: "Shows our ability to create platform-ready ad visuals that follow current design trends.",
+    takeaway:
+      "Shows our ability to create platform-ready ad visuals that follow current design trends and platform specifications.",
     color: "#EC4899",
   },
   {
     id: "proj-6",
-    title: "Logo Exploration Collection",
+    title: "Logo Concept Collection",
     category: "Logo Design",
     thumbnail: "",
-    description: "A collection of logo concepts created to explore modern, minimal, and memorable visual identities. Each concept includes multiple directions, color variations, and usage mockups.",
+    description:
+      "A collection of modern logo directions exploring minimal, bold, and memorable visual identities.",
     tools: ["Illustrator", "Figma"],
-    takeaway: "Demonstrates our range in logo design — from wordmarks to symbols to combination marks.",
+    takeaway:
+      "Demonstrates our range in logo design — from wordmarks to symbols to combination marks — with consistent visual thinking.",
     color: "#8B5CF6",
   },
 ];

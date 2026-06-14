@@ -18,8 +18,8 @@ export default function ServicesPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Services"
-          title="What We Do Best"
-          description="From code to creative, our team covers every aspect of digital product development and brand building. Explore our core services below."
+          title="What We Build"
+          description="From development to design and campaign creatives, we cover the core digital needs of modern businesses with a coordinated team approach."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

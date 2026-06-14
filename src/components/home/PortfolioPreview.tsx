@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
-import { ExternalLink, FlaskConical } from "lucide-react";
+import { ExternalLink, Layers } from "lucide-react";
 
 export default function PortfolioPreview() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -22,20 +22,20 @@ export default function PortfolioPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Work"
-          title="Sample Work & Practice Projects"
-          description="We are currently building our first client portfolio. Until then, this section shows sample projects, concept designs, practice builds, and creative experiments that demonstrate what we can create."
+          title="Selected Concept Work"
+          description="A collection of internal concepts, design explorations, and demo builds created to show our thinking, style, and execution approach."
         />
 
-        {/* Sample projects notice */}
+        {/* Concept work notice — subtle */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-[#F97316]/10 border border-[#F97316]/20 max-w-lg mx-auto"
+          className="flex items-center justify-center gap-2 mb-8 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
         >
-          <FlaskConical size={14} className="text-[#F97316] shrink-0" />
-          <span className="text-xs text-[#F97316] font-medium text-center">
-            These are practice & concept projects — not client work (yet!)
+          <Layers size={14} className="text-[#94A3B8] shrink-0" />
+          <span className="text-xs text-[#94A3B8]/70 text-center">
+            These concepts are created internally to demonstrate our capabilities and approach. Client case studies will be added as we complete live projects.
           </span>
         </motion.div>
 
@@ -92,7 +92,7 @@ export default function PortfolioPreview() {
                     </div>
                   </div>
 
-                  {/* Category + Sample badge */}
+                  {/* Category + Concept badge */}
                   <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span
                       className="px-3 py-1 text-xs font-medium rounded-full"
@@ -104,8 +104,8 @@ export default function PortfolioPreview() {
                     >
                       {project.category}
                     </span>
-                    <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#F97316]/15 text-[#F97316] border border-[#F97316]/25">
-                      SAMPLE
+                    <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-[#06B6D4]/15 text-[#06B6D4] border border-[#06B6D4]/25">
+                      CONCEPT
                     </span>
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function PortfolioPreview() {
 
                   {/* CTA */}
                   <button className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors">
-                    View Sample
+                    View Concept
                     <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </div>

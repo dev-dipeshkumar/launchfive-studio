@@ -28,7 +28,7 @@ export const services: Service[] = [
     title: "Full-Stack Development",
     icon: Code2,
     description:
-      "We build complete web applications from frontend to backend. Trained in modern frameworks and focused on writing clean, maintainable code — eager to apply our skills on real client projects.",
+      "We build responsive web applications with clean frontend, backend logic, databases, dashboards, and deployment-ready structure.",
     features: [
       "Frontend UI with React & Next.js",
       "Backend APIs & microservices",
@@ -45,7 +45,7 @@ export const services: Service[] = [
     title: "Mobile App Development",
     icon: Smartphone,
     description:
-      "Cross-platform mobile applications built with React Native. We have built app prototypes in coursework and personal projects, and we are excited to bring that experience to real clients.",
+      "We create mobile app interfaces and cross-platform app experiences focused on usability, performance, and smooth user flow.",
     features: [
       "React Native development",
       "iOS & Android deployment",
@@ -62,7 +62,7 @@ export const services: Service[] = [
     title: "Website Design",
     icon: Globe,
     description:
-      "Clean, responsive websites that present your brand clearly and professionally. We focus on modern layouts, fast performance, and clear messaging.",
+      "We design modern, responsive websites that communicate your offer clearly and guide visitors toward action.",
     features: [
       "Responsive layouts",
       "Landing page design",
@@ -79,7 +79,7 @@ export const services: Service[] = [
     title: "UI/UX Design",
     icon: Palette,
     description:
-      "Simple, clean, and user-friendly interface design. We have practiced creating intuitive interfaces through academic and personal projects, and we bring fresh ideas to every design challenge.",
+      "We create user-friendly screens, wireframes, prototypes, and design systems that make digital products easier to use.",
     features: [
       "User research & personas",
       "Wireframing & prototyping",
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: "Graphic Design",
     icon: PenTool,
     description:
-      "Visual designs, brand elements, social posts, and creative assets that communicate your message clearly. We are constantly exploring new styles and techniques to expand our creative range.",
+      "We design social posts, banners, presentation visuals, brand assets, and marketing graphics for digital platforms.",
     features: [
       "Social media graphics",
       "Print materials",
@@ -110,10 +110,10 @@ export const services: Service[] = [
   },
   {
     id: "logo-design",
-    title: "Logo Design",
+    title: "Branding & Logo Design",
     icon: PenTool,
     description:
-      "Modern, minimal, and memorable logo concepts. We have developed logo directions as practice projects and coursework, and we approach every new brief with fresh thinking and attention to detail.",
+      "We create logo concepts, color palettes, typography styles, and visual identity directions that make your brand look consistent.",
     features: [
       "Concept exploration",
       "Multiple design directions",
@@ -127,10 +127,10 @@ export const services: Service[] = [
   },
   {
     id: "ad-creatives",
-    title: "Ad Creatives",
+    title: "Ad Creatives & Campaign Design",
     icon: Image,
     description:
-      "Scroll-stopping ad visuals for social media, display networks, and paid campaigns. We study platform best practices and current trends to craft creatives that stand out.",
+      "We design attention-focused ad creatives, campaign visuals, and social media templates for launches, offers, and promotions.",
     features: [
       "Facebook & Instagram ads",
       "Google Display ads",
@@ -139,15 +139,15 @@ export const services: Service[] = [
       "Platform-specific sizing",
       "Animated creatives",
     ],
-    bestFor: "Small businesses running their first ad campaigns and growing brands",
+    bestFor: "Small businesses running ad campaigns and growing brands",
     color: "#EC4899",
   },
   {
     id: "ad-campaign-design",
-    title: "Ad Campaign Design",
+    title: "Campaign Strategy & Design",
     icon: Megaphone,
     description:
-      "Complete ad campaign visual concepts from concept to execution, ensuring consistency across all channels. We bring a fresh eye to campaign design and are eager to learn from real performance data.",
+      "Complete ad campaign visual concepts from strategy to execution, ensuring consistency across all channels and platforms.",
     features: [
       "Campaign visual strategy",
       "Multi-platform assets",
@@ -156,7 +156,7 @@ export const services: Service[] = [
       "Performance tracking setup",
       "Iterative optimization",
     ],
-    bestFor: "Product launches, seasonal promotions, and first-time advertisers",
+    bestFor: "Product launches, seasonal promotions, and campaign rollouts",
     color: "#14B8A6",
   },
   {
@@ -181,7 +181,7 @@ export const services: Service[] = [
     title: "Branding Kits",
     icon: Layers,
     description:
-      "Comprehensive brand identity packages that define your visual language. We have built branding kits as concept projects and understand what goes into a cohesive, professional identity system.",
+      "Comprehensive brand identity packages that define your visual language with logo, color, typography, and usage guidelines for consistent brand presence.",
     features: [
       "Logo & variations",
       "Color system & typography",
@@ -198,7 +198,7 @@ export const services: Service[] = [
     title: "Landing Page Design",
     icon: Rocket,
     description:
-      "Well-structured landing pages designed to present your offer clearly and encourage action. We apply best practices for layout, speed, and usability — and we are eager to test and refine with real data.",
+      "Well-structured landing pages designed to present your offer clearly and encourage action with clean layouts and focused messaging.",
     features: [
       "Clear, focused layout",
       "A/B testing design",

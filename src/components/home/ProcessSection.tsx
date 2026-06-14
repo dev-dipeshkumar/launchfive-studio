@@ -13,8 +13,8 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Our Workflow"
-          title="How We Will Work With You"
-          description="A simple, honest process built on communication and trust. We want you to feel confident and involved at every step — from the first conversation to final delivery and beyond."
+          title="A Clear Process From Idea to Launch"
+          description="A simple, transparent workflow that keeps the project organized from the first discussion to final delivery."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import CTAButton from "@/components/common/CTAButton";
-import { ArrowRight, MessageCircle, Zap } from "lucide-react";
+import { ArrowRight, MessageCircle, Rocket } from "lucide-react";
 
 export default function ContactCTA() {
   return (
@@ -26,25 +26,20 @@ export default function ContactCTA() {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6"
             >
-              <Zap size={14} />
-              Looking for Our First Client
+              <Rocket size={14} />
+              LaunchFive Studio
             </motion.div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Be Our First Client
+              Ready to Launch Something
               <br />
-              <span className="text-white/80">Success Story</span>
+              <span className="text-white/80">Clear, Modern & Useful?</span>
             </h2>
 
-            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-3 leading-relaxed">
-              Have an idea for a website, app, brand, logo, UI/UX design, ad creative,
-              or social media template? We are ready to work with full dedication and
-              build something meaningful with you.
-            </p>
-
-            <p className="text-white/70 text-sm max-w-lg mx-auto mb-8 leading-relaxed">
-              Reach out and be part of the journey. Your project will be our priority —
-              because your success is how we build our reputation.
+            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+              Whether you need a website, app interface, brand identity, logo, ad
+              creative, or design system, LaunchFive Studio can help you shape the
+              idea and turn it into a polished digital outcome.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -53,8 +48,8 @@ export default function ContactCTA() {
                 size="lg"
                 className="bg-white text-[#7C3AED] hover:shadow-xl hover:shadow-black/20"
               >
-                <Zap size={18} />
-                Start Our First Project Together
+                <Rocket size={18} />
+                Discuss Your Project
                 <ArrowRight size={18} />
               </CTAButton>
               <CTAButton
@@ -63,7 +58,7 @@ export default function ContactCTA() {
                 className="bg-white/10 text-white hover:bg-white/20 border-white/20"
               >
                 <MessageCircle size={18} />
-                Chat With LaunchFive
+                Contact the Team
               </CTAButton>
             </div>
           </div>

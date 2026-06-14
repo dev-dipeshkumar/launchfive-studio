@@ -23,11 +23,12 @@ import {
 } from "lucide-react";
 
 const budgetRanges = [
-  "Small starter project",
-  "Basic website/design work",
-  "App or full-stack project",
-  "Branding/design package",
-  "Not sure yet",
+  "Starter Project",
+  "Website / Design Project",
+  "App or Full-Stack Project",
+  "Branding Package",
+  "Campaign Creative Package",
+  "Not Sure Yet",
 ];
 
 const timelines = [
@@ -103,7 +104,7 @@ export default function ContactForm() {
         <SectionHeading
           label="Get in Touch"
           title="Start Your Project"
-          description="Have an idea? We would love to hear about it. Fill out the form below and we will get back to you within 24 hours. We are looking for our first clients — and we will bring everything we have to your project."
+          description="Tell us what you want to build. We'll review your idea, understand your requirements, and suggest the best direction with clarity."
         />
 
         <div className="max-w-3xl mx-auto">
@@ -126,9 +127,9 @@ export default function ContactForm() {
                 >
                   <CheckCircle2 size={20} />
                   <div>
-                    <p className="font-medium text-sm">Message sent successfully!</p>
+                    <p className="font-medium text-sm">Thanks for reaching out.</p>
                     <p className="text-xs opacity-80">
-                      We will get back to you within 24 hours.
+                      We'll review your project details and get back to you with the next steps.
                     </p>
                   </div>
                 </motion.div>
@@ -333,13 +334,13 @@ export default function ContactForm() {
               ) : (
                 <>
                   <Send size={18} />
-                  Send Inquiry
+                  Send Project Inquiry
                 </>
               )}
             </motion.button>
 
             <p className="text-center text-xs text-[#94A3B8]">
-              We will respond within 24 hours. Your information is safe and will never be shared.
+              We'll respond within 24 hours. Your information is safe and will never be shared.
             </p>
           </motion.form>
         </div>

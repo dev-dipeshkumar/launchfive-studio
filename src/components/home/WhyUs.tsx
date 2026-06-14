@@ -1,50 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Lightbulb, Users, MessageSquareHeart, Flame, Wrench, TrendingUp } from "lucide-react";
+import { Users, MessageSquare, Cpu, ShieldCheck, ListChecks, Handshake } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
 
 const reasons = [
   {
-    icon: Lightbulb,
-    title: "Fresh Perspective",
+    icon: Users,
+    title: "Focused Team Structure",
     description:
-      "We are new, curious, and ready to approach every project with fresh ideas and full attention. No recycled templates or autopilot thinking — every brief gets our genuine creative effort.",
+      "A 5-member team means every project gets attention across development, design, branding, and campaign visuals without unnecessary complexity.",
     color: "#7C3AED",
   },
   {
-    icon: Users,
-    title: "A Coordinated 5-Member Team",
+    icon: MessageSquare,
+    title: "Clear Communication",
     description:
-      "Our team brings together development, app building, UI/UX, graphics, branding, and campaign design. Instead of juggling multiple freelancers, you get one team that works together seamlessly.",
+      "You always know what is being worked on, what stage the project is in, and what comes next. No surprises, no gaps — just straightforward, transparent updates throughout.",
     color: "#06B6D4",
   },
   {
-    icon: MessageSquareHeart,
-    title: "Honest Communication",
+    icon: Cpu,
+    title: "Modern Execution",
     description:
-      "We will clearly explain what we can do, what we are learning, and how we will deliver the project. No over-promising, no vague timelines — just straightforward, respectful dialogue.",
+      "We use current design and development tools to create websites, apps, visuals, and digital assets that feel clean and relevant. Every output reflects modern standards and practices.",
     color: "#10B981",
   },
   {
-    icon: Flame,
-    title: "Dedicated Effort",
+    icon: ShieldCheck,
+    title: "Ownership Mindset",
     description:
-      "Since we are looking for our first client success story, every project matters deeply to us. Your project is not just another job — it is the foundation of our reputation, and we will treat it that way.",
+      "We treat every project like a serious responsibility, not just a task list. The goal is to deliver work we are proud to show — and that you are confident to use.",
     color: "#F97316",
   },
   {
-    icon: Wrench,
-    title: "Skill-Based Execution",
+    icon: ListChecks,
+    title: "Process-Driven Delivery",
     description:
-      "Even though we are starting professionally, we are trained in modern tools and ready to apply our skills to real client work. We practice daily, learn continuously, and deliver with care.",
+      "Our workflow is built around understanding, planning, creating, reviewing, and improving before final delivery. Structure keeps quality consistent and timelines reliable.",
     color: "#F43F5E",
   },
   {
-    icon: TrendingUp,
-    title: "Long-Term Growth Mindset",
+    icon: Handshake,
+    title: "Direct Collaboration",
     description:
-      "We want to build trust, improve with every project, and grow through real client results. When you work with us, you are not just getting a one-time service — you are helping launch a team that will keep getting better.",
+      "You work closely with the people building your project, which keeps communication simple and decisions faster. No account managers, no handoffs — just direct, productive conversation.",
     color: "#8B5CF6",
   },
 ];
@@ -58,8 +58,8 @@ export default function WhyUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
           label="Why Choose Us"
-          title="Why Work With LaunchFive Studio"
-          description="We may be new, but we are dedicated, skilled, and genuinely excited about every project. Here is why taking a chance on a fresh team could be the best decision for your business."
+          title="Why Clients Can Trust LaunchFive Studio"
+          description="We combine focused execution, clear communication, and modern creative skills to make the project experience simple, transparent, and reliable."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

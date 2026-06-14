@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-sm font-medium mb-8"
           >
             <Sparkles size={14} />
-            LaunchFive Studio
+            5-Member Creative-Tech Studio
           </motion.div>
         </motion.div>
 
@@ -49,31 +49,23 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
         >
-          A Fresh 5-Member
+          Focused Creative-Tech Studio
           <br />
-          <span className="gradient-text">Creative-Tech Team</span>
+          <span className="gradient-text">for Websites, Apps,</span>
           <br />
-          <span className="gradient-text-accent">Ready to Build Your Idea</span>
+          <span className="gradient-text-accent">Brands & Campaigns</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-[#94A3B8] text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed"
+          className="text-[#94A3B8] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          We design and build websites, apps, UI/UX, branding, graphics, logos,
-          templates, and ad creatives with dedication, clarity, and fresh energy.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="text-[#94A3B8]/80 text-base max-w-xl mx-auto mb-10 leading-relaxed"
-        >
-          We are starting our journey and looking for our first client success story.
-          Fresh minds. Focused team. Ready to launch your next idea.
+          We help startups, creators, and businesses turn ideas into clean digital
+          experiences — from websites and apps to UI/UX, branding, graphics, logos,
+          templates, and ad creatives. Built by a focused 5-member team with modern
+          tools, sharp design sense, and full ownership.
         </motion.p>
 
         <motion.div
@@ -83,15 +75,25 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <CTAButton href="#contact" size="lg">
-            Start Our First Project Together
+            Discuss Your Project
             <ArrowRight size={18} />
           </CTAButton>
-          <CTAButton href="#portfolio" variant="outline" size="lg">
-            Explore What We Can Build
+          <CTAButton href="#services" variant="outline" size="lg">
+            View Our Capabilities
           </CTAButton>
         </motion.div>
 
-        {/* Honest stats */}
+        {/* Micro-trust line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          className="text-[#94A3B8]/60 text-sm mt-4 max-w-lg mx-auto"
+        >
+          A focused team for businesses that value clean design, clear communication, and reliable execution.
+        </motion.p>
+
+        {/* Trust stats */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,10 +101,10 @@ export default function HeroSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto"
         >
           {[
-            { value: "5", label: "Team Members" },
-            { value: "0", label: "Fake Claims" },
-            { value: "100%", label: "Dedication" },
-            { value: "1st", label: "Client Wanted" },
+            { value: "5", label: "Specialized Members" },
+            { value: "✓", label: "Clear Process" },
+            { value: "+", label: "Design + Development" },
+            { value: "●", label: "Direct Communication" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl md:text-3xl font-bold gradient-text mb-1">

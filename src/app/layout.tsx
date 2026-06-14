@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LaunchFive Studio – Fresh Creative-Tech Team for Websites, Apps, Design & Branding",
+  title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
   description:
-    "LaunchFive Studio is a fresh 5-member creative-tech team helping clients build websites, apps, UI/UX, branding, graphics, logos, templates, and ad creatives with dedication and modern tools.",
+    "LaunchFive Studio is a focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
   keywords: [
     "LaunchFive Studio",
-    "creative tech team",
+    "creative tech studio",
     "web development",
     "mobile app development",
     "UI/UX design",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "website design",
     "logo design",
     "landing page",
-    "freelance team",
+    "freelance studio",
     "startup studio",
   ],
   authors: [{ name: "LaunchFive Studio" }],
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237C3AED'/><text x='50' y='65' font-size='45' font-weight='bold' text-anchor='middle' fill='white'>L5</text></svg>",
   },
   openGraph: {
-    title: "LaunchFive Studio – Fresh Creative-Tech Team",
+    title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
     description:
-      "A fresh 5-member creative-tech team helping clients build websites, apps, brands, and campaigns. Looking for our first client!",
+      "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
     url: "https://launchfivestudio.com",
     siteName: "LaunchFive Studio",
     type: "website",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LaunchFive Studio – Fresh Creative-Tech Team",
+    title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
     description:
-      "A fresh 5-member creative-tech team. Looking for our first client!",
+      "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
   },
   robots: {
     index: true,

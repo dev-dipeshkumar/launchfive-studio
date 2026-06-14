@@ -48,9 +48,9 @@ export default function Footer() {
               <span className="text-lg font-bold gradient-text">LaunchFive Studio</span>
             </div>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
-              A fresh 5-member creative-tech studio helping clients launch websites,
-              apps, brands, UI/UX, graphics, logos, templates, and ad creatives with
-              honest effort and modern tools.
+              LaunchFive Studio is a focused 5-member creative-tech studio helping
+              businesses build websites, apps, UI/UX, branding, graphics, logos,
+              templates, and ad creatives with clean execution and clear communication.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
