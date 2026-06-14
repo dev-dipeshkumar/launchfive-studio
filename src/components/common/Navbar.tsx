@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -17,142 +17,239 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
+
+      // Track active section
+      const sections = navLinks.map((l) => l.href.replace("#", ""));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            setActiveSection(`#${sections[i]}`);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  const handleNavClick = useCallback((href: string) => {
     setIsMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled
-          ? "glass-strong shadow-lg shadow-black/20"
-          : "bg-transparent"
+          ? "border-b shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+          : "border-b border-transparent"
       )}
+      style={{
+        backgroundColor: isScrolled
+          ? "rgba(7, 10, 19, 0.8)"
+          : "rgba(7, 10, 19, 0)",
+        backdropFilter: isScrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: isScrolled ? "blur(20px)" : "none",
+        borderBottomColor: isScrolled
+          ? "rgba(255, 255, 255, 0.08)"
+          : "transparent",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <motion.a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#hero");
-            }}
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-[76px] lg:px-8">
+        {/* ─── Left: Logo + Brand ─── */}
+        <a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#hero");
+          }}
+          className="flex items-center gap-3 shrink-0"
+        >
+          <div
+            className="flex items-center justify-center rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 transition-transform duration-300 hover:scale-105 w-9 h-9 lg:w-11 lg:h-11"
           >
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">L5</span>
-            </div>
-            <span className="text-lg font-bold gradient-text hidden sm:block">
-              LaunchFive Studio
-            </span>
-          </motion.a>
+            <span className="text-sm font-bold text-white select-none">L5</span>
+          </div>
+          <span className="text-[17px] font-bold gradient-text hidden sm:block select-none">
+            LaunchFive Studio
+          </span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <motion.a
+        {/* ─── Center: Navigation Links ─── */}
+        <nav className="hidden lg:flex items-center gap-9">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="px-4 py-2 text-sm text-[#94A3B8] hover:text-white transition-colors rounded-lg hover:bg-white/5"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
+                className={cn(
+                  "relative text-[15px] font-medium transition-colors duration-300 py-1",
+                  isActive
+                    ? "text-white"
+                    : "text-[#94A3B8] hover:text-white"
+                )}
               >
                 {link.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#contact");
-              }}
-              className="ml-3 px-5 py-2.5 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/25 transition-all"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start a Project
-            </motion.a>
-          </div>
+                {/* Active indicator dot */}
+                <span
+                  className={cn(
+                    "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300",
+                    isActive ? "w-5 opacity-100" : "w-0 opacity-0"
+                  )}
+                />
+                {/* Hover underline */}
+                <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-white/30 w-0 group-hover:w-5 transition-all duration-300" />
+              </a>
+            );
+          })}
+        </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-[#94A3B8] hover:text-white transition-colors"
-            aria-label="Toggle menu"
+        {/* ─── Right: CTA Button ─── */}
+        <div className="hidden lg:flex items-center">
+          <motion.a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#contact");
+            }}
+            className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[#7C3AED]/40 transition-shadow duration-300"
+            whileHover={{ y: -1, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Start a Project
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+          </motion.a>
         </div>
+
+        {/* ─── Mobile: Hamburger Button ─── */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/5 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {isMenuOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X size={22} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu size={22} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ─── Mobile Menu Dropdown ─── */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden glass-strong border-t border-white/10"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden overflow-hidden"
+            style={{
+              backgroundColor: "rgba(7, 10, 19, 0.92)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+            }}
           >
-            <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="block px-4 py-3 text-[#94A3B8] hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+            <div className="max-w-7xl mx-auto px-5 sm:px-6 py-4 space-y-1 overflow-x-hidden">
+              {navLinks.map((link, i) => {
+                const isActive = activeSection === link.href;
+                return (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04, duration: 0.25 }}
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors",
+                      isActive
+                        ? "text-white bg-white/5"
+                        : "text-[#94A3B8] hover:text-white hover:bg-white/5"
+                    )}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4]" />
+                    )}
+                  </motion.a>
+                );
+              })}
+
+              {/* Mobile CTA */}
               <motion.a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("#contact");
                 }}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                className="block px-4 py-3 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-medium rounded-lg text-center mt-3"
+                transition={{ delay: navLinks.length * 0.04, duration: 0.25 }}
+                className="flex items-center justify-center gap-2 mt-3 px-6 py-3 text-[15px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20"
               >
                 Start a Project
+                <ArrowRight size={15} />
               </motion.a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 }
