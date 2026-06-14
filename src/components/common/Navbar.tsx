@@ -24,7 +24,6 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
 
-      // Track active section
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -42,7 +41,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -75,7 +73,7 @@ export default function Navbar() {
       )}
       style={{
         backgroundColor: isScrolled
-          ? "rgba(7, 10, 19, 0.8)"
+          ? "rgba(7, 10, 19, 0.85)"
           : "rgba(7, 10, 19, 0)",
         backdropFilter: isScrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: isScrolled ? "blur(20px)" : "none",
@@ -84,8 +82,8 @@ export default function Navbar() {
           : "transparent",
       }}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6 lg:h-[76px] lg:px-8">
-        {/* ─── Left: Logo ─── */}
+      <div className="mx-auto flex h-16 sm:h-[72px] lg:h-[80px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Left: Logo */}
         <a
           href="#hero"
           onClick={(e) => {
@@ -93,6 +91,7 @@ export default function Navbar() {
             handleNavClick("#hero");
           }}
           className="shrink-0"
+          aria-label="LaunchFive Studio — Home"
         >
           <Logo
             iconSize={36}
@@ -104,8 +103,8 @@ export default function Navbar() {
           />
         </a>
 
-        {/* ─── Center: Navigation Links ─── */}
-        <nav className="hidden lg:flex items-center gap-9">
+        {/* Center: Nav Links — Desktop */}
+        <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href;
             return (
@@ -126,11 +125,10 @@ export default function Navbar() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 {link.label}
-                {/* Active indicator */}
                 <span
                   className={cn(
                     "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300",
-                    isActive ? "w-5 opacity-100" : "w-0 opacity-0 group-hover:w-3"
+                    isActive ? "w-5 opacity-100" : "w-0 opacity-0"
                   )}
                 />
               </motion.a>
@@ -138,7 +136,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* ─── Right: CTA Button ─── */}
+        {/* Right: CTA — Desktop */}
         <div className="hidden lg:flex items-center">
           <motion.a
             href="#contact"
@@ -146,22 +144,23 @@ export default function Navbar() {
               e.preventDefault();
               handleNavClick("#contact");
             }}
-            className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
             whileHover={{ y: -2, scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
             <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
             Start a Project
-            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight size={15} />
           </motion.a>
         </div>
 
-        {/* ─── Mobile: Hamburger Button ─── */}
+        {/* Mobile: Hamburger */}
         <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/5 transition-colors"
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -192,7 +191,7 @@ export default function Navbar() {
         </motion.button>
       </div>
 
-      {/* ─── Mobile Menu Dropdown ─── */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -202,13 +201,13 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="lg:hidden overflow-hidden"
             style={{
-              backgroundColor: "rgba(7, 10, 19, 0.92)",
+              backgroundColor: "rgba(7, 10, 19, 0.95)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
               borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
             }}
           >
-            <div className="max-w-7xl mx-auto px-5 sm:px-6 py-4 space-y-1 overflow-x-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1 overflow-x-hidden">
               {navLinks.map((link, i) => {
                 const isActive = activeSection === link.href;
                 return (
@@ -223,7 +222,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.25 }}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors",
+                      "flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium transition-colors min-h-[48px]",
                       isActive
                         ? "text-white bg-white/5"
                         : "text-[#94A3B8] hover:text-white hover:bg-white/5"
@@ -247,11 +246,9 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.04, duration: 0.25 }}
-                className="flex items-center justify-center gap-2 mt-3 px-6 py-3 text-[15px] font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
-                whileHover={{ scale: 1.04, y: -1 }}
+                className="flex items-center justify-center gap-2 mt-3 px-6 py-3.5 text-base font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 min-h-[48px]"
                 whileTap={{ scale: 0.96 }}
               >
-                <span className="absolute inset-0 -translate-x-full hover-shimmer pointer-events-none" />
                 Start a Project
                 <ArrowRight size={15} />
               </motion.a>

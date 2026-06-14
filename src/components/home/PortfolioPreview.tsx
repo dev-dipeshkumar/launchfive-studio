@@ -45,12 +45,12 @@ export default function PortfolioPreview() {
         )}
 
         {/* Category filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10">
           {portfolioCategories.map((cat) => (
             <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 text-xs font-medium rounded-full transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-medium rounded-full transition-all duration-300 min-h-[44px] sm:min-h-0 ${
                 activeCategory === cat
                   ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
                   : "bg-white/5 text-[#94A3B8] hover:bg-white/10 hover:text-white"
@@ -65,7 +65,7 @@ export default function PortfolioPreview() {
         </div>
 
         {/* Projects grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, i) => (
               <motion.div
@@ -80,7 +80,7 @@ export default function PortfolioPreview() {
                 data-cursor-hover
               >
                 {/* Project thumbnail */}
-                <div className="h-52 relative overflow-hidden">
+                <div className="h-44 sm:h-48 md:h-52 relative overflow-hidden">
                   {project.thumbnail ? (
                     <Image
                       src={project.thumbnail}
@@ -150,11 +150,11 @@ export default function PortfolioPreview() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-white font-semibold text-sm mb-2 group-hover:gradient-text transition-all">
+                <div className="p-4 sm:p-5">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-2 group-hover:gradient-text transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-[#94A3B8] text-xs leading-relaxed mb-3">
+                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-3">
                     {project.description}
                   </p>
 

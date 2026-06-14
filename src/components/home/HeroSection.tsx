@@ -13,7 +13,15 @@ const Hero3DScene = dynamic(() => import("@/components/3d/Hero3DScene"), {
   ),
 });
 
-/* ─── Animated text reveal by word ─── */
+const rotatingServices = [
+  { icon: Code2, label: "Full-Stack Development", color: "#7C3AED" },
+  { icon: Smartphone, label: "Mobile App Design", color: "#06B6D4" },
+  { icon: Palette, label: "UI/UX Design", color: "#10B981" },
+  { icon: PenTool, label: "Branding & Logos", color: "#F97316" },
+  { icon: Megaphone, label: "Ad Creatives", color: "#F43F5E" },
+  { icon: Rocket, label: "Landing Pages", color: "#0EA5E9" },
+];
+
 function AnimatedWords({
   text,
   className,
@@ -44,16 +52,6 @@ function AnimatedWords({
     </span>
   );
 }
-
-/* ─── Rotating service badge ─── */
-const rotatingServices = [
-  { icon: Code2, label: "Full-Stack Development", color: "#7C3AED" },
-  { icon: Smartphone, label: "Mobile App Design", color: "#06B6D4" },
-  { icon: Palette, label: "UI/UX Design", color: "#10B981" },
-  { icon: PenTool, label: "Branding & Logos", color: "#F97316" },
-  { icon: Megaphone, label: "Ad Creatives", color: "#F43F5E" },
-  { icon: Rocket, label: "Landing Pages", color: "#0EA5E9" },
-];
 
 function RotatingBadge() {
   const [index, setIndex] = useState(0);
@@ -95,34 +93,6 @@ function RotatingBadge() {
   );
 }
 
-/* ─── Hero stat counter ─── */
-function HeroStat({
-  value,
-  label,
-  delay = 0,
-}: {
-  value: string;
-  label: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      className="text-center group"
-    >
-      <div className="text-lg md:text-xl font-bold text-white/80 mb-0.5">
-        {value}
-      </div>
-      <div className="text-[#94A3B8] text-[10px] md:text-xs font-medium uppercase tracking-wider">
-        {label}
-      </div>
-    </motion.div>
-  );
-}
-
-/* ─── Main Hero ─── */
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -138,8 +108,12 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* 3D Background */}
-      <Hero3DScene />
+      {/* 3D Background — hidden on small mobile for performance */}
+      <div className="hidden sm:block">
+        <Hero3DScene />
+      </div>
+      {/* Fallback gradient for mobile */}
+      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-[#070A13] to-[#06B6D4]/10 z-0" />
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#070A13] via-transparent to-[#070A13] z-[1]" />
@@ -148,16 +122,16 @@ export default function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 lg:pt-0"
       >
         {/* Top badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
+          className="mb-4 sm:mb-6"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-sm font-medium">
+          <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-xs sm:text-sm font-medium">
             <Sparkles size={14} />
             5-Member Creative-Tech Studio
           </span>
@@ -168,20 +142,20 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
           <RotatingBadge />
         </motion.div>
 
-        {/* Main headline */}
-        <div className="mb-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-2">
+        {/* Headline — fluid typography */}
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold text-white leading-[1.1] mb-1 sm:mb-2">
             <AnimatedWords
               text="Focused Creative-Tech Studio"
               delay={0.5}
             />
           </h1>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1]">
+          <h1 className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold leading-[1.1]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -190,7 +164,8 @@ export default function HeroSection() {
             >
               for Websites, Apps,
             </motion.span>
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -207,25 +182,25 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="text-[#94A3B8] text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
+          className="text-[#94A3B8] text-sm sm:text-base md:text-lg max-w-xl sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed"
         >
           We help startups, creators, and businesses turn ideas into clean digital
           experiences — from websites and apps to UI/UX, branding, graphics, logos,
           templates, and ad creatives.
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTAs — stacked on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6"
         >
-          <CTAButton href="#contact" size="lg">
+          <CTAButton href="#contact" size="lg" className="w-full sm:w-auto justify-center">
             Discuss Your Project
             <ArrowRight size={18} />
           </CTAButton>
-          <CTAButton href="#services" variant="outline" size="lg">
+          <CTAButton href="#services" variant="outline" size="lg" className="w-full sm:w-auto justify-center">
             View Our Capabilities
           </CTAButton>
         </motion.div>
@@ -235,17 +210,17 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.7 }}
-          className="text-[#94A3B8]/50 text-xs max-w-md mx-auto mb-12"
+          className="text-[#94A3B8]/50 text-[11px] sm:text-xs max-w-sm sm:max-w-md mx-auto mb-8 sm:mb-10"
         >
           Clean design, clear communication, reliable execution.
         </motion.p>
 
-        {/* Service tags row */}
+        {/* Service tags — hidden on small mobile, shown on sm+ */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.8 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-12"
+          className="hidden sm:flex flex-wrap items-center justify-center gap-2 mb-10"
         >
           {rotatingServices.map((service, i) => (
             <motion.div
@@ -268,15 +243,23 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 2.2 }}
-          className="flex items-center justify-center gap-8 md:gap-12"
+          className="flex items-center justify-center gap-6 sm:gap-8 md:gap-12"
         >
-          <HeroStat value="5" label="Specialists" delay={2.3} />
-          <div className="w-px h-6 bg-white/10" />
-          <HeroStat value="7 Steps" label="Process" delay={2.35} />
-          <div className="w-px h-6 bg-white/10" />
-          <HeroStat value="24h" label="Response" delay={2.4} />
-          <div className="w-px h-6 bg-white/10" />
-          <HeroStat value="0" label="Middlemen" delay={2.45} />
+          {[
+            { value: "5", label: "Specialists" },
+            { value: "7 Steps", label: "Process" },
+            { value: "24h", label: "Response" },
+            { value: "0", label: "Middlemen" },
+          ].map((stat, i) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-base sm:text-lg md:text-xl font-bold text-white/80 mb-0.5">
+                {stat.value}
+              </div>
+              <div className="text-[#94A3B8] text-[9px] sm:text-[10px] md:text-xs font-medium uppercase tracking-wider">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 
@@ -285,9 +268,9 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
       >
-        <span className="text-[10px] text-[#94A3B8]/40 uppercase tracking-widest">
+        <span className="text-[9px] sm:text-[10px] text-[#94A3B8]/40 uppercase tracking-widest">
           Scroll
         </span>
         <motion.div

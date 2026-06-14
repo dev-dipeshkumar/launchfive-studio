@@ -37,32 +37,32 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#050811]">
+    <footer className="relative border-t border-white/10 bg-[#050811] overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 sm:pb-2 lg:pb-0">
             <Logo
               iconSize={36}
               wordmarkLayout="stacked"
               wordmarkSize="default"
               className="mb-4"
             />
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
+            <p className="text-[#94A3B8] text-base sm:text-sm leading-relaxed mb-6">
               LaunchFive Studio is a focused 5-member creative-tech studio helping
               businesses build websites, apps, UI/UX, branding, graphics, logos,
               templates, and ad creatives with clean execution and clear communication.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-[#7C3AED]/50 hover:shadow-[0_0_16px_rgba(124,58,237,0.25)] transition-all"
+                  aria-label={social.label}
+                  className="w-9 h-9 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-[#7C3AED]/50 hover:shadow-[0_0_16px_rgba(124,58,237,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050811] transition-all"
                   whileHover={{ y: -3, scale: 1.12 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  aria-label={social.label}
                 >
                   <social.icon size={16} />
                 </motion.a>
@@ -71,12 +71,12 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-2.5">
+          <div className="sm:pb-2 lg:pb-0">
+            <h4 className="text-white font-semibold text-base sm:text-sm mb-4">Services</h4>
+            <ul className="space-y-2.5 sm:space-y-2.5">
               {footerLinks.services.map((service) => (
                 <li key={service}>
-                  <span className="text-[#94A3B8] text-sm hover:text-white transition-colors cursor-default">
+                  <span className="text-[#94A3B8] text-base sm:text-sm hover:text-white transition-colors cursor-default">
                     {service}
                   </span>
                 </li>
@@ -85,9 +85,9 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2.5">
+          <div className="sm:pb-2 lg:pb-0">
+            <h4 className="text-white font-semibold text-base sm:text-sm mb-4">Company</h4>
+            <ul className="space-y-2.5 sm:space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <a
@@ -96,7 +96,7 @@ export default function Footer() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="relative text-[#94A3B8] text-sm hover:text-white transition-colors inline-block"
+                    className="relative text-[#94A3B8] text-base sm:text-sm hover:text-white transition-colors inline-block py-1 min-h-[44px] sm:min-h-0 sm:py-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050811] rounded-sm"
                   >
                     <span className="relative">
                       {link.label}
@@ -109,19 +109,19 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Get in Touch</h4>
+          <div className="sm:pb-2 lg:pb-0">
+            <h4 className="text-white font-semibold text-base sm:text-sm mb-4">Get in Touch</h4>
             <div className="space-y-3">
-              <p className="text-[#94A3B8] text-sm">
+              <p className="text-[#94A3B8] text-base sm:text-sm">
                 <span className="text-white">Email:</span> hello@launchfivestudio.com
               </p>
-              <p className="text-[#94A3B8] text-sm">
+              <p className="text-[#94A3B8] text-base sm:text-sm">
                 <span className="text-white">Phone:</span> +91 98765 43210
               </p>
-              <p className="text-[#94A3B8] text-sm">
+              <p className="text-[#94A3B8] text-base sm:text-sm">
                 <span className="text-white">WhatsApp:</span> +91 98765 43210
               </p>
-              <p className="text-[#94A3B8] text-sm">
+              <p className="text-[#94A3B8] text-base sm:text-sm">
                 <span className="text-white">Hours:</span> Mon - Sat, 10AM - 7PM IST
               </p>
             </div>
@@ -130,10 +130,10 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[#94A3B8] text-sm">
+          <p className="text-[#94A3B8] text-base sm:text-sm">
             &copy; {new Date().getFullYear()} LaunchFive Studio. All rights reserved.
           </p>
-          <p className="text-[#94A3B8] text-sm flex items-center gap-1">
+          <p className="text-[#94A3B8] text-base sm:text-sm flex items-center gap-1">
             Made with <Heart size={14} className="text-[#F43F5E] fill-[#F43F5E]" /> by LaunchFive Studio
           </p>
         </div>

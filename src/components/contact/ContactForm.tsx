@@ -107,6 +107,13 @@ function FormField({
   );
 }
 
+/* ─── Shared input class ─── */
+const inputBaseClass =
+  "w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all";
+
+const selectBaseClass =
+  "w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none";
+
 /* ─── Main Component ─── */
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -175,7 +182,7 @@ export default function ContactForm() {
           description="Tell us what you want to build. We'll review your idea, understand your requirements, and suggest the best direction with clarity."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* ─── Left: Contact Info Panel ─── */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -184,58 +191,60 @@ export default function ContactForm() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-1 space-y-6"
           >
-            {/* Contact cards */}
-            {contactInfo.map((info, i) => (
-              <motion.div
-                key={info.label}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="group"
-              >
-                {info.href ? (
-                  <a
-                    href={info.href}
-                    target={info.href.startsWith("http") ? "_blank" : undefined}
-                    rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-start gap-3 p-4 rounded-xl glass hover:border-white/[0.15] transition-all duration-300"
-                  >
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
-                      style={{
-                        backgroundColor: `${info.color}12`,
-                        border: `1px solid ${info.color}20`,
-                      }}
+            {/* Contact cards - 2-col grid on mobile */}
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-0 lg:space-y-0">
+              {contactInfo.map((info, i) => (
+                <motion.div
+                  key={info.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                  className="group"
+                >
+                  {info.href ? (
+                    <a
+                      href={info.href}
+                      target={info.href.startsWith("http") ? "_blank" : undefined}
+                      rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="flex items-start gap-3 p-3 lg:p-4 rounded-xl glass hover:border-white/[0.15] transition-all duration-300"
                     >
-                      <info.icon size={18} style={{ color: info.color }} />
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
+                        style={{
+                          backgroundColor: `${info.color}12`,
+                          border: `1px solid ${info.color}20`,
+                        }}
+                      >
+                        <info.icon size={18} style={{ color: info.color }} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
+                        <p className="text-white text-sm font-medium group-hover:gradient-text transition-all truncate">
+                          {info.value}
+                        </p>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-start gap-3 p-3 lg:p-4 rounded-xl glass">
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                        style={{
+                          backgroundColor: `${info.color}12`,
+                          border: `1px solid ${info.color}20`,
+                        }}
+                      >
+                        <info.icon size={18} style={{ color: info.color }} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
+                        <p className="text-white text-sm font-medium truncate">{info.value}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
-                      <p className="text-white text-sm font-medium group-hover:gradient-text transition-all">
-                        {info.value}
-                      </p>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="flex items-start gap-3 p-4 rounded-xl glass">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                      style={{
-                        backgroundColor: `${info.color}12`,
-                        border: `1px solid ${info.color}20`,
-                      }}
-                    >
-                      <info.icon size={18} style={{ color: info.color }} />
-                    </div>
-                    <div>
-                      <p className="text-[#94A3B8] text-xs mb-0.5">{info.label}</p>
-                      <p className="text-white text-sm font-medium">{info.value}</p>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
+                  )}
+                </motion.div>
+              ))}
+            </div>
 
             {/* Assurances */}
             <div className="pt-4 space-y-3">
@@ -271,7 +280,7 @@ export default function ContactForm() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-2"
           >
-            <div className="rounded-2xl glass p-6 md:p-8">
+            <div className="rounded-2xl glass p-4 sm:p-6 md:p-8">
               {/* Success message */}
               <AnimatePresence>
                 {formSuccess && (
@@ -285,7 +294,7 @@ export default function ContactForm() {
                     <div>
                       <p className="font-medium text-sm">Thanks for reaching out.</p>
                       <p className="text-xs opacity-80">
-                        We'll review your project details and get back to you with the next steps.
+                        We&apos;ll review your project details and get back to you with the next steps.
                       </p>
                     </div>
                   </motion.div>
@@ -317,7 +326,8 @@ export default function ContactForm() {
                     </label>
                     <input
                       {...register("name")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      aria-label="Full name"
+                      className={inputBaseClass}
                       placeholder="Your full name"
                     />
                     {errors.name && (
@@ -332,7 +342,8 @@ export default function ContactForm() {
                     <input
                       {...register("email")}
                       type="email"
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      aria-label="Email address"
+                      className={inputBaseClass}
                       placeholder="you@company.com"
                     />
                     {errors.email && (
@@ -350,7 +361,8 @@ export default function ContactForm() {
                     </label>
                     <input
                       {...register("phone")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      aria-label="Phone or WhatsApp number"
+                      className={inputBaseClass}
                       placeholder="+91 98765 43210"
                     />
                   </FormField>
@@ -361,7 +373,8 @@ export default function ContactForm() {
                     </label>
                     <input
                       {...register("company")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      aria-label="Company name"
+                      className={inputBaseClass}
                       placeholder="Your company name"
                     />
                   </FormField>
@@ -376,7 +389,8 @@ export default function ContactForm() {
                     </label>
                     <select
                       {...register("service")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      aria-label="Service needed"
+                      className={selectBaseClass}
                       defaultValue=""
                     >
                       <option value="" disabled className="bg-[#0F1629]">
@@ -399,7 +413,8 @@ export default function ContactForm() {
                     </label>
                     <select
                       {...register("budget")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      aria-label="Budget range"
+                      className={selectBaseClass}
                       defaultValue=""
                     >
                       <option value="" disabled className="bg-[#0F1629]">
@@ -426,7 +441,8 @@ export default function ContactForm() {
                     </label>
                     <select
                       {...register("timeline")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none"
+                      aria-label="Project timeline"
+                      className={selectBaseClass}
                       defaultValue=""
                     >
                       <option value="" disabled className="bg-[#0F1629]">
@@ -449,7 +465,8 @@ export default function ContactForm() {
                     </label>
                     <input
                       {...register("referenceLink")}
-                      className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all"
+                      aria-label="Reference link"
+                      className={inputBaseClass}
                       placeholder="https://example.com"
                     />
                     {errors.referenceLink && (
@@ -466,8 +483,9 @@ export default function ContactForm() {
                   </label>
                   <textarea
                     {...register("description")}
+                    aria-label="Project description"
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
+                    className="w-full px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
                     placeholder="Describe your project, goals, and any specific requirements..."
                   />
                   {errors.description && (
@@ -479,7 +497,8 @@ export default function ContactForm() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
+                  aria-label="Submit project inquiry"
+                  className="w-full py-4 min-h-[48px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden"
                   whileHover={{ scale: isSubmitting ? 1 : 1.01, y: isSubmitting ? 0 : -1 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}

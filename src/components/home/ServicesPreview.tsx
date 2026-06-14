@@ -22,7 +22,7 @@ export default function ServicesPreview() {
           description="From development to design and campaign creatives, we cover the core digital needs of modern businesses with a coordinated team approach."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {previewServices.map((service, i) => (
             <motion.div
               key={service.id}
@@ -31,7 +31,7 @@ export default function ServicesPreview() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative rounded-2xl glass p-6 hover:border-[#7C3AED]/30 transition-all duration-300"
+              className="group relative rounded-2xl glass p-6 hover:border-[#7C3AED]/30 transition-all duration-300 min-h-0"
               data-cursor-hover
             >
               {/* Popular badge */}
@@ -77,7 +77,7 @@ export default function ServicesPreview() {
                     className="text-xs text-[#94A3B8] flex items-center gap-2"
                   >
                     <span
-                      className="w-1 h-1 rounded-full shrink-0"
+                      className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: service.color }}
                     />
                     {feature}
@@ -112,11 +112,12 @@ export default function ServicesPreview() {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors min-h-[44px] py-2"
                 style={{ color: service.color }}
                 whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                aria-label={`Discuss ${service.title} project`}
               >
                 Discuss Project
                 <ArrowRight
@@ -143,7 +144,7 @@ export default function ServicesPreview() {
           viewport={{ once: true }}
           className="text-center mt-10"
         >
-          <CTAButton href="#contact" variant="outline">
+          <CTAButton href="#contact" variant="outline" className="w-full sm:w-auto justify-center">
             Explore All Services
             <ArrowRight size={16} />
           </CTAButton>
