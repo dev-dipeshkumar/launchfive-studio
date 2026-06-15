@@ -1,0 +1,777 @@
+    40→    40→          - StaticText "We help startups, creators, and businesses turn ideas into clean digital experiences — from websites and apps to UI/UX, branding, graphics, logos, templates, and ad creatives."
+    41→    41→        - button "Discuss Your Project" [ref=e21]
+    42→    42→          - StaticText "Discuss Your Project"
+    43→    43→        - button "View Our Capabilities" [ref=e22]
+    44→    44→          - StaticText "View Our Capabilities"
+    45→    45→        - paragraph
+    46→    46→          - StaticText "Clean design, clear communication, reliable execution."
+    47→    47→        - StaticText "Full-Stack Development"
+    48→    48→        - StaticText "Mobile App Design"
+    49→    49→        - StaticText "UI/UX Design"
+    50→    50→        - StaticText "Branding & Logos"
+    51→    51→        - StaticText "Ad Creatives"
+    52→    52→        - StaticText "Landing Pages"
+    53→    53→        - StaticText "5"
+    54→    54→        - StaticText "SPECIALISTS"
+    55→    55→        - StaticText "7 Steps"
+    56→    56→        - StaticText "PROCESS"
+    57→    57→        - StaticText "24h"
+    58→    58→        - StaticText "RESPONSE"
+    59→    59→        - StaticText "0"
+    60→    60→        - StaticText "MIDDLEMEN"
+    61→    61→      - generic
+    62→    62→        - StaticText "SCROLL"
+    63→    63→    - generic
+    64→    64→      - generic
+    65→    65→        - StaticText "OUR SERVICES"
+    66→    66→        - heading "What We Build" [level=2, ref=e23]
+    67→    67→        - paragraph
+    68→    68→          - StaticText "From development to design and campaign creatives, we cover the core digital needs of modern businesses with a coordinated team approach."
+    69→    69→        - generic
+    70→    70→          - StaticText "Popular"
+    71→    71→          - heading "Full-Stack Development" [level=3, ref=e67]
+    72→    72→          - paragraph
+    73→    73→            - StaticText "Complete web platforms, end to end"
+    74→    74→          - paragraph
+    75→    75→            - StaticText "We build responsive web applications with clean frontend, solid backend logic, database architecture, admin dashboards, and deployment-ready structure — all connected and production-grade."
+    76→    76→          - list
+    77→    77→            - listitem [level=1]
+    78→    78→            - listitem [level=1]
+    79→    79→            - listitem [level=1]
+    80→    80→            - listitem [level=1]
+    81→    81→          - StaticText "2-6 weeks"
+    82→    82→          - StaticText "4"
+    83→    83→          - StaticText " deliverables"
+    84→    84→          - link "Discuss Full-Stack Development project" [ref=e68]
+    85→    85→            - StaticText "Discuss Project"
+    86→    86→        - generic
+    87→    87→          - StaticText "Popular"
+    88→    88→          - heading "Mobile App Development" [level=3, ref=e69]
+    89→    89→          - paragraph
+    90→    90→            - StaticText "Cross-platform apps that feel native"
+    91→    91→          - paragraph
+    92→    92→            - StaticText "We create mobile app interfaces and cross-platform app experiences focused on usability, performance, and smooth user flow. From idea to App Store-ready builds."
+    93→    93→          - list
+    94→    94→            - listitem [level=1]
+    95→    95→            - listitem [level=1]
+    96→    96→            - listitem [level=1]
+    97→    97→            - listitem [level=1]
+    98→    98→          - StaticText "3-8 weeks"
+    99→    99→          - StaticText "4"
+   100→   100→          - StaticText " deliverables"
+   101→   101→          - link "Discuss Mobile App Development project" [ref=e70]
+   102→   102→            - StaticText "Discuss Project"
+   103→   103→        - generic
+   104→   104→          - heading "Website Design" [level=3, ref=e71]
+   105→   105→          - paragraph
+   106→   106→            - StaticText "Modern sites that convert visitors"
+   107→   107→          - paragraph
+   108→   108→            - StaticText "We design modern, responsive websites that communicate your offer clearly and guide visitors toward action. Clean layouts, fast loading, and built for results."
+   109→   109→          - list
+   110→   110→            - listitem [level=1]
+   111→   111→            - listitem [level=1]
+   112→   112→            - listitem [level=1]
+   113→   113→            - listitem [level=1]
+   114→   114→          - StaticText "1-3 weeks"
+   115→   115→          - StaticText "4"
+   116→   116→          - StaticText " deliverables"
+   117→   117→          - link "Discuss Website Design project" [ref=e72]
+   118→   118→            - StaticText "Discuss Project"
+   119→   119→        - generic
+   120→   120→          - StaticText "Popular"
+   121→   121→          - heading "UI/UX Design" [level=3, ref=e73]
+   122→   122→          - paragraph
+   123→   123→            - StaticText "Interfaces people actually enjoy using"
+   124→   124→          - paragraph
+   125→   125→            - StaticText "We create user-friendly screens, wireframes, prototypes, and design systems that make digital products intuitive and visually coherent. Every interaction is intentional."
+   126→   126→          - list
+   127→   127→            - listitem [level=1]
+   128→   128→            - listitem [level=1]
+   129→   129→            - listitem [level=1]
+   130→   130→            - listitem [level=1]
+   131→   131→          - StaticText "1-4 weeks"
+   132→   132→          - StaticText "4"
+   133→   133→          - StaticText " deliverables"
+   134→   134→          - link "Discuss UI/UX Design project" [ref=e74]
+   135→   135→            - StaticText "Discuss Project"
+   136→   136→        - generic
+   137→   137→          - heading "Graphic Design" [level=3, ref=e75]
+   138→   138→          - paragraph
+   139→   139→            - StaticText "Visual assets that stand out"
+   140→   140→          - paragraph
+   141→   141→            - StaticText "We design social posts, banners, presentation visuals, brand assets, and marketing graphics for digital platforms. Consistent, on-brand, and ready to publish."
+   142→   142→          - list
+   143→   143→            - listitem [level=1]
+   144→   144→            - listitem [level=1]
+   145→   145→            - listitem [level=1]
+   146→   146→            - listitem [level=1]
+   147→   147→          - StaticText "3-7 days"
+   148→   148→          - StaticText "4"
+   149→   149→          - StaticText " deliverables"
+   150→   150→          - link "Discuss Graphic Design project" [ref=e76]
+   151→   151→            - StaticText "Discuss Project"
+   152→   152→        - generic
+   153→   153→          - heading "Branding & Logo Design" [level=3, ref=e77]
+   154→   154→          - paragraph
+   155→   155→            - StaticText "Identities people remember"
+   156→   156→          - paragraph
+   157→   157→            - StaticText "We create logo concepts, color palettes, typography styles, and visual identity directions that make your brand look consistent and professional across every touchpoint."
+   158→   158→          - list
+   159→   159→            - listitem [level=1]
+   160→   160→            - listitem [level=1]
+   161→   161→            - listitem [level=1]
+   162→   162→            - listitem [level=1]
+   163→   163→          - StaticText "1-2 weeks"
+   164→   164→          - StaticText "4"
+   165→   165→          - StaticText " deliverables"
+   166→   166→          - link "Discuss Branding & Logo Design project" [ref=e78]
+   167→   167→            - StaticText "Discuss Project"
+   168→   168→        - button "Explore All Services" [ref=e79]
+   169→   169→          - StaticText "Explore All Services"
+   170→   170→    - generic
+   171→   171→      - generic
+   172→   172→        - StaticText "WHY CHOOSE US"
+   173→   173→        - heading "Why Clients Trust LaunchFive Studio" [level=2, ref=e24]
+   174→   174→        - paragraph
+   175→   175→          - StaticText "We combine focused execution, clear communication, and modern creative skills to make the project experience simple, transparent, and reliable."
+   176→   176→        - StaticText "0"
+   177→   177→        - paragraph
+   178→   178→          - StaticText "TEAM SPECIALISTS"
+   179→   179→        - StaticText "0"
+   180→   180→        - paragraph
+   181→   181→          - StaticText "STEP PROCESS"
+   182→   182→        - generic
+   183→   183→          - StaticText "0h"
+   184→   184→        - paragraph
+   185→   185→          - StaticText "AVG. RESPONSE TIME"
+   186→   186→        - StaticText "0"
+   187→   187→        - paragraph
+   188→   188→          - StaticText "MIDDLEMEN"
+   189→   189→        - generic
+   190→   190→          - heading "Focused Team Structure" [level=3, ref=e122]
+   191→   191→          - paragraph
+   192→   192→            - StaticText "Small team, sharp focus."
+   193→   193→          - StaticText "5"
+   194→   194→          - StaticText "Core Members"
+   195→   195→          - paragraph
+   196→   196→            - StaticText "A tight-knit team means every project gets dedicated attention across development, design, branding, and campaign visuals. No bloated workflows — just focused execution with clear accountability and direct ownership from start to finish."
+   197→   197→          - StaticText "Dedicated specialist per domain"
+   198→   198→          - StaticText "No handoffs or account managers"
+   199→   199→          - StaticText "Direct access to the builder"
+   200→   200→          - StaticText "Faster decision-making"
+   201→   201→          - StaticText "STRENGTH"
+   202→   202→          - link "Learn More" [ref=e123]
+   203→   203→        - generic
+   204→   204→          - heading "Clear Communication" [level=3, ref=e124]
+   205→   205→          - paragraph
+   206→   206→            - StaticText "No surprises. No gaps."
+   207→   207→          - StaticText "24h"
+   208→   208→          - StaticText "Response Time"
+   209→   209→          - paragraph
+   210→   210→            - StaticText "You always know what stage the project is in, what is being worked on, and what comes next. We keep the process transparent with regular updates, clear timelines, and honest feedback — no surprises, no gaps, just straightforward conversation."
+   211→   211→          - StaticText "Daily progress visibility"
+   212→   212→          - StaticText "Honest timeline estimates"
+   213→   213→          - StaticText "Proactive status updates"
+   214→   214→          - StaticText "No ghosting or delays"
+   215→   215→          - StaticText "PRIORITY"
+   216→   216→          - link "Learn More" [ref=e125]
+   217→   217→        - generic
+   218→   218→          - heading "Modern Execution" [level=3, ref=e126]
+   219→   219→          - paragraph
+   220→   220→            - StaticText "Current tools. Clean output."
+   221→   221→          - StaticText "2025"
+   222→   222→          - StaticText "Tech Stack"
+   223→   223→          - paragraph
+   224→   224→            - StaticText "We use the latest design and development tools to create websites, apps, visuals, and digital assets that feel clean and relevant. Every output reflects modern standards — from responsive layouts and smooth interactions to optimized performance."
+   225→   225→          - StaticText "React & Next.js ecosystems"
+   226→   226→          - StaticText "Modern design tools & workflows"
+   227→   227→          - StaticText "Performance-first approach"
+   228→   228→          - StaticText "Mobile-responsive by default"
+   229→   229→          - StaticText "APPROACH"
+   230→   230→          - link "Learn More" [ref=e127]
+   231→   231→        - generic
+   232→   232→          - heading "Ownership Mindset" [level=3, ref=e128]
+   233→   233→          - paragraph
+   234→   234→            - StaticText "Your project, our standard."
+   235→   235→          - StaticText "100%"
+   236→   236→          - StaticText "Commitment"
+   237→   237→          - paragraph
+   238→   238→            - StaticText "We treat every project like a serious responsibility, not just a task list. The goal is to deliver work we are proud to show — and that you are confident to use. We stand behind our output and iterate until it meets the standard we would set for ourselves."
+   239→   239→          - StaticText "Personal accountability on every task"
+   240→   240→          - StaticText "Quality-first delivery mindset"
+   241→   241→          - StaticText "Proactive problem-solving"
+   242→   242→          - StaticText "Proud-to-show output"
+   243→   243→          - StaticText "MINDSET"
+   244→   244→          - link "Learn More" [ref=e129]
+   245→   245→        - generic
+   246→   246→          - heading "Process-Driven Delivery" [level=3, ref=e130]
+   247→   247→          - paragraph
+   248→   248→            - StaticText "Structured & reliable."
+   249→   249→          - StaticText "7"
+   250→   250→          - StaticText "Step Process"
+   251→   251→          - paragraph
+   252→   252→            - StaticText "Our workflow is built around understanding, planning, creating, reviewing, and improving before final delivery. Structure keeps quality consistent and timelines reliable. Every step has a purpose and every deliverable passes through quality checkpoints."
+   253→   253→          - StaticText "Defined workflow for every project"
+   254→   254→          - StaticText "Milestone-based checkpoints"
+   255→   255→          - StaticText "Revision rounds built in"
+   256→   256→          - StaticText "Quality gates before delivery"
+   257→   257→          - StaticText "PROCESS"
+   258→   258→          - link "Learn More" [ref=e131]
+   259→   259→        - generic
+   260→   260→          - heading "Direct Collaboration" [level=3, ref=e132]
+   261→   261→          - paragraph
+   262→   262→            - StaticText "No middlemen. Direct talk."
+   263→   263→          - StaticText "0"
+   264→   264→          - StaticText "Middlemen"
+   265→   265→          - paragraph
+   266→   266→            - StaticText "You work closely with the people building your project, which keeps communication simple and decisions faster. No account managers, no handoffs, no lost context — just direct, productive conversation with the team that creates your product."
+   267→   267→          - StaticText "Direct access to the creator"
+   268→   268→          - StaticText "Faster feedback loops"
+   269→   269→          - StaticText "No miscommunication layers"
+   270→   270→          - StaticText "Collaborative decision-making"
+   271→   271→          - StaticText "DIRECT"
+   272→   272→          - link "Learn More" [ref=e133]
+   273→   273→        - StaticText "Fast Turnaround"
+   274→   274→        - StaticText "Quality Obsessed"
+   275→   275→        - StaticText "Growth Focused"
+   276→   276→        - link "Start a Project" [ref=e25]
+   277→   277→    - generic
+   278→   278→      - generic
+   279→   279→        - StaticText "OUR TEAM"
+   280→   280→        - heading "Meet the LaunchFive Team" [level=2, ref=e26]
+   281→   281→        - paragraph
+   282→   282→          - StaticText "A compact creative-tech team combining development, product design, visual design, branding, and campaign creative skills."
+   283→   283→        - generic
+   284→   284→          - generic
+   285→   285→            - StaticText "DB"
+   286→   286→          - heading "Dipesh Borana" [level=3, ref=e80]
+   287→   287→          - paragraph
+   288→   288→            - StaticText "Full-Stack Developer"
+   289→   289→          - paragraph
+   290→   290→            - StaticText "“Builds it. Ships it. Owns it.”"
+   291→   291→          - paragraph
+   292→   292→            - StaticText "Web apps, dashboards & deployment-ready builds"
+   293→   293→          - StaticText "3+ years building production web apps"
+   294→   294→          - StaticText "React"
+   295→   295→          - StaticText "Next.js"
+   296→   296→          - StaticText "Node.js"
+   297→   297→          - link "Dipesh Borana linkedin" [ref=e81]
+   298→   298→          - link "Dipesh Borana twitter" [ref=e82]
+   299→   299→          - link "Dipesh Borana portfolio" [ref=e83]
+   300→   300→        - generic
+   301→   301→          - generic
+   302→   302→            - StaticText "RJ"
+   303→   303→          - heading "Ronak Jain" [level=3, ref=e84]
+   304→   304→          - paragraph
+   305→   305→            - StaticText "App Developer"
+   306→   306→          - paragraph
+   307→   307→            - StaticText "“Cross-platform. Smooth. Ready.”"
+   308→   308→          - paragraph
+   309→   309→            - StaticText "Mobile interfaces & cross-platform apps"
+   310→   310→          - StaticText "Published apps on Play Store & App Store"
+   311→   311→          - StaticText "React Native"
+   312→   312→          - StaticText "Flutter"
+   313→   313→          - StaticText "Firebase"
+   314→   314→          - link "Ronak Jain linkedin" [ref=e85]
+   315→   315→          - link "Ronak Jain twitter" [ref=e86]
+   316→   316→          - link "Ronak Jain portfolio" [ref=e87]
+   317→   317→        - generic
+   318→   318→          - generic
+   319→   319→            - StaticText "PC"
+   320→   320→          - heading "Prince Chauhan" [level=3, ref=e88]
+   321→   321→          - paragraph
+   322→   322→            - StaticText "UI/UX Designer"
+   323→   323→          - paragraph
+   324→   324→            - StaticText "“Designs for humans first.”"
+   325→   325→          - paragraph
+   326→   326→            - StaticText "User journeys, wireframes & product interfaces"
+   327→   327→          - StaticText "Designed interfaces for 10+ product concepts"
+   328→   328→          - StaticText "Figma"
+   329→   329→          - StaticText "Adobe XD"
+   330→   330→          - StaticText "Prototyping"
+   331→   331→          - link "Prince Chauhan linkedin" [ref=e89]
+   332→   332→          - link "Prince Chauhan twitter" [ref=e90]
+   333→   333→          - link "Prince Chauhan portfolio" [ref=e91]
+   334→   334→        - generic
+   335→   335→          - generic
+   336→   336→            - StaticText "PK"
+   337→   337→          - heading "Pooja Kumawat" [level=3, ref=e92]
+   338→   338→          - paragraph
+   339→   339→            - StaticText "Graphic Designer"
+   340→   340→          - paragraph
+   341→   341→            - StaticText "“Visuals that speak before words.”"
+   342→   342→          - paragraph
+   343→   343→            - StaticText "Brand visuals, social designs & digital assets"
+   344→   344→          - StaticText "Created brand identities for 8+ businesses"
+   345→   345→          - StaticText "Illustrator"
+   346→   346→          - StaticText "Photoshop"
+   347→   347→          - StaticText "InDesign"
+   348→   348→          - link "Pooja Kumawat linkedin" [ref=e93]
+   349→   349→          - link "Pooja Kumawat twitter" [ref=e94]
+   350→   350→          - link "Pooja Kumawat portfolio" [ref=e95]
+   351→   351→        - generic
+   352→   352→          - generic
+   353→   353→            - StaticText "MK"
+   354→   354→          - heading "Mehul Kumar" [level=3, ref=e96]
+   355→   355→          - paragraph
+   356→   356→            - StaticText "Ads & Campaign Designer"
+   357→   357→          - paragraph
+   358→   358→            - StaticText "“Stops the scroll. Drives the click.”"
+   359→   359→          - paragraph
+   360→   360→            - StaticText "Campaign visuals, ad creatives & launch graphics"
+   361→   361→          - StaticText "Designed ad campaigns with 2M+ impressions"
+   362→   362→          - StaticText "Ad Design"
+   363→   363→          - StaticText "Campaign Strategy"
+   364→   364→          - StaticText "Motion Graphics"
+   365→   365→          - link "Mehul Kumar linkedin" [ref=e97]
+   366→   366→          - link "Mehul Kumar twitter" [ref=e98]
+   367→   367→          - link "Mehul Kumar portfolio" [ref=e99]
+   368→   368→    - generic
+   369→   369→      - generic
+   370→   370→        - StaticText "OUR WORK"
+   371→   371→        - heading "Selected Work" [level=2, ref=e27]
+   372→   372→        - paragraph
+   373→   373→          - StaticText "Real projects, design systems, and creative builds — along with internal concepts that show our thinking and execution style."
+   374→   374→        - StaticText "Items marked CONCEPT are internal explorations. Client case studies will be added as we complete live projects."
+   375→   375→        - button "All" [ref=e28]
+   376→   376→        - button "Website Design" [ref=e29]
+   377→   377→        - button "UI/UX" [ref=e30]
+   378→   378→        - button "Web Development" [ref=e31]
+   379→   379→        - button "Branding" [ref=e32]
+   380→   380→        - button "Logo Design" [ref=e33]
+   381→   381→        - button "Ad Creatives" [ref=e34]
+   382→   382→        - generic
+   383→   383→          - image "PulseBoard — SaaS Analytics Dashboard"
+   384→   384→          - StaticText "Web Development"
+   385→   385→          - StaticText "2025"
+   386→   386→        - heading "PulseBoard — SaaS Analytics Dashboard" [level=3, ref=e35]
+   387→   387→        - paragraph
+   388→   388→          - StaticText "A full-stack analytics dashboard for SaaS teams with real-time data visualization, custom chart widgets, role-based access, and a responsive dark UI built with Next.js and Tailwind CSS."
+   389→   389→        - StaticText "Next.js"
+   390→   390→        - StaticText "TypeScript"
+   391→   391→        - StaticText "Tailwind CSS"
+   392→   392→        - StaticText "Chart.js"
+   393→   393→        - StaticText "Dashboard"
+   394→   394→        - StaticText "Full-Stack"
+   395→   395→        - StaticText "Dark UI"
+   396→   396→        - StaticText "Real-time"
+   397→   397→        - StaticText "Demonstrates our ability to build complex, data-heavy web applications with clean architecture, real-time rendering, and a polished dark-themed interface."
+   398→   398→        - link "View Live" [ref=e36]
+   399→   399→        - generic
+   400→   400→          - image "FinWise — Mobile Banking App UI"
+   401→   401→          - StaticText "UI/UX"
+   402→   402→          - StaticText "2025"
+   403→   403→        - heading "FinWise — Mobile Banking App UI" [level=3, ref=e37]
+   404→   404→        - paragraph
+   405→   405→          - StaticText "A mobile banking app UI kit featuring a dashboard, transaction history, fund transfers, and card management screens. Designed with a focus on clarity, trust, and smooth navigation for fintech users."
+   406→   406→        - StaticText "Figma"
+   407→   407→        - StaticText "Prototyping"
+   408→   408→        - StaticText "Design System"
+   409→   409→        - StaticText "Micro-Interactions"
+   410→   410→        - StaticText "Fintech"
+   411→   411→        - StaticText "Mobile"
+   412→   412→        - StaticText "UI Kit"
+   413→   413→        - StaticText "Prototyping"
+   414→   414→        - StaticText "Shows our approach to designing secure, user-friendly financial interfaces with clear hierarchy, accessible touch targets, and platform-native interaction patterns."
+   415→   415→        - link "View Design" [ref=e38]
+   416→   416→        - generic
+   417→   417→          - image "SpiceRoot — Restaurant Brand Identity"
+   418→   418→          - StaticText "Branding"
+   419→   419→          - StaticText "2025"
+   420→   420→        - heading "SpiceRoot — Restaurant Brand Identity" [level=3, ref=e39]
+   421→   421→        - paragraph
+   422→   422→          - StaticText "A complete brand identity for a modern Indian restaurant including logo design, color palette, typography system, menu card layout, business card, and social media brand guidelines."
+   423→   423→        - StaticText "Illustrator"
+   424→   424→        - StaticText "Figma"
+   425→   425→        - StaticText "Canva"
+   426→   426→        - StaticText "Typography"
+   427→   427→        - StaticText "Restaurant"
+   428→   428→        - StaticText "Brand Identity"
+   429→   429→        - StaticText "Print + Digital"
+   430→   430→        - StaticText "Logo"
+   431→   431→        - StaticText "Demonstrates our ability to create cohesive, memorable brand identities that work across digital and print — from logo to packaging to social templates."
+   432→   432→        - link "View Design" [ref=e40]
+   433→   433→        - generic
+   434→   434→          - image "ShopNova — E-Commerce Landing Page"
+   435→   435→          - StaticText "Website Design"
+   436→   436→          - StaticText "2025"
+   437→   437→        - heading "ShopNova — E-Commerce Landing Page" [level=3, ref=e41]
+   438→   438→        - paragraph
+   439→   439→          - StaticText "A conversion-focused e-commerce landing page built with a dark gradient hero, product showcase grid, trust indicators, and a streamlined checkout flow. Fully responsive and performance-optimized."
+   440→   440→        - StaticText "Next.js"
+   441→   441→        - StaticText "Tailwind CSS"
+   442→   442→        - StaticText "Figma"
+   443→   443→        - StaticText "Framer Motion"
+   444→   444→        - StaticText "E-Commerce"
+   445→   445→        - StaticText "Landing Page"
+   446→   446→        - StaticText "Conversion"
+   447→   447→        - StaticText "Responsive"
+   448→   448→        - StaticText "Highlights our ability to design and build landing pages that balance visual impact with conversion strategy — fast loading, mobile-first, and structured for clarity."
+   449→   449→        - link "View Live" [ref=e42]
+   450→   450→        - generic
+   451→   451→          - image "Social Ad Creative System"
+   452→   452→          - generic
+   453→   453→            - StaticText "Ad Creatives"
+   454→   454→            - StaticText "CONCEPT"
+   455→   455→          - StaticText "2025"
+   456→   456→        - heading "Social Ad Creative System" [level=3, ref=e43]
+   457→   457→        - paragraph
+   458→   458→          - StaticText "A structured set of campaign visuals designed for product launches, seasonal offers, and social media brand awareness across Instagram, Facebook, and LinkedIn formats."
+   459→   459→        - StaticText "Canva"
+   460→   460→        - StaticText "Photoshop"
+   461→   461→        - StaticText "Campaign Design"
+   462→   462→        - StaticText "Ad Copy"
+   463→   463→        - StaticText "Social Ads"
+   464→   464→        - StaticText "Campaign"
+   465→   465→        - StaticText "Multi-platform"
+   466→   466→        - StaticText "Creatives"
+   467→   467→        - StaticText "Shows our ability to create platform-ready ad visuals that follow current design trends, platform specifications, and attention-focused layout principles."
+   468→   468→        - button "View Concept" [ref=e44]
+   469→   469→        - generic
+   470→   470→          - image "Logo Concept Collection"
+   471→   471→          - generic
+   472→   472→            - StaticText "Logo Design"
+   473→   473→            - StaticText "CONCEPT"
+   474→   474→          - StaticText "2025"
+   475→   475→        - heading "Logo Concept Collection" [level=3, ref=e45]
+   476→   476→        - paragraph
+   477→   477→          - StaticText "A collection of modern logo directions exploring minimal, bold, and memorable visual identities across different industry verticals — from tech startups to lifestyle brands."
+   478→   478→        - StaticText "Illustrator"
+   479→   479→        - StaticText "Figma"
+   480→   480→        - StaticText "Brand Strategy"
+   481→   481→        - StaticText "Logo"
+   482→   482→        - StaticText "Brand Marks"
+   483→   483→        - StaticText "Wordmarks"
+   484→   484→        - StaticText "Identity"
+   485→   485→        - StaticText "Demonstrates our range in logo design — from wordmarks to symbols to combination marks — with consistent visual thinking and scalable output."
+   486→   486→        - button "View Concept" [ref=e46]
+   487→   487→    - generic
+   488→   488→      - generic
+   489→   489→        - StaticText "TESTIMONIALS"
+   490→   490→        - heading "What Our Clients Say" [level=2, ref=e47]
+   491→   491→        - paragraph
+   492→   492→          - StaticText "Real feedback from businesses we've helped build, design, and grow. Every project is a partnership — here's what our partners have to say."
+   493→   493→        - generic
+   494→   494→          - paragraph
+   495→   495→            - StaticText "“LaunchFive Studio built our e-commerce platform from scratch and the result exceeded every expectation. The team was responsive, creative, and delivered ahead of schedule. Their 7-step process kept everything transparent — we always knew exactly where the project stood. The glassmorphism design they proposed made our brand stand out instantly.”"
+   496→   496→          - StaticText "PS"
+   497→   497→          - heading "Priya Sharma" [level=4, ref=e134]
+   498→   498→          - paragraph
+   499→   499→            - StaticText "Founder, GreenLeaf Organics"
+   500→   500→          - StaticText "FULL-STACK DEVELOPMENT"
+   501→   501→        - generic
+   502→   502→          - paragraph
+   503→   503→            - StaticText "“We needed a dashboard that handled complex data but still looked clean and modern. LaunchFive nailed it — the UI was intuitive, the animations were smooth, and performance was excellent even with large datasets. Direct communication with the developers made all the difference. No middlemen, no confusion, just great work.”"
+   504→   504→          - StaticText "AP"
+   505→   505→          - heading "Arjun Patel" [level=4, ref=e135]
+   506→   506→          - paragraph
+   507→   507→            - StaticText "CEO, FinScope Analytics"
+   508→   508→          - StaticText "UI/UX DESIGN"
+   509→   509→        - generic
+   510→   510→          - paragraph
+   511→   511→            - StaticText "“From the initial branding concepts to the final ad creatives, LaunchFive delivered a complete visual identity for our new product line. The team understood our audience and crafted designs that connected emotionally. The turnaround was impressively fast — we had our full campaign ready within a week of approving the concepts.”"
+   512→   512→          - StaticText "MD"
+   513→   513→          - heading "Meera Desai" [level=4, ref=e136]
+   514→   514→          - paragraph
+   515→   515→            - StaticText "Marketing Head, BrightPath Education"
+   516→   516→          - StaticText "BRANDING & AD CREATIVES"
+   517→   517→        - generic
+   518→   518→          - paragraph
+   519→   519→            - StaticText "“Our mobile app went from a rough idea to a polished MVP in just 5 weeks. The team handled everything — UI design, development, Firebase integration, and even the app store assets. What stood out most was their ownership mindset. They caught issues before we even noticed them and suggested improvements we hadn't considered.”"
+   520→   520→          - StaticText "RK"
+   521→   521→          - heading "Rohit Kapoor" [level=4, ref=e137]
+   522→   522→          - paragraph
+   523→   523→            - StaticText "Product Manager, TravelBuddy App"
+   524→   524→          - StaticText "MOBILE APP DEVELOPMENT"
+   525→   525→        - generic
+   526→   526→          - paragraph
+   527→   527→            - StaticText "“We partnered with LaunchFive for a client's landing page and social media templates. Their design quality is on par with agencies charging 3x the price. The glassmorphism style and dark theme aesthetic were exactly what the brand needed. Quick iterations, zero drama, and the client was thrilled with the result.”"
+   528→   528→          - StaticText "SI"
+   529→   529→          - heading "Sneha Iyer" [level=4, ref=e138]
+   530→   530→          - paragraph
+   531→   531→            - StaticText "Creative Director, PixelWave Media"
+   532→   532→          - StaticText "LANDING PAGE & TEMPLATES"
+   533→   533→        - generic
+   534→   534→          - paragraph
+   535→   535→            - StaticText "“LaunchFive built our health tracking web app with real-time dashboards and smooth animations. The 3D elements in the hero section gave it a premium feel that our users love. Their process was structured yet flexible — they adapted when we changed requirements mid-project without missing a deadline. Highly recommend for startups.”"
+   536→   536→          - StaticText "VS"
+   537→   537→          - heading "Vikram Singh" [level=4, ref=e139]
+   538→   538→          - paragraph
+   539→   539→            - StaticText "Co-Founder, FitTrack Health"
+   540→   540→          - StaticText "FULL-STACK DEVELOPMENT"
+   541→   541→        - link "Start Your Project" [ref=e48]
+   542→   542→    - generic
+   543→   543→      - generic
+   544→   544→        - StaticText "OUR WORKFLOW"
+   545→   545→        - heading "A Clear Process From Idea to Launch" [level=2, ref=e49]
+   546→   546→        - paragraph
+   547→   547→          - StaticText "A transparent, step-by-step workflow showing exactly when you're involved and when we handle things. No guesswork."
+   548→   548→        - StaticText "Your involvement:"
+   549→   549→        - StaticText "High"
+   550→   550→        - StaticText "Medium"
+   551→   551→        - StaticText "Low"
+   552→   552→        - generic
+   553→   553→          - generic
+   554→   554→          - generic
+   555→   555→            - StaticText "High"
+   556→   556→            - StaticText "Step "
+   557→   557→            - StaticText "1"
+   558→   558→            - heading "Discover" [level=4, ref=e140]
+   559→   559→            - paragraph
+   560→   560→            - StaticText "1-2 days"
+   561→   561→            - StaticText "Share your vision, goals & requirements"
+   562→   562→            - StaticText "Listen, research & define project scope"
+   563→   563→          - generic
+   564→   564→            - StaticText "1-2 days"
+   565→   565→            - StaticText "Approve scope & timeline"
+   566→   566→            - StaticText "Create roadmap & content plan"
+   567→   567→            - StaticText "Medium"
+   568→   568→            - StaticText "Step "
+   569→   569→            - StaticText "2"
+   570→   570→            - heading "Plan" [level=4, ref=e141]
+   571→   571→            - paragraph
+   572→   572→          - generic
+   573→   573→            - StaticText "High"
+   574→   574→            - StaticText "Step "
+   575→   575→            - StaticText "3"
+   576→   576→            - heading "Design" [level=4, ref=e142]
+   577→   577→            - paragraph
+   578→   578→            - StaticText "3-5 days"
+   579→   579→            - StaticText "Review designs & share feedback"
+   580→   580→            - StaticText "Create wireframes, mockups & UI"
+   581→   581→          - generic
+   582→   582→            - StaticText "5-10 days"
+   583→   583→            - StaticText "Sit back — we handle the build"
+   584→   584→            - StaticText "Develop, code & assemble the project"
+   585→   585→            - StaticText "Low"
+   586→   586→            - StaticText "Step "
+   587→   587→            - StaticText "4"
+   588→   588→            - heading "Build" [level=4, ref=e143]
+   589→   589→            - paragraph
+   590→   590→          - generic
+   591→   591→            - StaticText "Low"
+   592→   592→            - StaticText "Step "
+   593→   593→            - StaticText "5"
+   594→   594→            - heading "Review" [level=4, ref=e144]
+   595→   595→            - paragraph
+   596→   596→            - StaticText "1-2 days"
+   597→   597→            - StaticText "Wait for quality check completion"
+   598→   598→            - StaticText "Test, QA & polish everything"
+   599→   599→          - generic
+   600→   600→            - StaticText "2-3 days"
+   601→   601→            - StaticText "Share revisions & final feedback"
+   602→   602→            - StaticText "Implement changes & fine-tune"
+   603→   603→            - StaticText "High"
+   604→   604→            - StaticText "Step "
+   605→   605→            - StaticText "6"
+   606→   606→            - heading "Refine" [level=4, ref=e145]
+   607→   607→            - paragraph
+   608→   608→          - generic
+   609→   609→            - StaticText "Medium"
+   610→   610→            - StaticText "Step "
+   611→   611→            - StaticText "7"
+   612→   612→            - heading "Deliver" [level=4, ref=e146]
+   613→   613→            - paragraph
+   614→   614→            - StaticText "1 day"
+   615→   615→            - StaticText "Receive files & project handover"
+   616→   616→            - StaticText "Deploy, document & deliver"
+   617→   617→    - generic
+   618→   618→      - generic
+   619→   619→        - StaticText "FAQ"
+   620→   620→        - heading "Frequently Asked Questions" [level=2, ref=e50]
+   621→   621→        - paragraph
+   622→   622→          - StaticText "Quick answers to the questions we hear most. Can't find what you're looking for? Reach out and we'll get back to you within 24 hours."
+   623→   623→        - heading "How much does a typical project cost? PRICING" [level=3, ref=e51]
+   624→   624→          - button "How much does a typical project cost? PRICING" [expanded=false, ref=e100]
+   625→   625→            - StaticText "How much does a typical project cost?"
+   626→   626→            - StaticText "PRICING"
+   627→   627→        - heading "How long does it take to complete a project? PROCESS" [level=3, ref=e52]
+   628→   628→          - button "How long does it take to complete a project? PROCESS" [expanded=false, ref=e101]
+   629→   629→            - StaticText "How long does it take to complete a project?"
+   630→   630→            - StaticText "PROCESS"
+   631→   631→        - heading "How many revisions are included? PROCESS" [level=3, ref=e53]
+   632→   632→          - button "How many revisions are included? PROCESS" [expanded=false, ref=e102]
+   633→   633→            - StaticText "How many revisions are included?"
+   634→   634→            - StaticText "PROCESS"
+   635→   635→        - heading "What is your payment structure? PRICING" [level=3, ref=e54]
+   636→   636→          - button "What is your payment structure? PRICING" [expanded=false, ref=e103]
+   637→   637→            - StaticText "What is your payment structure?"
+   638→   638→            - StaticText "PRICING"
+   639→   639→        - heading "How do we communicate during the project? PROCESS" [level=3, ref=e55]
+   640→   640→          - button "How do we communicate during the project? PROCESS" [expanded=false, ref=e104]
+   641→   641→            - StaticText "How do we communicate during the project?"
+   642→   642→            - StaticText "PROCESS"
+   643→   643→        - heading "What technologies do you work with? TECHNICAL" [level=3, ref=e56]
+   644→   644→          - button "What technologies do you work with? TECHNICAL" [expanded=false, ref=e105]
+   645→   645→            - StaticText "What technologies do you work with?"
+   646→   646→            - StaticText "TECHNICAL"
+   647→   647→        - heading "Do you provide support after project delivery? SUPPORT" [level=3, ref=e57]
+   648→   648→          - button "Do you provide support after project delivery? SUPPORT" [expanded=false, ref=e106]
+   649→   649→            - StaticText "Do you provide support after project delivery?"
+   650→   650→            - StaticText "SUPPORT"
+   651→   651→        - heading "Do I own the source code and design files? TECHNICAL" [level=3, ref=e58]
+   652→   652→          - button "Do I own the source code and design files? TECHNICAL" [expanded=false, ref=e107]
+   653→   653→            - StaticText "Do I own the source code and design files?"
+   654→   654→            - StaticText "TECHNICAL"
+   655→   655→        - paragraph
+   656→   656→          - StaticText "Still have questions?"
+   657→   657→        - link "Ask Us Anything" [ref=e59]
+   658→   658→    - generic
+   659→   659→      - StaticText "LaunchFive Studio"
+   660→   660→      - heading "Ready to Launch SomethingClear, Modern & Useful?" [level=2, ref=e108]
+   661→   661→        - StaticText "Ready to Launch SomethingClear, Modern & Useful?"
+   662→   662→      - paragraph
+   663→   663→        - StaticText "From websites and apps to branding, logos, and ad creatives — we help you shape ideas into polished digital outcomes."
+   664→   664→      - button "Discuss Your Project" [ref=e109]
+   665→   665→        - StaticText "Discuss Your Project"
+   666→   666→      - button "View Our Work" [ref=e110]
+   667→   667→        - StaticText "View Our Work"
+   668→   668→      - paragraph
+   669→   669→        - StaticText "WHAT WE BUILD"
+   670→   670→      - paragraph
+   671→   671→        - StaticText "Web Development"
+   672→   672→      - paragraph
+   673→   673→        - StaticText "Professional quality"
+   674→   674→      - paragraph
+   675→   675→        - StaticText "Mobile Apps"
+   676→   676→      - paragraph
+   677→   677→        - StaticText "Professional quality"
+   678→   678→      - paragraph
+   679→   679→        - StaticText "UI/UX Design"
+   680→   680→      - paragraph
+   681→   681→        - StaticText "Professional quality"
+   682→   682→      - paragraph
+   683→   683→        - StaticText "Branding & Logos"
+   684→   684→      - paragraph
+   685→   685→        - StaticText "Professional quality"
+   686→   686→      - paragraph
+   687→   687→        - StaticText "Ad Creatives"
+   688→   688→      - paragraph
+   689→   689→        - StaticText "Professional quality"
+   690→   690→      - paragraph
+   691→   691→        - StaticText "Landing Pages"
+   692→   692→      - paragraph
+   693→   693→        - StaticText "Professional quality"
+   694→   694→      - StaticText "Branding & Logos"
+   695→   695→    - generic
+   696→   696→      - generic
+   697→   697→        - StaticText "GET IN TOUCH"
+   698→   698→        - heading "Start Your Project" [level=2, ref=e60]
+   699→   699→        - paragraph
+   700→   700→          - StaticText "Tell us what you want to build. We'll review your idea, understand your requirements, and suggest the best direction with clarity."
+   701→   701→        - link "Email hello@launchfivestudio.com" [ref=e61]
+   702→   702→          - paragraph
+   703→   703→            - StaticText "Email"
+   704→   704→          - paragraph
+   705→   705→            - StaticText "hello@launchfivestudio.com"
+   706→   706→        - link "WhatsApp +91 98765 43210" [ref=e62]
+   707→   707→          - paragraph
+   708→   708→            - StaticText "WhatsApp"
+   709→   709→          - paragraph
+   710→   710→            - StaticText "+91 98765 43210"
+   711→   711→        - paragraph
+   712→   712→          - StaticText "Working Hours"
+   713→   713→        - paragraph
+   714→   714→          - StaticText "Mon - Sat, 10AM - 7PM IST"
+   715→   715→        - StaticText "Response within 24 hours"
+   716→   716→        - StaticText "Your information is never shared"
+   717→   717→        - StaticText "Free initial consultation"
+   718→   718→        - form
+   719→   719→          - LabelText
+   720→   720→            - StaticText "Full Name"
+   721→   721→            - StaticText "*"
+   722→   722→          - textbox "Full name" [ref=e111]
+   723→   723→          - LabelText
+   724→   724→            - StaticText "Email"
+   725→   725→            - StaticText "*"
+   726→   726→          - textbox "Email address" [ref=e112]
+   727→   727→          - LabelText
+   728→   728→            - StaticText "Phone / WhatsApp"
+   729→   729→          - textbox "Phone or WhatsApp number" [ref=e113]
+   730→   730→          - LabelText
+   731→   731→            - StaticText "Company Name"
+   732→   732→          - textbox "Company name" [ref=e114]
+   733→   733→          - LabelText
+   734→   734→            - StaticText "Service Needed"
+   735→   735→            - StaticText "*"
+   736→   736→          - combobox "Service needed" [expanded=false, ref=e115]: Select a service
+   737→   737→            - MenuListPopup
+   738→   738→              - option "Select a service" [disabled, ref=e147]
+   739→   739→              - option "Full-Stack Development" [ref=e148]
+   740→   740→              - option "Mobile App Development" [ref=e149]
+   741→   741→              - option "Website Design" [ref=e150]
+   742→   742→              - option "UI/UX Design" [ref=e151]
+   743→   743→              - option "Graphic Design" [ref=e152]
+   744→   744→              - option "Branding & Logo Design" [ref=e153]
+   745→   745→              - option "Ad Creatives & Campaign Design" [ref=e154]
+   746→   746→              - option "Campaign Strategy & Design" [ref=e155]
+   747→   747→              - option "Social Media Templates" [ref=e156]
+   748→   748→              - option "Branding Kits" [ref=e157]
+   749→   749→              - option "Landing Page Design" [ref=e158]
+   750→   750→          - LabelText
+   751→   751→            - StaticText "Budget Range"
+   752→   752→            - StaticText "*"
+   753→   753→          - combobox "Budget range" [expanded=false, ref=e116]: Select budget range
+   754→   754→            - MenuListPopup
+   755→   755→              - option "Select budget range" [disabled, ref=e159]
+   756→   756→              - option "Starter Project" [ref=e160]
+   757→   757→              - option "Website / Design Project" [ref=e161]
+   758→   758→              - option "App or Full-Stack Project" [ref=e162]
+   759→   759→              - option "Branding Package" [ref=e163]
+   760→   760→              - option "Campaign Creative Package" [ref=e164]
+   761→   761→              - option "Not Sure Yet" [ref=e165]
+   762→   762→          - LabelText
+   763→   763→            - StaticText "Timeline"
+   764→   764→            - StaticText "*"
+   765→   765→          - combobox "Project timeline" [expanded=false, ref=e117]: Select timeline
+   766→   766→            - MenuListPopup
+   767→   767→              - option "Select timeline" [disabled, ref=e166]
+   768→   768→              - option "Less than 1 month" [ref=e167]
+   769→   769→              - option "1 - 2 months" [ref=e168]
+   770→   770→              - option "2 - 3 months" [ref=e169]
+   771→   771→              - option "3 - 6 months" [ref=e170]
+   772→   772→              - option "6+ months" [ref=e171]
+   773→   773→              - option "Flexible" [ref=e172]
+   774→   774→          - textbox "Reference link" [ref=e118]
+   775→   775→          - textbox "Project description" [ref=e119]
+   776→   776→          - button "Submit project inquiry" [ref=e120]
+   777→   777→  - contentinfo
+   778→   778→    - image
+   779→   779→    - StaticText "Launch"
+   780→   780→    - StaticText "Five"
+   781→   781→    - StaticText "STUDIO"
+   782→   782→    - paragraph
+   783→   783→      - StaticText "LaunchFive Studio is a focused 5-member creative-tech studio helping businesses build websites, apps, UI/UX, branding, graphics, logos, templates, and ad creatives with clean execution and clear communication."
+   784→   784→    - link "Twitter" [ref=e5]
+   785→   785→    - link "GitHub" [ref=e6]
+   786→   786→    - link "LinkedIn" [ref=e7]
+   787→   787→    - link "Email" [ref=e8]
+   788→   788→    - heading "Services" [level=4, ref=e9]
+   789→   789→    - list
+   790→   790→      - listitem [level=1]
+   791→   791→      - listitem [level=1]
+   792→   792→      - listitem [level=1]
+   793→   793→      - listitem [level=1]
+   794→   794→      - listitem [level=1]
+   795→   795→      - listitem [level=1]
+   796→   796→    - heading "Company" [level=4, ref=e10]
+   797→   797→    - list
+   798→   798→      - listitem [level=1]
+   799→   799→        - link "About Us" [ref=e63]
+   800→   800→      - listitem [level=1]
+   801→   801→        - link "Portfolio" [ref=e64]
+   802→   802→      - listitem [level=1]
+   803→   803→        - link "Our Process" [ref=e65]
+   804→   804→      - listitem [level=1]
+   805→   805→        - link "Contact" [ref=e66]
+   806→   806→    - heading "Get in Touch" [level=4, ref=e11]
+   807→   807→    - paragraph
+   808→   808→      - StaticText "Email: hello@launchfivestudio.com"
+   809→   809→    - paragraph
+   810→   810→      - StaticText "Phone: +91 98765 43210"
+   811→   811→    - paragraph
+   812→   812→      - StaticText "WhatsApp: +91 98765 43210"
+   813→   813→    - paragraph
+   814→   814→      - StaticText "Hours: Mon - Sat, 10AM - 7PM IST"
+   815→   815→  - region "Notifications (F8)" [ref=e1]
+   816→   816→  - button "Open Next.js Dev Tools" [expanded=false, ref=e121]
