@@ -10,7 +10,6 @@ import ServicesPreview from "@/components/home/ServicesPreview";
 import WhyUs from "@/components/home/WhyUs";
 import TeamPreview from "@/components/home/TeamPreview";
 import PortfolioPreview from "@/components/home/PortfolioPreview";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ProcessSection from "@/components/home/ProcessSection";
 import FAQSection from "@/components/home/FAQSection";
 import ContactCTA from "@/components/home/ContactCTA";
@@ -28,7 +27,6 @@ export default function Home() {
         <WhyUs />
         <TeamPreview />
         <PortfolioPreview />
-        <TestimonialsSection />
         <ProcessSection />
         <FAQSection />
         <ContactCTA />
