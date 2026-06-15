@@ -22,6 +22,7 @@ export interface Service {
   deliverables: string[];
   timeline: string;
   bestFor: string;
+  priceRange: string;
   popular: boolean;
   color: string;
   gradient: string;
@@ -46,6 +47,7 @@ export const services: Service[] = [
     deliverables: ["Deployed web app", "Source code", "API documentation", "Admin panel access"],
     timeline: "2-6 weeks",
     bestFor: "Startups, small businesses, and anyone needing a complete web platform",
+    priceRange: "₹50K - ₹2L+",
     popular: true,
     color: "#7C3AED",
     gradient: "from-[#7C3AED] to-[#3B82F6]",
@@ -68,6 +70,7 @@ export const services: Service[] = [
     deliverables: ["App prototype", "Cross-platform build", "Store submission support", "User flow documentation"],
     timeline: "3-8 weeks",
     bestFor: "Businesses reaching mobile users, MVPs, and app prototypes",
+    priceRange: "₹75K - ₹3L+",
     popular: true,
     color: "#06B6D4",
     gradient: "from-[#06B6D4] to-[#10B981]",
@@ -90,6 +93,7 @@ export const services: Service[] = [
     deliverables: ["Live website", "Design files", "CMS setup", "Analytics dashboard"],
     timeline: "1-3 weeks",
     bestFor: "Small businesses, portfolios, and personal brands",
+    priceRange: "₹15K - ₹60K",
     popular: false,
     color: "#F97316",
     gradient: "from-[#F97316] to-[#F59E0B]",
@@ -112,6 +116,7 @@ export const services: Service[] = [
     deliverables: ["Figma file with all screens", "Interactive prototype", "Design system", "User flow maps"],
     timeline: "1-4 weeks",
     bestFor: "App redesigns, product concepts, and digital design projects",
+    priceRange: "₹25K - ₹1L",
     popular: true,
     color: "#10B981",
     gradient: "from-[#10B981] to-[#06B6D4]",
@@ -134,6 +139,7 @@ export const services: Service[] = [
     deliverables: ["Source files (AI/PSD)", "PNG/PDF exports", "Brand asset library", "Size variations"],
     timeline: "3-7 days",
     bestFor: "Marketing teams, content creators, and brand launches",
+    priceRange: "₹5K - ₹25K",
     popular: false,
     color: "#F43F5E",
     gradient: "from-[#F43F5E] to-[#EC4899]",
@@ -156,6 +162,7 @@ export const services: Service[] = [
     deliverables: ["Logo files (SVG, PNG, EPS)", "Brand guideline PDF", "Color palette", "Typography specs"],
     timeline: "1-2 weeks",
     bestFor: "New businesses, startups, and anyone establishing a visual identity",
+    priceRange: "₹10K - ₹50K",
     popular: false,
     color: "#8B5CF6",
     gradient: "from-[#8B5CF6] to-[#7C3AED]",
@@ -178,6 +185,7 @@ export const services: Service[] = [
     deliverables: ["All size variations", "A/B variants", "Source files", "Platform-optimized exports"],
     timeline: "3-7 days",
     bestFor: "Small businesses running ad campaigns and growing brands",
+    priceRange: "₹5K - ₹20K",
     popular: false,
     color: "#EC4899",
     gradient: "from-[#EC4899] to-[#F43F5E]",
@@ -200,6 +208,7 @@ export const services: Service[] = [
     deliverables: ["Campaign brief", "Full creative pack", "Copy templates", "Performance report template"],
     timeline: "1-3 weeks",
     bestFor: "Product launches, seasonal promotions, and campaign rollouts",
+    priceRange: "₹20K - ₹75K",
     popular: false,
     color: "#14B8A6",
     gradient: "from-[#14B8A6] to-[#10B981]",
@@ -222,6 +231,7 @@ export const services: Service[] = [
     deliverables: ["Canva/Figma templates", "Brand style guide", "All platform sizes", "Usage instructions"],
     timeline: "3-5 days",
     bestFor: "Social media managers, influencers, and content teams",
+    priceRange: "₹8K - ₹30K",
     popular: false,
     color: "#F59E0B",
     gradient: "from-[#F59E0B] to-[#F97316]",
@@ -244,6 +254,7 @@ export const services: Service[] = [
     deliverables: ["Complete brand kit", "Style guide PDF", "All logo variations", "Digital & print assets"],
     timeline: "2-3 weeks",
     bestFor: "New brands, startups, and businesses building their first identity",
+    priceRange: "₹25K - ₹80K",
     popular: false,
     color: "#6366F1",
     gradient: "from-[#6366F1] to-[#8B5CF6]",
@@ -266,6 +277,7 @@ export const services: Service[] = [
     deliverables: ["Live landing page", "Design file", "A/B variants", "Analytics setup"],
     timeline: "1-2 weeks",
     bestFor: "Product launches, lead generation, and marketing campaigns",
+    priceRange: "₹15K - ₹50K",
     popular: true,
     color: "#0EA5E9",
     gradient: "from-[#0EA5E9] to-[#06B6D4]",

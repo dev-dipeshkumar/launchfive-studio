@@ -74,6 +74,46 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "LaunchFive Studio",
+              description:
+                "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
+              url: "https://launchfive-studio.web.app",
+              telephone: "+919876543210",
+              email: "hello@launchfivestudio.com",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IN",
+              },
+              priceRange: "₹5K - ₹3L+",
+              areaServed: "Worldwide",
+              serviceType: [
+                "Web Development",
+                "Mobile App Development",
+                "UI/UX Design",
+                "Graphic Design",
+                "Branding & Logo Design",
+                "Ad Creatives",
+                "Campaign Strategy",
+                "Social Media Templates",
+                "Landing Page Design",
+              ],
+              sameAs: [],
+              foundingDate: "2025",
+              numberOfEmployees: {
+                "@type": "QuantitativeValue",
+                value: 5,
+              },
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#070A13] text-[#F8FAFC] overflow-x-hidden`}
       >

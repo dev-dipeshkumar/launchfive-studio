@@ -17,6 +17,8 @@ import FAQSection from "@/components/home/FAQSection";
 import ContactCTA from "@/components/home/ContactCTA";
 import ContactForm from "@/components/contact/ContactForm";
 
+import FloatingCTA from "@/components/common/FloatingCTA";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#070A13] overflow-x-hidden max-w-full">
@@ -37,6 +39,7 @@ export default function Home() {
       </main>
       <Footer />
       <BackToTop />
+      <FloatingCTA />
       <CookieConsent />
     </div>
   );
