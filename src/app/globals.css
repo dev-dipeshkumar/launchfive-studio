@@ -83,10 +83,11 @@
   --sidebar-border: #E2E8F0;
   --sidebar-ring: #7C3AED;
   /* Glassmorphism — light mode */
-  --glass-bg: rgba(0, 0, 0, 0.02);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-strong-bg: rgba(0, 0, 0, 0.04);
-  --glass-strong-border: rgba(0, 0, 0, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-strong-bg: rgba(255, 255, 255, 0.92);
+  --glass-strong-border: rgba(0, 0, 0, 0.14);
+  --glass-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
   /* Scrollbar */
   --scrollbar-track: #F1F5F9;
   --scrollbar-thumb: rgba(124, 58, 237, 0.25);
@@ -138,6 +139,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-strong-bg: rgba(255, 255, 255, 0.1);
   --glass-strong-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 2px 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
   /* Scrollbar */
   --scrollbar-track: #070A13;
   --scrollbar-thumb: rgba(124, 58, 237, 0.4);
@@ -192,6 +194,7 @@ html {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-strong {
@@ -199,6 +202,7 @@ html {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-strong-border);
+  box-shadow: var(--glass-shadow);
 }
 
 /* Gradient text */
@@ -235,6 +239,11 @@ html {
   pointer-events: none;
 }
 
+/* Light mode — stronger gradient border for visibility */
+:root:not(.dark) .gradient-border::before {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(6, 182, 212, 0.35));
+}
+
 /* Glow effect */
 .glow-purple {
   box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1);
@@ -242,6 +251,15 @@ html {
 
 .glow-cyan {
   box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
+}
+
+/* Light mode — stronger glows for visibility */
+:root:not(.dark) .glow-purple {
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.2), 0 0 48px rgba(124, 58, 237, 0.08);
+}
+
+:root:not(.dark) .glow-cyan {
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.2), 0 0 48px rgba(6, 182, 212, 0.08);
 }
 
 /* Animated gradient background */
@@ -288,6 +306,18 @@ html {
     rgba(255, 255, 255, 0.08) 40%,
     rgba(255, 255, 255, 0.15) 50%,
     rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+}
+
+/* Light mode shimmer — subtler white on gradient buttons */
+:root:not(.dark) .hover-shimmer {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 60%,
     transparent 100%
   );
 }

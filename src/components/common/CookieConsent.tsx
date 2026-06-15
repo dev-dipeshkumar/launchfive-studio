@@ -69,7 +69,7 @@ export default function CookieConsent() {
                 </motion.button>
                 <motion.button
                   onClick={accept}
-                  className="flex-1 sm:flex-none px-4 py-2 text-xs font-semibold text-white rounded-lg bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] hover:shadow-lg hover:shadow-[#7C3AED]/20 transition-shadow min-h-[40px]"
+                  className="flex-1 sm:flex-none px-4 py-2 text-xs font-semibold text-white rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/20 transition-shadow min-h-[40px]"
                   whileTap={{ scale: 0.97 }}
                 >
                   Accept

@@ -87,8 +87,8 @@ export default function ProcessSection() {
   return (
     <section id="process" className="section-padding relative overflow-hidden" ref={containerRef}>
       {/* Background accents */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#7C3AED]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#06B6D4]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/[0.07] dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -135,7 +135,7 @@ export default function ProcessSection() {
           <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
             <div className="absolute inset-0 bg-border" />
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#7C3AED] via-[#06B6D4] to-[#3B82F6] origin-top"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-secondary to-[#3B82F6] origin-top"
               style={{ height: lineHeight }}
             />
           </div>
@@ -225,7 +225,7 @@ export default function ProcessSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-30px" }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="flex-1 rounded-2xl glass p-4 sm:p-5 group hover:border-[#7C3AED]/30 transition-all duration-300"
+                    className="flex-1 rounded-2xl glass p-4 sm:p-5 group hover:border-primary/30 transition-all duration-300"
                   >
                     <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                       <span
@@ -287,7 +287,7 @@ function StepCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -4, scale: 1.01 }}
-      className={`rounded-2xl glass p-6 group hover:border-[#7C3AED]/30 transition-all duration-300 ${engConfig.dotPulse ? "shadow-[0_0_12px_rgba(124,58,237,0.15)]" : ""}`}
+      className={`rounded-2xl glass p-6 group hover:border-primary/30 transition-all duration-300 ${engConfig.dotPulse ? "shadow-[0_0_12px_rgba(124,58,237,0.15)]" : ""}`}
       data-cursor-hover
     >
       <div className={`flex items-center gap-3 mb-3 ${isRight ? "justify-end" : ""}`}>

@@ -178,8 +178,8 @@ export default function ContactForm() {
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[#7C3AED]/[0.03] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#06B6D4]/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/[0.05] dark:bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/[0.05] dark:bg-secondary/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -504,7 +504,7 @@ export default function ContactForm() {
                   type="submit"
                   disabled={isSubmitting}
                   aria-label="Submit project inquiry"
-                  className="w-full py-3.5 sm:py-4 min-h-[48px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden text-sm sm:text-base"
+                  className="w-full py-3.5 sm:py-4 min-h-[48px] bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden text-sm sm:text-base"
                   whileHover={{ scale: isSubmitting ? 1 : 1.01, y: isSubmitting ? 0 : -1 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}

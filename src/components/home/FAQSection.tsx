@@ -49,7 +49,7 @@ export default function FAQSection() {
     >
       {/* Background accent */}
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full pointer-events-none">
-        <div className="w-full h-full bg-[#F97316]/[0.02] rounded-full blur-[120px]" />
+        <div className="w-full h-full bg-accent/[0.04] dark:bg-accent/[0.02] rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -121,7 +121,7 @@ export default function FAQSection() {
                 .querySelector("#contact")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-shadow duration-300"
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-primary/15 transition-shadow duration-300"
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}

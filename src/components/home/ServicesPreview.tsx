@@ -18,8 +18,8 @@ export default function ServicesPreview() {
   return (
     <section id="services" className="section-padding relative overflow-hidden">
       {/* Background accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C3AED]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#06B6D4]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.07] dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -42,13 +42,13 @@ export default function ServicesPreview() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 onClick={() => setSelectedService(service)}
-                className="group relative rounded-2xl glass p-5 sm:p-6 hover:border-[#7C3AED]/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer"
+                className="group relative rounded-2xl glass p-5 sm:p-6 hover:border-primary/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer"
                 data-cursor-hover
               >
                 {/* Popular badge */}
                 {service.popular && (
                   <div className="absolute -top-2.5 right-3 sm:right-4 z-10">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white shadow-lg shadow-[#7C3AED]/30">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/30">
                       <Sparkles size={9} />
                       Popular
                     </span>

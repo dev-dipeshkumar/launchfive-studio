@@ -75,7 +75,7 @@ function ReasonCard({
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className="relative rounded-2xl glass overflow-hidden hover:border-white/[0.15] transition-all duration-300"
+        className="relative rounded-2xl glass overflow-hidden hover:border-primary/30 transition-all duration-300"
         data-cursor-hover
       >
         {/* Subtle top accent line */}
@@ -209,7 +209,7 @@ export default function WhyUs() {
         style={{ y: backgroundY }}
         className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none"
       >
-        <div className="w-full h-full bg-[#7C3AED]/[0.03] rounded-full blur-[120px]" />
+        <div className="w-full h-full bg-primary/[0.04] dark:bg-primary/[0.03] rounded-full blur-[120px]" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -297,7 +297,7 @@ export default function WhyUs() {
                 .querySelector("#contact")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-[#7C3AED]/15 transition-shadow duration-300 w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-primary/15 transition-shadow duration-300 w-full sm:w-auto justify-center"
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}

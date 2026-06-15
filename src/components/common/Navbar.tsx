@@ -127,7 +127,7 @@ function MobileMenuOverlay({
                   e.preventDefault();
                   onNavClick("#contact");
                 }}
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 text-base font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 min-h-[52px] relative overflow-hidden"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 text-base font-semibold text-white rounded-xl bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/20 min-h-[52px] relative overflow-hidden"
               >
                 Start a Project
                 <ArrowRight size={16} />
@@ -277,7 +277,7 @@ export default function Navbar() {
                   {link.label}
                   <span
                     className={cn(
-                      "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300",
+                      "absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-300",
                       isActive ? "w-5 opacity-100" : "w-0 opacity-0"
                     )}
                   />
@@ -295,7 +295,7 @@ export default function Navbar() {
                 e.preventDefault();
                 handleNavClick("#contact");
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/20 hover:shadow-[0_0_28px_rgba(124,58,237,0.4)] transition-shadow duration-300 relative overflow-hidden"
               whileHover={{ y: -2, scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}

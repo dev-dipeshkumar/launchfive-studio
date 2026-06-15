@@ -172,7 +172,7 @@ export default function ServiceModal({
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }, 300);
               }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] hover:shadow-lg hover:shadow-[#7C3AED]/20 transition-shadow"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/20 transition-shadow"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >

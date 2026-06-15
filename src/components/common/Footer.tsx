@@ -101,7 +101,7 @@ export default function Footer() {
                   >
                     <span className="relative">
                       {link.label}
-                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] transition-all duration-300 group-hover:w-full hover:w-full" />
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full hover:w-full" />
                     </span>
                   </a>
                 </li>

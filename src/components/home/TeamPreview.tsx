@@ -15,7 +15,7 @@ export default function TeamPreview() {
   return (
     <section id="team" className="section-padding relative overflow-hidden">
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#06B6D4]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -34,7 +34,7 @@ export default function TeamPreview() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className={`group relative rounded-2xl glass p-5 sm:p-6 text-center hover:border-[#7C3AED]/30 transition-all duration-300 overflow-hidden ${
+              className={`group relative rounded-2xl glass p-5 sm:p-6 text-center hover:border-primary/30 transition-all duration-300 overflow-hidden ${
                 /* Center the last 2 cards on desktop (3-col) */
                 i >= 3 ? "lg:col-span-1 lg:[&:nth-child(4)]:lg:col-start-1 lg:[&:nth-child(4)]:lg:col-end-2" : ""
               }`}

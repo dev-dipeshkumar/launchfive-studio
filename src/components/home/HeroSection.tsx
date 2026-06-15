@@ -9,7 +9,7 @@ import CTAButton from "@/components/common/CTAButton";
 const Hero3DScene = dynamic(() => import("@/components/3d/Hero3DScene"), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#7C3AED]/5 to-[#06B6D4]/5" />
+    <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
   ),
 });
 
@@ -113,7 +113,7 @@ export default function HeroSection() {
         <Hero3DScene />
       </div>
       {/* Fallback gradient for mobile */}
-      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-background to-[#06B6D4]/10 z-0" />
+      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 z-0" />
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-[1]" />

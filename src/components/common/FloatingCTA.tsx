@@ -31,7 +31,7 @@ export default function FloatingCTA() {
         >
           <motion.button
             onClick={scrollToContact}
-            className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shadow-lg shadow-[#7C3AED]/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-shadow relative overflow-hidden"
+            className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-shadow relative overflow-hidden"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

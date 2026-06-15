@@ -23,7 +23,7 @@ export default function PortfolioPreview() {
   return (
     <section id="portfolio" className="section-padding relative overflow-hidden">
       {/* Background accent */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#F97316]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/[0.07] dark:bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -55,7 +55,7 @@ export default function PortfolioPreview() {
               onClick={() => setActiveCategory(cat)}
               className={`px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-medium rounded-full transition-all duration-300 min-h-[44px] sm:min-h-0 ${
                 activeCategory === cat
-                  ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
+                  ? "bg-primary text-white shadow-lg shadow-primary/25"
                   : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
               }`}
               whileHover={activeCategory === cat ? {} : { scale: 1.08, y: -1 }}
@@ -80,7 +80,7 @@ export default function PortfolioPreview() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ y: -8 }}
                 onClick={() => setSelectedProject(project)}
-                className="group rounded-2xl glass overflow-hidden hover:border-[#7C3AED]/30 transition-all duration-300 cursor-pointer"
+                className="group rounded-2xl glass overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer"
                 data-cursor-hover
               >
                 {/* Project thumbnail */}
@@ -119,7 +119,7 @@ export default function PortfolioPreview() {
 
                   {/* "View Details" overlay on hover */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="px-4 py-2 text-xs font-semibold text-white rounded-xl bg-[#7C3AED]/80 backdrop-blur-sm">
+                    <span className="px-4 py-2 text-xs font-semibold text-white rounded-xl bg-primary/80 backdrop-blur-sm">
                       View Details
                     </span>
                   </div>

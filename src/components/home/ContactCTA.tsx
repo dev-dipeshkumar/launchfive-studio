@@ -84,7 +84,7 @@ export default function ContactCTA() {
           className="relative rounded-2xl sm:rounded-3xl overflow-hidden"
         >
           {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED] to-[#06B6D4]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary" />
 
           {/* Animated grid overlay */}
           <motion.div
