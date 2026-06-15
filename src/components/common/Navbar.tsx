@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
@@ -12,7 +12,8 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Team", href: "#team" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Process", href: "#process" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -28,8 +29,11 @@ function MobileMenuOverlay({
   activeSection: string;
   onNavClick: (href: string) => void;
 }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); return () => setMounted(false); }, []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   if (!mounted) return null;
 
   const content = (
@@ -54,12 +58,8 @@ function MobileMenuOverlay({
             </button>
           </div>
 
-          {/* Menu content — no stagger, instant appearance */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
+          {/* Menu content — instant, no delay */}
+          <div
             className="flex flex-col h-full max-w-lg mx-auto px-6 pt-20 pb-8 overflow-y-auto"
           >
             {/* Logo at top */}
@@ -82,7 +82,7 @@ function MobileMenuOverlay({
               </a>
             </div>
 
-            {/* Navigation links — no stagger delay for instant feel */}
+            {/* Navigation links — instant appearance, no motion delay */}
             <nav className="flex-1" aria-label="Mobile navigation">
               <div className="space-y-1">
                 {navLinks.map((link) => {
@@ -153,7 +153,7 @@ function MobileMenuOverlay({
                 &copy; {new Date().getFullYear()} LaunchFive Studio
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
     </AnimatePresence>
