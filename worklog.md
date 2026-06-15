@@ -54,3 +54,26 @@ Stage Summary:
 - All hover borders use theme-aware primary/30 instead of hardcoded hex
 - Section accent backgrounds use CSS variables with explicit dark mode variants for visibility
 - Light mode is now a complete, polished design - not just dark-mode elements on light background
+---
+Task ID: 1
+Agent: Main Agent
+Task: Fix dark/light mode toggle issues and UI bugs in LaunchFive Studio portfolio
+
+Work Log:
+- Fixed ThemeToggle.tsx: Changed `currentIcon` (lowercase) to `CurrentIcon` (PascalCase) — React requires PascalCase for component variables used as JSX elements
+- Fixed tailwind.config.ts: Removed broken `hsl(var(--xxx))` color wrappers that produced invalid CSS since CSS variables contain raw hex values, not hsl channels. Colors are now handled by `@theme inline` in globals.css (Tailwind v4 pattern)
+- Fixed globals.css light mode visibility: Improved `--muted` from #F1F5F9 to #EEF2F7 for better contrast with #F8FAFC background
+- Fixed globals.css light mode glass cards: Increased glass-bg opacity, glass-border opacity, glass-strong-bg/border opacity, and glass-shadow intensity for light mode. Added separate `:root:not(.dark) .glass` and `:root:not(.dark) .glass-strong` rules with stronger shadows
+- Fixed globals.css: Strengthened light mode gradient-border visibility (0.35 → 0.5 opacity)
+- Fixed globals.css: Improved light mode navbar background opacity and border visibility
+- Fixed CTAButton.tsx: Improved outline variant border from primary/50 to primary/40 and added hover:text-primary for better visual feedback
+- Fixed Footer.tsx: Changed bg-muted/30 to bg-muted/50 for better visibility in light mode
+- Fixed Navbar.tsx: Added explicit light mode shadow when scrolled (shadow-[0_2px_20px_rgba(0,0,0,0.06)])
+- Fixed ProcessSection.tsx: Updated iconMap and StepCard IconComponent type to include `style?: React.CSSProperties` to fix TypeScript error
+
+Stage Summary:
+- Console error `<currentIcon /> is using incorrect casing` → Fixed by renaming to `CurrentIcon`
+- Light mode glass cards nearly invisible on white background → Fixed with stronger shadows, borders, and bg opacity
+- Light mode muted vs background poor contrast → Fixed by adjusting muted color
+- Tailwind config color mismatch (hsl wrapper on raw hex) → Fixed by removing broken color definitions
+- All fixes verified with successful `next build`

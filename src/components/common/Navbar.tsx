@@ -219,7 +219,7 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "border-b shadow-sm dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+            ? "border-b shadow-sm dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)] shadow-[0_2px_20px_rgba(0,0,0,0.06)]"
             : "border-b border-transparent"
         )}
         style={{

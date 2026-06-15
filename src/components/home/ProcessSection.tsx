@@ -17,7 +17,7 @@ import {
   Clock,
 } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   Search,
   ClipboardList,
   Palette,
@@ -275,7 +275,7 @@ function StepCard({
 }: {
   step: typeof workProcess[number];
   index: number;
-  IconComponent: React.ComponentType<{ size?: number; className?: string }>;
+  IconComponent: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
   engConfig: typeof engagementConfig.high;
   align: "left" | "right";
 }) {

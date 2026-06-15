@@ -32,7 +32,7 @@ export default function CTAButton({
     secondary:
       "bg-muted text-foreground hover:bg-muted/80 border border-border hover:shadow-[0_0_20px_rgba(124,58,237,0.08)]",
     outline:
-      "bg-transparent text-foreground border border-primary/50 hover:bg-primary/10 hover:border-primary hover:shadow-primary/20",
+      "bg-transparent text-foreground border border-primary/40 hover:bg-primary/10 hover:border-primary hover:text-primary hover:shadow-primary/20",
   };
 
   const combinedClasses = cn(

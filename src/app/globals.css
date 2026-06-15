@@ -61,7 +61,7 @@
   --primary-foreground: #FFFFFF;
   --secondary: #06B6D4;
   --secondary-foreground: #FFFFFF;
-  --muted: #F1F5F9;
+  --muted: #EEF2F7;
   --muted-foreground: #64748B;
   --accent: #F97316;
   --accent-foreground: #FFFFFF;
@@ -82,19 +82,19 @@
   --sidebar-accent-foreground: #0F172A;
   --sidebar-border: #E2E8F0;
   --sidebar-ring: #7C3AED;
-  /* Glassmorphism — light mode */
-  --glass-bg: rgba(255, 255, 255, 0.78);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --glass-strong-bg: rgba(255, 255, 255, 0.92);
-  --glass-strong-border: rgba(0, 0, 0, 0.14);
-  --glass-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  /* Glassmorphism — light mode (stronger borders/shadows for visibility on white bg) */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --glass-strong-bg: rgba(255, 255, 255, 0.94);
+  --glass-strong-border: rgba(0, 0, 0, 0.16);
+  --glass-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
   /* Scrollbar */
   --scrollbar-track: #F1F5F9;
   --scrollbar-thumb: rgba(124, 58, 237, 0.25);
   --scrollbar-thumb-hover: rgba(124, 58, 237, 0.4);
-  /* Navbar */
-  --navbar-bg: rgba(248, 250, 252, 0.85);
-  --navbar-border: rgba(0, 0, 0, 0.08);
+  /* Navbar — light mode */
+  --navbar-bg: rgba(248, 250, 252, 0.88);
+  --navbar-border: rgba(0, 0, 0, 0.1);
   /* Section background accents */
   --section-accent-opacity: 0.06;
 }
@@ -197,12 +197,21 @@ html {
   box-shadow: var(--glass-shadow);
 }
 
+/* Light mode: stronger shadow & border so glass cards stand out on white bg */
+:root:not(.dark) .glass {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
 .glass-strong {
   background: var(--glass-strong-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-strong-border);
   box-shadow: var(--glass-shadow);
+}
+
+:root:not(.dark) .glass-strong {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Gradient text */
@@ -241,7 +250,7 @@ html {
 
 /* Light mode — stronger gradient border for visibility */
 :root:not(.dark) .gradient-border::before {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(6, 182, 212, 0.35));
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(6, 182, 212, 0.5));
 }
 
 /* Glow effect */

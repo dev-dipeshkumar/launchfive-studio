@@ -37,7 +37,7 @@ export default function ThemeToggle() {
     { value: "system", icon: Monitor, label: "System" },
   ] as const;
 
-  const currentIcon = resolvedTheme === "dark" ? Moon : Sun;
+  const CurrentIcon = resolvedTheme === "dark" ? Moon : Sun;
 
   return (
     <div className="relative">
@@ -61,7 +61,7 @@ export default function ThemeToggle() {
             exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <currentIcon size={16} />
+            <CurrentIcon size={16} />
           </motion.div>
         </AnimatePresence>
       </motion.button>
