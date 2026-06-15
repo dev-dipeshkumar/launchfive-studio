@@ -34,10 +34,6 @@
 
 ## About
 
-<p align="center">
-  <img src="./public/about-team.png" alt="LaunchFive Studio Team" width="600" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);" />
-</p>
-
 **LaunchFive Studio** is a focused 5-member creative-tech studio that builds websites, mobile apps, UI/UX designs, brand identities, ad creatives, and digital templates. We work directly with clients — no account managers, no handoffs — just clear communication and modern execution from start to finish.
 
 > **Small team. Sharp focus. Direct collaboration.**
@@ -206,7 +202,6 @@ flowchart TB
 ```
 launchfive-studio/
 ├── 📁 public/                  # Static assets
-│   ├── about-team.png          # Team about image
 │   ├── logo.svg                # Brand logo
 │   ├── .nojekyll               # Firebase hosting fix
 │   └── 📁 portfolio/           # Project thumbnails
