@@ -66,7 +66,7 @@ function RotatingBadge() {
   const service = rotatingServices[index];
 
   return (
-    <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm">
+    <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-muted border border-border backdrop-blur-sm">
       <div
         className="w-4 h-4 sm:w-5 sm:h-5 rounded-md flex items-center justify-center"
         style={{
@@ -113,11 +113,11 @@ export default function HeroSection() {
         <Hero3DScene />
       </div>
       {/* Fallback gradient for mobile */}
-      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-[#070A13] to-[#06B6D4]/10 z-0" />
+      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-background to-[#06B6D4]/10 z-0" />
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070A13] via-transparent to-[#070A13] z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#070A13]/80 via-transparent to-[#070A13]/80 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80 z-[1]" />
 
       {/* Content */}
       <motion.div
@@ -131,7 +131,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-4 sm:mb-6"
         >
-          <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-[11px] sm:text-sm font-medium">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] sm:text-sm font-medium">
             <Sparkles size={12} className="sm:w-[14px] sm:h-[14px]" />
             5-Member Creative-Tech Studio
           </span>
@@ -149,7 +149,7 @@ export default function HeroSection() {
 
         {/* Headline — fluid typography with proper mobile sizing */}
         <div className="mb-3 sm:mb-6">
-          <h1 className="text-[1.75rem] leading-[1.15] sm:text-[2.75rem] sm:leading-[1.1] md:text-5xl lg:text-6xl xl:text-[5.25rem] font-bold text-white mb-1 sm:mb-2">
+          <h1 className="text-[1.75rem] leading-[1.15] sm:text-[2.75rem] sm:leading-[1.1] md:text-5xl lg:text-6xl xl:text-[5.25rem] font-bold text-foreground mb-1 sm:mb-2">
             <AnimatedWords
               text="Focused Creative-Tech Studio"
               delay={0.5}
@@ -182,7 +182,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="text-[#94A3B8] text-sm sm:text-base md:text-lg max-w-md sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
+          className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-md sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
         >
           We help startups, creators, and businesses turn ideas into clean digital
           experiences — from websites and apps to UI/UX, branding, graphics, logos,
@@ -210,7 +210,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.7 }}
-          className="text-[#94A3B8]/50 text-[10px] sm:text-xs max-w-xs sm:max-w-md mx-auto mb-6 sm:mb-10"
+          className="text-muted-foreground/50 text-[10px] sm:text-xs max-w-xs sm:max-w-md mx-auto mb-6 sm:mb-10"
         >
           Clean design, clear communication, reliable execution.
         </motion.p>
@@ -228,10 +228,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.9 + i * 0.06, duration: 0.3 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] transition-colors cursor-default"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted border border-border hover:border-primary/30 transition-colors cursor-default"
             >
               <service.icon size={11} style={{ color: service.color }} />
-              <span className="text-[11px] font-medium text-[#94A3B8]">
+              <span className="text-[11px] font-medium text-muted-foreground">
                 {service.label}
               </span>
             </motion.div>
@@ -252,10 +252,10 @@ export default function HeroSection() {
             { value: "0", label: "Middlemen" },
           ].map((stat, i) => (
             <div key={stat.label} className="text-center">
-              <div className="text-sm sm:text-lg md:text-xl font-bold text-white/80 mb-0.5">
+              <div className="text-sm sm:text-lg md:text-xl font-bold text-foreground/80 mb-0.5">
                 {stat.value}
               </div>
-              <div className="text-[#94A3B8] text-[8px] sm:text-[10px] md:text-xs font-medium uppercase tracking-wider">
+              <div className="text-muted-foreground text-[8px] sm:text-[10px] md:text-xs font-medium uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>
@@ -270,14 +270,14 @@ export default function HeroSection() {
         transition={{ delay: 2.8, duration: 1 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
       >
-        <span className="text-[9px] sm:text-[10px] text-[#94A3B8]/40 uppercase tracking-widest">
+        <span className="text-[9px] sm:text-[10px] text-muted-foreground/40 uppercase tracking-widest">
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown size={16} className="text-[#94A3B8]/30" />
+          <ChevronDown size={16} className="text-muted-foreground/30" />
         </motion.div>
       </motion.div>
     </section>

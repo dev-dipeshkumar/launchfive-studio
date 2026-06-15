@@ -67,7 +67,7 @@ export default function ServicesPreview() {
                     <service.icon size={18} style={{ color: service.color }} className="sm:!w-[22px] sm:!h-[22px]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-white font-semibold text-base sm:text-lg mb-0.5 group-hover:gradient-text transition-all">
+                    <h3 className="text-foreground font-semibold text-base sm:text-lg mb-0.5 group-hover:gradient-text transition-all">
                       {service.title}
                     </h3>
                     <p className="text-[11px] sm:text-xs font-medium" style={{ color: service.color }}>
@@ -76,7 +76,7 @@ export default function ServicesPreview() {
                   </div>
                 </div>
 
-                <p className="text-[#94A3B8] text-sm leading-relaxed mb-3 sm:mb-4">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-3 sm:mb-4">
                   {service.description}
                 </p>
 
@@ -85,7 +85,7 @@ export default function ServicesPreview() {
                   {service.features.slice(0, 4).map((feature) => (
                     <li
                       key={feature}
-                      className="text-xs text-[#94A3B8] flex items-center gap-2"
+                      className="text-xs text-muted-foreground flex items-center gap-2"
                     >
                       <span
                         className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0"
@@ -106,11 +106,11 @@ export default function ServicesPreview() {
                   <div className="flex items-center gap-1 font-semibold" style={{ color: service.color }}>
                     {service.priceRange}
                   </div>
-                  <div className="flex items-center gap-1 text-[#94A3B8]">
+                  <div className="flex items-center gap-1 text-muted-foreground">
                     <Clock size={10} className="sm:!w-[11px] sm:!h-[11px]" />
                     <span>{service.timeline}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-[#94A3B8]">
+                  <div className="flex items-center gap-1 text-muted-foreground">
                     <Package size={10} className="sm:!w-[11px] sm:!h-[11px]" />
                     <span>{service.deliverables.length} deliverables</span>
                   </div>

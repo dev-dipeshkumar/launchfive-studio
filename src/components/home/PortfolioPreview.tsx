@@ -38,10 +38,10 @@ export default function PortfolioPreview() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-2 mb-6 sm:mb-8 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 max-w-xl mx-auto"
+            className="flex items-center justify-center gap-2 mb-6 sm:mb-8 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-muted border border-border max-w-xl mx-auto"
           >
-            <Layers size={13} className="text-[#94A3B8] shrink-0" />
-            <span className="text-[10px] sm:text-xs text-[#94A3B8]/70 text-center">
+            <Layers size={13} className="text-muted-foreground shrink-0" />
+            <span className="text-[10px] sm:text-xs text-muted-foreground/70 text-center">
               Items marked CONCEPT are internal explorations. Client case studies will be added as we complete live projects.
             </span>
           </motion.div>
@@ -56,7 +56,7 @@ export default function PortfolioPreview() {
               className={`px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-medium rounded-full transition-all duration-300 min-h-[44px] sm:min-h-0 ${
                 activeCategory === cat
                   ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
-                  : "bg-white/5 text-[#94A3B8] hover:bg-white/10 hover:text-white"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
               }`}
               whileHover={activeCategory === cat ? {} : { scale: 1.08, y: -1 }}
               whileTap={{ scale: 0.95 }}
@@ -115,7 +115,7 @@ export default function PortfolioPreview() {
                   )}
 
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
 
                   {/* "View Details" overlay on hover */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -162,10 +162,10 @@ export default function PortfolioPreview() {
 
                 {/* Content */}
                 <div className="p-4 sm:p-5">
-                  <h3 className="text-white font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:gradient-text transition-all">
+                  <h3 className="text-foreground font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:gradient-text transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2.5 sm:mb-3 line-clamp-2">
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-2.5 sm:mb-3 line-clamp-2">
                     {project.description}
                   </p>
 
@@ -174,20 +174,20 @@ export default function PortfolioPreview() {
                     {project.tools.slice(0, 3).map((tool) => (
                       <span
                         key={tool}
-                        className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
+                        className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-muted text-muted-foreground"
                       >
                         {tool}
                       </span>
                     ))}
                     {project.tools.length > 3 && (
-                      <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-white/5 text-[#94A3B8]">
+                      <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-muted text-muted-foreground">
                         +{project.tools.length - 3}
                       </span>
                     )}
                   </div>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] group-hover:text-[#06B6D4] transition-colors">
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-primary group-hover:text-secondary transition-colors">
                     View Details
                     <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
                   </div>

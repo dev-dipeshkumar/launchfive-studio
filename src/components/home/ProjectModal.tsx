@@ -24,7 +24,7 @@ function ProjectModal({
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-[#070A13]/90 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-sm" />
 
       {/* Modal content */}
       <motion.div
@@ -38,7 +38,7 @@ function ProjectModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
+          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           aria-label="Close modal"
         >
           <X size={18} />
@@ -84,7 +84,7 @@ function ProjectModal({
           )}
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
           {/* Badges on image */}
           <div className="absolute top-3 left-3 flex items-center gap-1.5">
@@ -107,7 +107,7 @@ function ProjectModal({
 
           {/* Year */}
           <div className="absolute top-3 right-12">
-            <span className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full bg-black/40 text-white/70 backdrop-blur-sm">
+            <span className="flex items-center gap-1 px-2 py-1 text-[10px] font-medium rounded-full bg-background/40 text-foreground/70 backdrop-blur-sm">
               <Calendar size={9} />
               {project.year}
             </span>
@@ -116,24 +116,24 @@ function ProjectModal({
 
         {/* Content */}
         <div className="p-5 sm:p-6">
-          <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+          <h2 className="text-foreground text-lg sm:text-xl font-bold mb-2">
             {project.title}
           </h2>
 
-          <p className="text-[#94A3B8] text-sm leading-relaxed mb-4">
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
             {project.description}
           </p>
 
           {/* Tools */}
           <div className="mb-4">
-            <h4 className="text-white/60 text-[10px] font-semibold uppercase tracking-wider mb-2">
+            <h4 className="text-muted-foreground/60 text-[10px] font-semibold uppercase tracking-wider mb-2">
               Tools & Technologies
             </h4>
             <div className="flex flex-wrap gap-1.5">
               {project.tools.map((tool) => (
                 <span
                   key={tool}
-                  className="px-2 py-1 text-xs rounded-lg bg-white/5 text-[#94A3B8] border border-white/[0.06]"
+                  className="px-2 py-1 text-xs rounded-lg bg-muted text-muted-foreground border border-border"
                 >
                   {tool}
                 </span>
@@ -143,7 +143,7 @@ function ProjectModal({
 
           {/* Tags */}
           <div className="mb-4">
-            <h4 className="text-white/60 text-[10px] font-semibold uppercase tracking-wider mb-2">
+            <h4 className="text-muted-foreground/60 text-[10px] font-semibold uppercase tracking-wider mb-2">
               Tags
             </h4>
             <div className="flex flex-wrap gap-1.5">
@@ -164,8 +164,8 @@ function ProjectModal({
           </div>
 
           {/* Key Takeaway */}
-          <div className="mb-5 p-3 sm:p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-            <h4 className="text-white/60 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+          <div className="mb-5 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border">
+            <h4 className="text-muted-foreground/60 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
               Key Takeaway
             </h4>
             <div className="flex items-start gap-2">
@@ -173,7 +173,7 @@ function ProjectModal({
                 className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
                 style={{ backgroundColor: project.color }}
               />
-              <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                 {project.takeaway}
               </p>
             </div>
@@ -201,7 +201,7 @@ function ProjectModal({
             )}
             <motion.button
               onClick={onClose}
-              className="px-4 py-2.5 text-sm font-medium text-[#94A3B8] hover:text-white rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+              className="px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-xl bg-muted hover:bg-muted/80 transition-colors"
               whileTap={{ scale: 0.97 }}
             >
               Close

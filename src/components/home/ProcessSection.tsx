@@ -57,7 +57,7 @@ function EngagementBar({ level, color }: { level: "low" | "medium" | "high"; col
           key={bar}
           className="h-1.5 rounded-full w-2.5 sm:w-3"
           style={{
-            backgroundColor: bar <= config.bars ? color : "rgba(255,255,255,0.08)",
+            backgroundColor: bar <= config.bars ? color : "var(--border)",
           }}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -104,7 +104,7 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-8 sm:mb-12"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[#94A3B8]">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted-foreground">
             <User size={12} className="text-[#7C3AED] sm:!w-[14px] sm:!h-[14px]" />
             <span>Your involvement:</span>
           </div>
@@ -118,7 +118,7 @@ export default function ProcessSection() {
                       key={bar}
                       className="w-1.5 h-1.5 sm:w-2 sm:h-1.5 rounded-full"
                       style={{
-                        backgroundColor: bar <= config.bars ? config.color : "rgba(255,255,255,0.08)",
+                        backgroundColor: bar <= config.bars ? config.color : "var(--border)",
                       }}
                     />
                   ))}
@@ -133,7 +133,7 @@ export default function ProcessSection() {
         <div className="hidden lg:block relative">
           {/* Center vertical line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
-            <div className="absolute inset-0 bg-white/5" />
+            <div className="absolute inset-0 bg-border" />
             <motion.div
               className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#7C3AED] via-[#06B6D4] to-[#3B82F6] origin-top"
               style={{ height: lineHeight }}
@@ -192,7 +192,7 @@ export default function ProcessSection() {
         {/* ─── Mobile/Tablet Timeline: Left dots + cards ─── */}
         <div className="lg:hidden relative">
           {/* Left vertical line */}
-          <div className="absolute left-[18px] top-0 bottom-0 w-px bg-white/10" />
+          <div className="absolute left-[18px] top-0 bottom-0 w-px bg-border" />
 
           <div className="space-y-4 sm:space-y-6">
             {workProcess.map((step, i) => {
@@ -237,21 +237,21 @@ export default function ProcessSection() {
                       <EngagementBar level={step.engagement} color={engConfig.color} />
                     </div>
 
-                    <h4 className="text-white font-semibold text-sm sm:text-base mb-1 sm:mb-1.5">{step.title}</h4>
-                    <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">{step.description}</p>
+                    <h4 className="text-foreground font-semibold text-sm sm:text-base mb-1 sm:mb-1.5">{step.title}</h4>
+                    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">{step.description}</p>
 
                     <div className="space-y-1 sm:space-y-1.5">
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        <Clock size={10} className="text-[#94A3B8] shrink-0 sm:!w-[11px] sm:!h-[11px]" />
-                        <span className="text-[10px] sm:text-[11px] text-[#94A3B8]">{step.duration}</span>
+                        <Clock size={10} className="text-muted-foreground shrink-0 sm:!w-[11px] sm:!h-[11px]" />
+                        <span className="text-[10px] sm:text-[11px] text-muted-foreground">{step.duration}</span>
                       </div>
                       <div className="flex items-center gap-1.5 sm:gap-2">
                         <User size={10} style={{ color: engConfig.color }} className="shrink-0 sm:!w-[11px] sm:!h-[11px]" />
                         <span className="text-[10px] sm:text-[11px]" style={{ color: engConfig.color }}>{step.clientAction}</span>
                       </div>
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        <Users size={10} className="text-[#94A3B8] shrink-0 sm:!w-[11px] sm:!h-[11px]" />
-                        <span className="text-[10px] sm:text-[11px] text-[#94A3B8]">{step.teamAction}</span>
+                        <Users size={10} className="text-muted-foreground shrink-0 sm:!w-[11px] sm:!h-[11px]" />
+                        <span className="text-[10px] sm:text-[11px] text-muted-foreground">{step.teamAction}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -300,16 +300,16 @@ function StepCard({
         </span>
       </div>
 
-      <h4 className={`text-white font-semibold text-lg mb-2 ${isRight ? "text-right" : ""}`}>
+      <h4 className={`text-foreground font-semibold text-lg mb-2 ${isRight ? "text-right" : ""}`}>
         {step.title}
       </h4>
-      <p className={`text-[#94A3B8] text-sm leading-relaxed ${isRight ? "text-right" : ""}`}>
+      <p className={`text-muted-foreground text-sm leading-relaxed ${isRight ? "text-right" : ""}`}>
         {step.description}
       </p>
 
       {/* Progress bar */}
       <motion.div
-        className="mt-4 h-1 rounded-full overflow-hidden bg-white/5"
+        className="mt-4 h-1 rounded-full overflow-hidden bg-muted"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -348,8 +348,8 @@ function StepMeta({
       className={`space-y-2.5 py-4 ${isRight ? "text-right" : ""}`}
     >
       <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
-        <Clock size={13} className="text-[#94A3B8] shrink-0" />
-        <span className="text-[12px] text-[#94A3B8]">{step.duration}</span>
+        <Clock size={13} className="text-muted-foreground shrink-0" />
+        <span className="text-[12px] text-muted-foreground">{step.duration}</span>
       </div>
       <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
         <User size={13} style={{ color: engConfig.color }} className="shrink-0" />
@@ -358,8 +358,8 @@ function StepMeta({
         </span>
       </div>
       <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
-        <Users size={13} className="text-[#94A3B8] shrink-0" />
-        <span className="text-[12px] text-[#94A3B8]">{step.teamAction}</span>
+        <Users size={13} className="text-muted-foreground shrink-0" />
+        <span className="text-[12px] text-muted-foreground">{step.teamAction}</span>
       </div>
     </motion.div>
   );

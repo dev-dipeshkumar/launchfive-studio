@@ -66,7 +66,7 @@ export default function TeamPreview() {
                 </div>
               </div>
 
-              <h3 className="text-white font-semibold text-sm sm:text-base mb-0.5">
+              <h3 className="text-foreground font-semibold text-sm sm:text-base mb-0.5">
                 {member.name}
               </h3>
               <p
@@ -75,17 +75,17 @@ export default function TeamPreview() {
               >
                 {member.role}
               </p>
-              <p className="text-[#94A3B8]/70 text-[10px] sm:text-xs font-medium mb-2 italic">
+              <p className="text-muted-foreground/70 text-[10px] sm:text-xs font-medium mb-2 italic">
                 &ldquo;{member.tagline}&rdquo;
               </p>
-              <p className="text-[#94A3B8] text-xs leading-relaxed mb-3">
+              <p className="text-muted-foreground text-xs leading-relaxed mb-3">
                 {member.specialty}
               </p>
 
               {/* Highlight badge */}
-              <div className="flex items-center justify-center gap-1 mb-3 px-2 py-1 rounded-md bg-white/[0.03] border border-white/[0.06]">
+              <div className="flex items-center justify-center gap-1 mb-3 px-2 py-1 rounded-md bg-muted/50 border border-border">
                 <Star size={10} style={{ color: member.color }} aria-hidden="true" />
-                <span className="text-[10px] text-[#94A3B8]">{member.highlight}</span>
+                <span className="text-[10px] text-muted-foreground">{member.highlight}</span>
               </div>
 
               {/* Skills */}
@@ -93,7 +93,7 @@ export default function TeamPreview() {
                 {member.skills.slice(0, 3).map((skill) => (
                   <span
                     key={skill}
-                    className="px-2 py-0.5 text-[10px] rounded-full text-[#94A3B8]"
+                    className="px-2 py-0.5 text-[10px] rounded-full text-muted-foreground"
                     style={{
                       backgroundColor: `${member.color}10`,
                       border: `1px solid ${member.color}15`,
@@ -115,7 +115,7 @@ export default function TeamPreview() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-8 h-8 rounded-md bg-white/5 flex items-center justify-center text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
+                      className="w-8 h-8 rounded-md bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
                       whileHover={{ y: -3, scale: 1.15 }}
                       whileTap={{ scale: 0.9 }}
                       transition={{ type: "spring", stiffness: 400, damping: 20 }}

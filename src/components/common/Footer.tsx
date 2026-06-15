@@ -37,7 +37,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#050811] overflow-x-hidden">
+    <footer className="relative border-t border-border bg-muted/30 overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
         {/* Mobile: 1-col stacked, Tablet: 2-col, Desktop: 4-col */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8 lg:gap-10">
@@ -49,7 +49,7 @@ export default function Footer() {
               wordmarkSize="default"
               className="mb-4"
             />
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               LaunchFive Studio is a focused 5-member creative-tech studio helping
               businesses build websites, apps, UI/UX, branding, graphics, logos,
               templates, and ad creatives with clean execution and clear communication.
@@ -60,7 +60,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center text-[#94A3B8] hover:text-white hover:border-[#7C3AED]/50 hover:shadow-[0_0_16px_rgba(124,58,237,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050811] transition-all"
+                  className="w-9 h-9 min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 hover:shadow-[0_0_16px_rgba(124,58,237,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-all"
                   whileHover={{ y: -3, scale: 1.12 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -73,11 +73,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-3 sm:mb-4">Services</h4>
+            <h4 className="text-foreground font-semibold text-sm mb-3 sm:mb-4">Services</h4>
             <ul className="space-y-2">
               {footerLinks.services.map((service) => (
                 <li key={service}>
-                  <span className="text-[#94A3B8] text-sm hover:text-white transition-colors cursor-default">
+                  <span className="text-muted-foreground text-sm hover:text-foreground transition-colors cursor-default">
                     {service}
                   </span>
                 </li>
@@ -87,7 +87,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-3 sm:mb-4">Company</h4>
+            <h4 className="text-foreground font-semibold text-sm mb-3 sm:mb-4">Company</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -97,7 +97,7 @@ export default function Footer() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="relative text-[#94A3B8] text-sm hover:text-white transition-colors inline-block py-0.5 min-h-[44px] sm:min-h-0 sm:py-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050811] rounded-sm"
+                    className="relative text-muted-foreground text-sm hover:text-foreground transition-colors inline-block py-0.5 min-h-[44px] sm:min-h-0 sm:py-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
                   >
                     <span className="relative">
                       {link.label}
@@ -111,30 +111,30 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h4 className="text-white font-semibold text-sm mb-3 sm:mb-4">Get in Touch</h4>
+            <h4 className="text-foreground font-semibold text-sm mb-3 sm:mb-4">Get in Touch</h4>
             <div className="space-y-2 sm:space-y-3">
-              <p className="text-[#94A3B8] text-sm">
-                <span className="text-white">Email:</span> hello@launchfivestudio.com
+              <p className="text-muted-foreground text-sm">
+                <span className="text-foreground">Email:</span> hello@launchfivestudio.com
               </p>
-              <p className="text-[#94A3B8] text-sm">
-                <span className="text-white">Phone:</span> +91 98765 43210
+              <p className="text-muted-foreground text-sm">
+                <span className="text-foreground">Phone:</span> +91 98765 43210
               </p>
-              <p className="text-[#94A3B8] text-sm">
-                <span className="text-white">WhatsApp:</span> +91 98765 43210
+              <p className="text-muted-foreground text-sm">
+                <span className="text-foreground">WhatsApp:</span> +91 98765 43210
               </p>
-              <p className="text-[#94A3B8] text-sm">
-                <span className="text-white">Hours:</span> Mon - Sat, 10AM - 7PM IST
+              <p className="text-muted-foreground text-sm">
+                <span className="text-foreground">Hours:</span> Mon - Sat, 10AM - 7PM IST
               </p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-[#94A3B8] text-sm">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-muted-foreground text-sm">
             &copy; {new Date().getFullYear()} LaunchFive Studio. All rights reserved.
           </p>
-          <p className="text-[#94A3B8] text-sm flex items-center gap-1">
+          <p className="text-muted-foreground text-sm flex items-center gap-1">
             Made with <Heart size={14} className="text-[#F43F5E] fill-[#F43F5E]" /> by LaunchFive Studio
           </p>
         </div>

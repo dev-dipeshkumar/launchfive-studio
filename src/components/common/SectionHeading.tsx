@@ -26,7 +26,7 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5 }}
-        className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20 mb-4"
+        className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-4"
       >
         {label}
       </motion.span>
@@ -35,7 +35,7 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4"
       >
         {title}
       </motion.h2>
@@ -44,7 +44,7 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className={`text-[#94A3B8] text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl ${
+        className={`text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl ${
           align === "center" ? "mx-auto" : ""
         }`}
       >

@@ -30,9 +30,9 @@ export default function CTAButton({
     primary:
       "bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] text-white hover:shadow-[0_0_24px_rgba(124,58,237,0.35)]",
     secondary:
-      "bg-white/10 text-white hover:bg-white/20 border border-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]",
+      "bg-muted text-foreground hover:bg-muted/80 border border-border hover:shadow-[0_0_20px_rgba(124,58,237,0.08)]",
     outline:
-      "bg-transparent text-white border border-[#7C3AED]/50 hover:bg-[#7C3AED]/10 hover:border-[#7C3AED] hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]",
+      "bg-transparent text-foreground border border-primary/50 hover:bg-primary/10 hover:border-primary hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]",
   };
 
   const combinedClasses = cn(

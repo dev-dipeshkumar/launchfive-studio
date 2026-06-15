@@ -144,10 +144,10 @@ export function Wordmark({
           className={`${nameSize} font-bold tracking-tight leading-none`}
         >
           <span className="gradient-text">Launch</span>
-          <span className="text-white">Five</span>
+          <span className="text-foreground">Five</span>
         </span>
         <span
-          className={`${studioSize} font-medium text-[#94A3B8] tracking-[0.2em] uppercase leading-none mt-1`}
+          className={`${studioSize} font-medium text-muted-foreground tracking-[0.2em] uppercase leading-none mt-1`}
         >
           Studio
         </span>
@@ -159,10 +159,10 @@ export function Wordmark({
     <div className={`flex items-baseline ${className}`}>
       <span className={`${nameSize} font-bold tracking-tight leading-none`}>
         <span className="gradient-text">Launch</span>
-        <span className="text-white">Five</span>
+        <span className="text-foreground">Five</span>
       </span>
       <span
-        className={`${studioSize} font-medium text-[#94A3B8] tracking-[0.18em] ml-1.5 leading-none`}
+        className={`${studioSize} font-medium text-muted-foreground tracking-[0.18em] ml-1.5 leading-none`}
       >
         Studio
       </span>

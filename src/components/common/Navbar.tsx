@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/common/Logo";
+import ThemeToggle from "@/components/common/ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -41,16 +42,18 @@ function MobileMenuOverlay({
         <div
           className="fixed inset-0 z-[9999] lg:hidden"
           style={{
-            backgroundColor: "rgba(7, 10, 19, 0.98)",
+            backgroundColor: "var(--background)",
+            opacity: 0.98,
             WebkitBackdropFilter: "blur(12px)",
             backdropFilter: "blur(12px)",
           }}
         >
           {/* Close button — always visible at top-right */}
-          <div className="fixed top-0 right-0 z-[10001] flex items-center h-[64px] px-4 sm:px-6">
+          <div className="fixed top-0 right-0 z-[10001] flex items-center gap-2 h-[64px] px-4 sm:px-6">
+            <ThemeToggle />
             <button
               onClick={onClose}
-              className="flex items-center justify-center w-11 h-11 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/5 transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Close menu"
             >
               <X size={22} />
@@ -97,8 +100,8 @@ function MobileMenuOverlay({
                       className={cn(
                         "flex items-center justify-between px-4 py-3.5 rounded-xl text-lg font-medium transition-colors min-h-[52px]",
                         isActive
-                          ? "text-white bg-white/[0.06] border border-white/[0.08]"
-                          : "text-[#94A3B8] hover:text-white hover:bg-white/[0.04]"
+                          ? "text-foreground bg-muted border border-border"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                       )}
                     >
                       <span>{link.label}</span>
@@ -106,7 +109,7 @@ function MobileMenuOverlay({
                         size={18}
                         className={cn(
                           "transition-colors",
-                          isActive ? "text-[#7C3AED]" : "text-white/20"
+                          isActive ? "text-primary" : "text-muted-foreground/30"
                         )}
                       />
                     </a>
@@ -131,7 +134,7 @@ function MobileMenuOverlay({
               </a>
 
               {/* Stats row */}
-              <div className="grid grid-cols-4 gap-2 pt-4 border-t border-white/[0.06]">
+              <div className="grid grid-cols-4 gap-2 pt-4 border-t border-border">
                 {[
                   { value: "5", label: "Specialists" },
                   { value: "7", label: "Steps" },
@@ -139,8 +142,8 @@ function MobileMenuOverlay({
                   { value: "0", label: "Middlemen" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-sm font-bold text-white/80">{stat.value}</div>
-                    <div className="text-[9px] text-[#94A3B8]/60 font-medium uppercase tracking-wider">
+                    <div className="text-sm font-bold text-foreground/80">{stat.value}</div>
+                    <div className="text-[9px] text-muted-foreground/60 font-medium uppercase tracking-wider">
                       {stat.label}
                     </div>
                   </div>
@@ -148,7 +151,7 @@ function MobileMenuOverlay({
               </div>
 
               {/* Copyright */}
-              <p className="text-center text-[10px] text-[#94A3B8]/40 pt-2">
+              <p className="text-center text-[10px] text-muted-foreground/40 pt-2">
                 &copy; {new Date().getFullYear()} LaunchFive Studio
               </p>
             </div>
@@ -216,17 +219,17 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "border-b shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+            ? "border-b shadow-sm dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
             : "border-b border-transparent"
         )}
         style={{
           backgroundColor: isScrolled
-            ? "rgba(7, 10, 19, 0.85)"
-            : "rgba(7, 10, 19, 0)",
+            ? "var(--navbar-bg)"
+            : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: isScrolled ? "blur(20px)" : "none",
           borderBottomColor: isScrolled
-            ? "rgba(255, 255, 255, 0.08)"
+            ? "var(--navbar-border)"
             : "transparent",
         }}
       >
@@ -265,8 +268,8 @@ export default function Navbar() {
                   className={cn(
                     "relative text-[15px] font-medium transition-colors duration-300 py-1",
                     isActive
-                      ? "text-white"
-                      : "text-[#94A3B8] hover:text-white"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                   whileHover={{ y: -1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -283,8 +286,9 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right: CTA — Desktop */}
-          <div className="hidden lg:flex items-center">
+          {/* Right: Theme Toggle + CTA — Desktop */}
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <motion.a
               href="#contact"
               onClick={(e) => {
@@ -302,18 +306,21 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Mobile: Hamburger — always on top */}
-          <motion.button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden relative z-[10000] flex items-center justify-center w-11 h-11 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/5 transition-colors"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </motion.button>
+          {/* Mobile: Hamburger + Theme — always on top */}
+          <div className="lg:hidden flex items-center gap-1.5">
+            <ThemeToggle />
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="relative z-[10000] flex items-center justify-center w-11 h-11 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </motion.button>
+          </div>
         </div>
       </motion.header>
 

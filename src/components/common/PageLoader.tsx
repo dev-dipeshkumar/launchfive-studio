@@ -39,7 +39,7 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#070A13]"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background"
         >
           {/* Logo with pulse animation */}
           <motion.div
@@ -58,7 +58,7 @@ export default function PageLoader() {
           </motion.div>
 
           {/* Progress bar */}
-          <div className="w-48 sm:w-64 h-[3px] rounded-full bg-white/10 overflow-hidden">
+          <div className="w-48 sm:w-64 h-[3px] rounded-full bg-muted overflow-hidden">
             <motion.div
               className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] via-[#06B6D4] to-[#7C3AED]"
               style={{ width: `${progress}%` }}
@@ -71,7 +71,7 @@ export default function PageLoader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-4 text-xs text-[#94A3B8]/60 font-mono tracking-wider"
+            className="mt-4 text-xs text-muted-foreground/60 font-mono tracking-wider"
           >
             {Math.round(progress)}%
           </motion.p>

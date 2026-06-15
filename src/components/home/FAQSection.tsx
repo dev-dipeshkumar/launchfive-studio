@@ -81,19 +81,19 @@ export default function FAQSection() {
               >
                 <AccordionItem
                   value={faq.id}
-                  className="rounded-xl glass border-0 overflow-hidden data-[state=open]:border-white/[0.12] transition-all duration-300 px-4 sm:px-6"
+                  className="rounded-xl glass border-0 overflow-hidden data-[state=open]:border-border transition-all duration-300 px-4 sm:px-6"
                 >
-                  <AccordionTrigger className="hover:no-underline py-4 sm:py-5 text-white text-sm sm:text-base font-medium text-left gap-3">
+                  <AccordionTrigger className="hover:no-underline py-4 sm:py-5 text-foreground text-sm sm:text-base font-medium text-left gap-3">
                     <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                       <HelpCircle
                         size={16}
-                        className="text-[#7C3AED] shrink-0 sm:!w-[18px] sm:!h-[18px]"
+                        className="text-primary shrink-0 sm:!w-[18px] sm:!h-[18px]"
                       />
                       <span className="text-left">{faq.question}</span>
                     </div>
                     <CategoryBadge category={faq.category} />
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed pb-4 sm:pb-5">
+                  <AccordionContent className="text-muted-foreground text-xs sm:text-sm leading-relaxed pb-4 sm:pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -110,7 +110,7 @@ export default function FAQSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
         >
-          <p className="text-[#94A3B8] text-sm">
+          <p className="text-muted-foreground text-sm">
             Still have questions?
           </p>
           <motion.a

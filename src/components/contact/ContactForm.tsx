@@ -111,10 +111,10 @@ function FormField({
 
 /* ─── Shared input class ─── */
 const inputBaseClass =
-  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all";
+  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-muted/50 border border-border text-foreground text-sm placeholder-muted-foreground/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all";
 
 const selectBaseClass =
-  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all appearance-none";
+  "w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-muted/50 border border-border text-foreground text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all appearance-none";
 
 /* ─── Main Component ─── */
 export default function ContactForm() {
@@ -225,8 +225,8 @@ export default function ContactForm() {
                         <info.icon size={16} style={{ color: info.color }} className="sm:!w-[18px] sm:!h-[18px]" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[#94A3B8] text-[10px] sm:text-xs mb-0.5">{info.label}</p>
-                        <p className="text-white text-xs sm:text-sm font-medium group-hover:gradient-text transition-all truncate">
+                        <p className="text-muted-foreground text-[10px] sm:text-xs mb-0.5">{info.label}</p>
+                        <p className="text-foreground text-xs sm:text-sm font-medium group-hover:gradient-text transition-all truncate">
                           {info.value}
                         </p>
                       </div>
@@ -243,8 +243,8 @@ export default function ContactForm() {
                         <info.icon size={16} style={{ color: info.color }} className="sm:!w-[18px] sm:!h-[18px]" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[#94A3B8] text-[10px] sm:text-xs mb-0.5">{info.label}</p>
-                        <p className="text-white text-xs sm:text-sm font-medium truncate">{info.value}</p>
+                        <p className="text-muted-foreground text-[10px] sm:text-xs mb-0.5">{info.label}</p>
+                        <p className="text-foreground text-xs sm:text-sm font-medium truncate">{info.value}</p>
                       </div>
                     </div>
                   )}
@@ -272,7 +272,7 @@ export default function ContactForm() {
                   >
                     <item.icon size={10} style={{ color: item.color }} className="sm:!w-[11px] sm:!h-[11px]" />
                   </div>
-                  <span className="text-[11px] sm:text-xs text-[#94A3B8]">{item.text}</span>
+                  <span className="text-[11px] sm:text-xs text-muted-foreground">{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -326,7 +326,7 @@ export default function ContactForm() {
                 {/* Row 1: Name & Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.05}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <User size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Full Name <span className="text-[#F43F5E]">*</span>
                     </label>
@@ -341,7 +341,7 @@ export default function ContactForm() {
                     )}
                   </FormField>
                   <FormField delay={0.1}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <Mail size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Email <span className="text-[#F43F5E]">*</span>
                     </label>
@@ -361,7 +361,7 @@ export default function ContactForm() {
                 {/* Row 2: Phone & Company */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.15}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <Phone size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Phone / WhatsApp
                     </label>
@@ -373,7 +373,7 @@ export default function ContactForm() {
                     />
                   </FormField>
                   <FormField delay={0.2}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <Building2 size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Company Name
                     </label>
@@ -389,7 +389,7 @@ export default function ContactForm() {
                 {/* Row 3: Service & Budget */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.25}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <FileText size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Service Needed <span className="text-[#F43F5E]">*</span>
                     </label>
@@ -399,11 +399,11 @@ export default function ContactForm() {
                       className={selectBaseClass}
                       defaultValue=""
                     >
-                      <option value="" disabled className="bg-[#0F1629]">
+                      <option value="" disabled className="bg-popover">
                         Select a service
                       </option>
                       {services.map((s) => (
-                        <option key={s.id} value={s.title} className="bg-[#0F1629]">
+                        <option key={s.id} value={s.title} className="bg-popover">
                           {s.title}
                         </option>
                       ))}
@@ -413,7 +413,7 @@ export default function ContactForm() {
                     )}
                   </FormField>
                   <FormField delay={0.3}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <DollarSign size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Budget Range <span className="text-[#F43F5E]">*</span>
                     </label>
@@ -423,11 +423,11 @@ export default function ContactForm() {
                       className={selectBaseClass}
                       defaultValue=""
                     >
-                      <option value="" disabled className="bg-[#0F1629]">
+                      <option value="" disabled className="bg-popover">
                         Select budget range
                       </option>
                       {budgetRanges.map((b) => (
-                        <option key={b} value={b} className="bg-[#0F1629]">
+                        <option key={b} value={b} className="bg-popover">
                           {b}
                         </option>
                       ))}
@@ -441,7 +441,7 @@ export default function ContactForm() {
                 {/* Row 4: Timeline & Reference */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <FormField delay={0.35}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <Clock size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Timeline <span className="text-[#F43F5E]">*</span>
                     </label>
@@ -451,11 +451,11 @@ export default function ContactForm() {
                       className={selectBaseClass}
                       defaultValue=""
                     >
-                      <option value="" disabled className="bg-[#0F1629]">
+                      <option value="" disabled className="bg-popover">
                         Select timeline
                       </option>
                       {timelines.map((t) => (
-                        <option key={t} value={t} className="bg-[#0F1629]">
+                        <option key={t} value={t} className="bg-popover">
                           {t}
                         </option>
                       ))}
@@ -465,7 +465,7 @@ export default function ContactForm() {
                     )}
                   </FormField>
                   <FormField delay={0.4}>
-                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                    <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                       <LinkIcon size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                       Reference Link
                     </label>
@@ -483,7 +483,7 @@ export default function ContactForm() {
 
                 {/* Row 5: Description */}
                 <FormField delay={0.45}>
-                  <label className="flex items-center gap-1.5 text-xs sm:text-sm text-[#94A3B8] mb-1.5 sm:mb-2">
+                  <label className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                     <FileText size={12} className="sm:!w-[13px] sm:!h-[13px]" />
                     Project Description <span className="text-[#F43F5E]">*</span>
                   </label>
@@ -491,7 +491,7 @@ export default function ContactForm() {
                     {...register("description")}
                     aria-label="Project description"
                     rows={4}
-                    className="w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-sm placeholder-[#94A3B8]/40 focus:outline-none focus:border-[#7C3AED]/50 focus:ring-1 focus:ring-[#7C3AED]/30 transition-all resize-none"
+                    className="w-full px-3 sm:px-4 py-3 min-h-[48px] rounded-lg bg-muted/50 border border-border text-foreground text-sm placeholder-muted-foreground/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none"
                     placeholder="Describe your project, goals, and any specific requirements..."
                   />
                   {errors.description && (

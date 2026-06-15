@@ -21,7 +21,7 @@ import FloatingCTA from "@/components/common/FloatingCTA";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#070A13] overflow-x-hidden max-w-full">
+    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden max-w-full">
       <PageLoader />
       <CustomCursor />
       <ScrollProgress />

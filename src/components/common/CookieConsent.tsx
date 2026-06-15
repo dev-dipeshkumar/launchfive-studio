@@ -41,18 +41,18 @@ export default function CookieConsent() {
           <div className="max-w-4xl mx-auto rounded-2xl glass-strong p-4 sm:p-5">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
               {/* Icon */}
-              <div className="w-9 h-9 rounded-lg bg-[#7C3AED]/10 border border-[#7C3AED]/20 flex items-center justify-center shrink-0">
-                <Shield size={18} className="text-[#7C3AED]" />
+              <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                <Shield size={18} className="text-primary" />
               </div>
 
               {/* Text */}
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-medium mb-0.5">
+                <p className="text-foreground text-sm font-medium mb-0.5">
                   We use cookies
                 </p>
-                <p className="text-[#94A3B8] text-xs leading-relaxed">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   We use essential cookies to make our site work and analytics cookies to understand how you use our website. By clicking &quot;Accept&quot;, you consent to our use of cookies.{" "}
-                  <a href="#" className="text-[#7C3AED] hover:underline">
+                  <a href="#" className="text-primary hover:underline">
                     Learn more
                   </a>
                 </p>
@@ -62,7 +62,7 @@ export default function CookieConsent() {
               <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
                 <motion.button
                   onClick={decline}
-                  className="flex-1 sm:flex-none px-4 py-2 text-xs font-medium text-[#94A3B8] hover:text-white rounded-lg bg-white/5 hover:bg-white/10 transition-colors min-h-[40px]"
+                  className="flex-1 sm:flex-none px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground rounded-lg bg-muted hover:bg-muted/80 transition-colors min-h-[40px]"
                   whileTap={{ scale: 0.97 }}
                 >
                   Decline

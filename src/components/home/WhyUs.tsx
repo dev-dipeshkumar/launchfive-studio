@@ -102,7 +102,7 @@ function ReasonCard({
               </div>
 
               <div className="min-w-0">
-                <h3 className="text-white font-semibold text-sm leading-tight mb-0.5">
+                <h3 className="text-foreground font-semibold text-sm leading-tight mb-0.5">
                   {reason.title}
                 </h3>
                 <p
@@ -128,14 +128,14 @@ function ReasonCard({
               >
                 {reason.stat.value}
               </span>
-              <span className="text-[7px] sm:text-[8px] text-[#94A3B8] leading-none">
+              <span className="text-[7px] sm:text-[8px] text-muted-foreground leading-none">
                 {reason.stat.label}
               </span>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
             {reason.description}
           </p>
 
@@ -147,13 +147,13 @@ function ReasonCard({
                   className="w-1 h-1 rounded-full shrink-0"
                   style={{ backgroundColor: `${reason.color}80` }}
                 />
-                <span className="text-[11px] sm:text-xs text-[#94A3B8]">{feature}</span>
+                <span className="text-[11px] sm:text-xs text-muted-foreground">{feature}</span>
               </div>
             ))}
           </div>
 
           {/* Bottom: Badge + CTA */}
-          <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-white/[0.06]">
+          <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-border">
             <span
               className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[8px] sm:text-[9px] font-semibold rounded uppercase tracking-wider"
               style={{
@@ -171,7 +171,7 @@ function ReasonCard({
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-[#94A3B8] hover:text-white transition-colors"
+              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -245,7 +245,7 @@ export default function WhyUs() {
                   suffix={stat.suffix}
                 />
               </div>
-              <p className="text-[#94A3B8] text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
+              <p className="text-muted-foreground text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
                 {stat.label}
               </p>
             </motion.div>
@@ -281,13 +281,13 @@ export default function WhyUs() {
               >
                 <signal.icon size={11} style={{ color: signal.color }} className="sm:!w-[12px] sm:!h-[12px]" />
               </div>
-              <span className="text-xs sm:text-sm font-medium text-[#94A3B8] group-hover:text-white transition-colors duration-300">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                 {signal.text}
               </span>
             </div>
           ))}
 
-          <div className="hidden md:block w-px h-5 bg-white/10" />
+          <div className="hidden md:block w-px h-5 bg-border" />
 
           <motion.a
             href="#contact"
