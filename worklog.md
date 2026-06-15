@@ -27,3 +27,28 @@ Stage Summary:
 - All sections are now responsive across mobile/tablet/desktop
 - Consistent 44px minimum tap targets on touch devices
 - Fluid typography with proper mobile sizing throughout
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Fix mobile menu delay and visibility — menu should open instantly and be visible from any scroll position
+
+Work Log:
+- Diagnosed two root causes:
+  1. Staggered Framer Motion animations (0.05s + i*0.05s per nav item = ~0.3s delay) + 0.25s opacity fade + expensive backdrop-filter:blur(24px) caused perceived lag
+  2. Mobile overlay was nested inside `<header>` (fixed position), creating stacking context issues on mobile browsers — the overlay couldn't properly cover the viewport
+- Rewrote Navbar with `createPortal` to render the mobile overlay at `document.body` level (z-index 9999) — ensures it always covers the entire viewport regardless of scroll position or parent stacking context
+- Removed all stagger delays on nav items — they now appear instantly
+- Reduced overlay animation from 0.25s to 0.15s (just a subtle y:8→0 slide)
+- Reduced backdrop-filter blur from 24px to 12px for better mobile performance
+- Removed AnimatePresence icon swap on hamburger button — now instantly switches between Menu/X icons
+- Hamburger button has z-index 10000 so it's always clickable even when overlay is open
+- Separate close button in the overlay's top-right corner for easy dismissal
+- Build verified — no errors
+
+Stage Summary:
+- Mobile menu now opens near-instantly (0.15s vs 0.5s+ previously)
+- Menu is visible from any scroll position via React Portal (document.body level, z-index 9999)
+- No more stagger delays — all nav items appear immediately
+- Reduced blur for better mobile performance
+- Hamburger/close button always accessible (z-index 10000)
