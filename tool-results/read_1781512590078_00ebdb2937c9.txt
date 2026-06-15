@@ -1,0 +1,499 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html lang="en">
+     3→     3→<head>
+     4→     4→<meta charset="UTF-8">
+     5→     5→<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6→     6→<title>Deploy LaunchFive Studio to Firebase - Browser-Only Guide</title>
+     7→     7→<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+     8→     8→<style>
+     9→     9→  :root {
+    10→    10→    --bg: #070A13;
+    11→    11→    --card: rgba(255,255,255,0.03);
+    12→    12→    --code-bg: rgba(124,58,237,0.08);
+    13→    13→    --purple: #7C3AED;
+    14→    14→    --purple-l: #8B5CF6;
+    15→    15→    --cyan: #06B6D4;
+    16→    16→    --orange: #F97316;
+    17→    17→    --text: #F8FAFC;
+    18→    18→    --text2: #94A3B8;
+    19→    19→    --muted: #64748B;
+    20→    20→    --border: rgba(255,255,255,0.08);
+    21→    21→    --border-a: rgba(124,58,237,0.3);
+    22→    22→  }
+    23→    23→  *{margin:0;padding:0;box-sizing:border-box}
+    24→    24→  @page{size:A4;margin:18mm 20mm 16mm 20mm}
+    25→    25→  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    26→    26→  body{padding:0}
+    27→    27→
+    28→    28→  /* Page sections */
+    29→    29→  .sheet{page-break-after:always;padding:0;margin:0}
+    30→    30→  .sheet:last-child{page-break-after:auto}
+    31→    31→
+    32→    32→  /* Cover */
+    33→    33→  .cover{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:calc(297mm - 34mm);position:relative}
+    34→    34→  .cover::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(124,58,237,0.15),transparent 70%);border-radius:50%;pointer-events:none}
+    35→    35→  .cover::after{content:'';position:absolute;bottom:-60px;left:-60px;width:340px;height:340px;background:radial-gradient(circle,rgba(6,182,212,0.1),transparent 70%);border-radius:50%;pointer-events:none}
+    36→    36→
+    37→    37→  .cover-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:var(--card);border:1px solid var(--border-a);border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-l);margin-bottom:28px}
+    38→    38→  .cover-title{font-size:40px;font-weight:900;line-height:1.1;letter-spacing:-0.02em;margin-bottom:14px;background:linear-gradient(135deg,#7C3AED,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    39→    39→  .cover-subtitle{font-size:16px;font-weight:400;color:var(--text2);margin-bottom:44px;max-width:400px}
+    40→    40→  .cover-meta{display:flex;gap:28px;align-items:center;padding-top:28px;border-top:1px solid var(--border)}
+    41→    41→  .cover-meta-item{text-align:center}
+    42→    42→  .cover-meta-value{font-size:12px;font-weight:700;color:var(--text)}
+    43→    43→  .cover-meta-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+    44→    44→
+    45→    45→  /* Phase headers */
+    46→    46→  .ph{margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    47→    47→  .ph-label{display:inline-block;padding:3px 10px;background:var(--code-bg);border:1px solid var(--border-a);border-radius:5px;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-l);margin-bottom:8px}
+    48→    48→  .ph-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-0.01em;margin-bottom:4px}
+    49→    49→  .ph-desc{font-size:12px;color:var(--text2);line-height:1.5}
+    50→    50→
+    51→    51→  /* Steps */
+    52→    52→  .step{margin-bottom:14px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;break-inside:avoid}
+    53→    53→  .sn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:linear-gradient(135deg,#7C3AED,#06B6D4);border-radius:6px;font-size:11px;font-weight:800;color:#fff;margin-right:8px;flex-shrink:0;vertical-align:middle}
+    54→    54→  .st{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+    55→    55→  .sb{font-size:11.5px;color:var(--text2);line-height:1.6}
+    56→    56→  .sb p{margin-bottom:6px}.sb p:last-child{margin-bottom:0}
+    57→    57→
+    58→    58→  /* Checklists */
+    59→    59→  .cl{list-style:none;padding:0;margin:6px 0}
+    60→    60→  .cl li{position:relative;padding:3px 0 3px 22px;font-size:11.5px;color:var(--text2);line-height:1.5}
+    61→    61→  .cl li::before{content:'';position:absolute;left:3px;top:7px;width:10px;height:10px;border-radius:2px;background:var(--code-bg);border:1px solid var(--border-a)}
+    62→    62→  .cl li strong{color:var(--text);font-weight:600}
+    63→    63→
+    64→    64→  /* Code */
+    65→    65→  .code{background:rgba(7,10,19,0.8);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.65;color:var(--cyan);overflow-wrap:break-word;word-break:break-all;break-inside:avoid}
+    66→    66→  .code .cm{color:var(--muted)}.code .kw{color:var(--purple-l)}.code .str{color:var(--orange)}
+    67→    67→
+    68→    68→  /* Tables */
+    69→    69→  .dt{width:100%;border-collapse:collapse;margin:10px 0;font-size:11px;break-inside:avoid}
+    70→    70→  .dt thead th{background:var(--code-bg);border:1px solid var(--border);padding:7px 10px;text-align:left;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple-l)}
+    71→    71→  .dt tbody td{border:1px solid var(--border);padding:7px 10px;color:var(--text2);vertical-align:top}
+    72→    72→  .dt tbody tr:nth-child(even){background:var(--card)}
+    73→    73→  .vg{color:#10B981;font-weight:600}.vy{color:#FBBF24;font-weight:600}.vr{color:#EF4444;font-weight:600}.vb{color:var(--text);font-weight:600}
+    74→    74→
+    75→    75→  /* Info boxes */
+    76→    76→  .ib{padding:10px 12px;border-radius:8px;margin:8px 0;font-size:11px;line-height:1.55;color:var(--text2);break-inside:avoid}
+    77→    77→  .ib.warn{background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2)}
+    78→    78→  .ib.info{background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.2)}
+    79→    79→  .ib.ok{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2)}
+    80→    80→  .ibt{font-weight:700;margin-bottom:3px;font-size:11px}
+    81→    81→  .ib.warn .ibt{color:var(--orange)}.ib.info .ibt{color:var(--cyan)}.ib.ok .ibt{color:#10B981}
+    82→    82→
+    83→    83→  /* Stats */
+    84→    84→  .stats{display:flex;gap:12px;margin:14px 0;break-inside:avoid}
+    85→    85→  .sc{flex:1;text-align:center;padding:10px 6px;background:var(--card);border:1px solid var(--border);border-radius:8px}
+    86→    86→  .sv{font-size:20px;font-weight:900;background:linear-gradient(135deg,#7C3AED,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    87→    87→  .sl{font-size:8px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px}
+    88→    88→
+    89→    89→  /* Flow */
+    90→    90→  .flow{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0;flex-wrap:wrap;break-inside:avoid}
+    91→    91→  .fb{padding:8px 14px;background:var(--card);border:1px solid var(--border-a);border-radius:8px;text-align:center;min-width:90px}
+    92→    92→  .fbt{font-size:10px;font-weight:700;color:var(--text);margin-bottom:1px}
+    93→    93→  .fbd{font-size:8px;color:var(--muted)}
+    94→    94→  .fa{color:var(--purple);font-size:16px;font-weight:700}
+    95→    95→
+    96→    96→  /* Divider */
+    97→    97→  .div{height:1px;background:var(--border);margin:16px 0}
+    98→    98→  .div-a{height:2px;background:linear-gradient(135deg,#7C3AED,#06B6D4);margin:16px 0;border-radius:1px}
+    99→    99→
+   100→   100→  code{font-family:'JetBrains Mono',monospace;background:var(--code-bg);border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-size:10px;color:var(--cyan)}
+   101→   101→
+   102→   102→  /* Success banner */
+   103→   103→  .success-banner{text-align:center;padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:10px;margin:14px 0;break-inside:avoid}
+   104→   104→  .success-banner .url{font-size:13px;font-weight:600;color:var(--text);margin-top:6px}
+   105→   105→  .success-banner .note{font-size:10px;color:var(--muted);margin-top:4px}
+   106→   106→
+   107→   107→  /* Footer */
+   108→   108→  footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border);font-size:8px;color:var(--muted);margin-top:20px}
+   109→   109→  footer .b{font-weight:600;color:var(--text2)}
+   110→   110→</style>
+   111→   111→</head>
+   112→   112→<body>
+   113→   113→
+   114→   114→<!-- ══════ SHEET 1: COVER ══════ -->
+   115→   115→<div class="sheet">
+   116→   116→  <div class="cover">
+   117→   117→    <div class="cover-badge">Deployment Guide</div>
+   118→   118→    <h1 class="cover-title">Deploy LaunchFive Studio<br>to Firebase</h1>
+   119→   119→    <p class="cover-subtitle">Complete browser-only deployment guide. No terminal needed. All steps, all free.</p>
+   120→   120→    <div class="cover-meta">
+   121→   121→      <div class="cover-meta-item"><div class="cover-meta-value">Firebase</div><div class="cover-meta-label">Platform</div></div>
+   122→   122→      <div class="cover-meta-item"><div class="cover-meta-value">$0 / month</div><div class="cover-meta-label">Cost</div></div>
+   123→   123→      <div class="cover-meta-item"><div class="cover-meta-value">20-30 min</div><div class="cover-meta-label">Setup Time</div></div>
+   124→   124→      <div class="cover-meta-item"><div class="cover-meta-value">Browser Only</div><div class="cover-meta-label">Method</div></div>
+   125→   125→    </div>
+   126→   126→  </div>
+   127→   127→</div>
+   128→   128→
+   129→   129→<!-- ══════ SHEET 2: OVERVIEW + COST ══════ -->
+   130→   130→<div class="sheet">
+   131→   131→  <div class="ph">
+   132→   132→    <div class="ph-label">Overview</div>
+   133→   133→    <h2 class="ph-title">What You Will Get</h2>
+   134→   134→    <p class="ph-desc">Your LaunchFive Studio website hosted on Firebase for free, accessible worldwide, with HTTPS and custom domain support.</p>
+   135→   135→  </div>
+   136→   136→
+   137→   137→  <div class="stats">
+   138→   138→    <div class="sc"><div class="sv">10GB</div><div class="sl">Hosting</div></div>
+   139→   139→    <div class="sc"><div class="sv">5GB</div><div class="sl">File Storage</div></div>
+   140→   140→    <div class="sc"><div class="sv">2M</div><div class="sl">Functions/mo</div></div>
+   141→   141→    <div class="sc"><div class="sv">Free</div><div class="sl">SSL Cert</div></div>
+   142→   142→  </div>
+   143→   143→
+   144→   144→  <div class="div-a"></div>
+   145→   145→
+   146→   146→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Complete Free Tier Cost Summary</h3>
+   147→   147→  <table class="dt">
+   148→   148→    <thead><tr><th>Service</th><th>Free Tier</th><th>Cost</th></tr></thead>
+   149→   149→    <tbody>
+   150→   150→      <tr><td class="vb">Firebase Hosting</td><td>10GB storage, 360MB/day transfer</td><td class="vg">$0</td></tr>
+   151→   151→      <tr><td class="vb">Firestore Database</td><td>1GB stored, 50K reads/day</td><td class="vg">$0</td></tr>
+   152→   152→      <tr><td class="vb">Firebase Auth</td><td>Unlimited users, 10 providers</td><td class="vg">$0</td></tr>
+   153→   153→      <tr><td class="vb">Firebase Storage</td><td>5GB stored, 1GB/day download</td><td class="vg">$0</td></tr>
+   154→   154→      <tr><td class="vb">Cloud Functions</td><td>2M invocations/month</td><td class="vg">$0</td></tr>
+   155→   155→      <tr><td class="vb">Firebase Analytics</td><td>Unlimited events</td><td class="vg">$0</td></tr>
+   156→   156→      <tr><td class="vb">Resend (Emails)</td><td>3,000 emails/month</td><td class="vg">$0</td></tr>
+   157→   157→      <tr><td class="vb">Custom Domain</td><td>~$10-15/year (optional)</td><td class="vy">~$1/mo</td></tr>
+   158→   158→    </tbody>
+   159→   159→  </table>
+   160→   160→
+   161→   161→  <div class="ib ok"><div class="ibt">Total Monthly Cost: $0</div>Everything above is completely free. The only optional cost is a custom domain name (~$10-15/year).</div>
+   162→   162→
+   163→   163→  <div class="div"></div>
+   164→   164→
+   165→   165→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Your Live URLs After Deployment</h3>
+   166→   166→  <table class="dt">
+   167→   167→    <thead><tr><th>URL</th><th>Purpose</th></tr></thead>
+   168→   168→    <tbody>
+   169→   169→      <tr><td><code>launchfive-studio.web.app</code></td><td>Primary website (auto-generated)</td></tr>
+   170→   170→      <tr><td><code>launchfive-studio.firebaseapp.com</code></td><td>Alternative URL (auto-generated)</td></tr>
+   171→   171→      <tr><td><code>launchfive.studio</code></td><td>Custom domain (after Phase 6)</td></tr>
+   172→   172→    </tbody>
+   173→   173→  </table>
+   174→   174→
+   175→   175→  <div class="div-a"></div>
+   176→   176→
+   177→   177→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Deployment Flow</h3>
+   178→   178→  <div class="flow">
+   179→   179→    <div class="fb"><div class="fbt">GitHub Repo</div><div class="fbd">Your code</div></div>
+   180→   180→    <div class="fa">&rarr;</div>
+   181→   181→    <div class="fb"><div class="fbt">Firebase</div><div class="fbd">Auto-builds on push</div></div>
+   182→   182→    <div class="fa">&rarr;</div>
+   183→   183→    <div class="fb"><div class="fbt">Live Website</div><div class="fbd">.web.app + domain</div></div>
+   184→   184→  </div>
+   185→   185→
+   186→   186→  <footer><span class="b">LaunchFive Studio</span><span>Page 2</span></footer>
+   187→   187→</div>
+   188→   188→
+   189→   189→<!-- ══════ SHEET 3: PHASE 1 + PHASE 2 ══════ -->
+   190→   190→<div class="sheet">
+   191→   191→  <div class="ph">
+   192→   192→    <div class="ph-label">Phase 1</div>
+   193→   193→    <h2 class="ph-title">Push Code to GitHub</h2>
+   194→   194→    <p class="ph-desc">Upload your project files to a GitHub repository that connects to Firebase.</p>
+   195→   195→  </div>
+   196→   196→
+   197→   197→  <div class="step">
+   198→   198→    <div class="st"><span class="sn">1</span>Create a GitHub Repository</div>
+   199→   199→    <div class="sb">
+   200→   200→      <p>Go to <strong>github.com/new</strong> and create a new repository:</p>
+   201→   201→      <ul class="cl">
+   202→   202→        <li><strong>Repository name:</strong> <code>launchfive-studio</code></li>
+   203→   203→        <li><strong>Description:</strong> LaunchFive Studio - Freelancer Team Portfolio Website</li>
+   204→   204→        <li><strong>Visibility:</strong> Public (required for free Firebase auto-deploy)</li>
+   205→   205→      </ul>
+   206→   206→      <p>Click <strong>"Create repository"</strong> and leave this tab open for Step 3.</p>
+   207→   207→    </div>
+   208→   208→  </div>
+   209→   209→
+   210→   210→  <div class="step">
+   211→   211→    <div class="st"><span class="sn">2</span>Download Your Project Files</div>
+   212→   212→    <div class="sb"><p>From the Z.AI workspace, download the entire project folder as a ZIP archive to your computer. Extract the ZIP to a local folder.</p></div>
+   213→   213→  </div>
+   214→   214→
+   215→   215→  <div class="step">
+   216→   216→    <div class="st"><span class="sn">3</span>Upload Code to GitHub</div>
+   217→   217→    <div class="sb">
+   218→   218→      <p>On your new GitHub repo page, click <strong>"uploading an existing file"</strong>. Drag and drop ALL project files from the extracted folder. Add commit message: <code>Initial commit</code>. Click <strong>"Commit changes"</strong>.</p>
+   219→   219→      <div class="ib info"><div class="ibt">Easier Alternative</div>Install <strong>GitHub Desktop</strong> (desktop.github.com) to drag-and-drop files. Clone the repo, paste files, click Push.</div>
+   220→   220→    </div>
+   221→   221→  </div>
+   222→   222→
+   223→   223→  <div class="div-a"></div>
+   224→   224→
+   225→   225→  <div class="ph">
+   226→   226→    <div class="ph-label">Phase 2</div>
+   227→   227→    <h2 class="ph-title">Create Firebase Project</h2>
+   228→   228→    <p class="ph-desc">Set up your Firebase project in the Google Cloud console.</p>
+   229→   229→  </div>
+   230→   230→
+   231→   231→  <div class="step">
+   232→   232→    <div class="st"><span class="sn">4</span>Open Firebase Console</div>
+   233→   233→    <div class="sb"><p>Go to <strong>console.firebase.google.com</strong> in your browser. Sign in with your Google account (any Gmail works).</p></div>
+   234→   234→  </div>
+   235→   235→
+   236→   236→  <div class="step">
+   237→   237→    <div class="st"><span class="sn">5</span>Create a New Project</div>
+   238→   238→    <div class="sb">
+   239→   239→      <p>Click <strong>"Create a project"</strong>. Fill in:</p>
+   240→   240→      <ul class="cl">
+   241→   241→        <li><strong>Project name:</strong> <code>launchfive-studio</code></li>
+   242→   242→        <li><strong>Project ID:</strong> Auto-generates as <code>launchfive-studio</code> (note this down)</li>
+   243→   243→        <li><strong>Google Analytics:</strong> Enable (recommended for visitor tracking)</li>
+   244→   244→        <li><strong>Analytics account:</strong> Select Default or create new</li>
+   245→   245→      </ul>
+   246→   246→      <p>Click <strong>"Create project"</strong>. Wait ~30 seconds, then click <strong>"Continue"</strong>.</p>
+   247→   247→    </div>
+   248→   248→  </div>
+   249→   249→
+   250→   250→  <footer><span class="b">LaunchFive Studio</span><span>Page 3</span></footer>
+   251→   251→</div>
+   252→   252→
+   253→   253→<!-- ══════ SHEET 4: PHASE 3 + PHASE 4 ══════ -->
+   254→   254→<div class="sheet">
+   255→   255→  <div class="ph">
+   256→   256→    <div class="ph-label">Phase 3</div>
+   257→   257→    <h2 class="ph-title">Set Up Firebase Hosting</h2>
+   258→   258→    <p class="ph-desc">Connect your GitHub repository to Firebase for automatic deployment.</p>
+   259→   259→  </div>
+   260→   260→
+   261→   261→  <div class="step">
+   262→   262→    <div class="st"><span class="sn">6</span>Navigate to Hosting</div>
+   263→   263→    <div class="sb"><p>In your Firebase project console, click <strong>"Build"</strong> in the left sidebar, then click <strong>"Hosting"</strong>. Click <strong>"Get started"</strong>.</p></div>
+   264→   264→  </div>
+   265→   265→
+   266→   266→  <div class="step">
+   267→   267→    <div class="st"><span class="sn">7</span>Connect GitHub Repository</div>
+   268→   268→    <div class="sb"><p>Look for <strong>"Connect to GitHub"</strong> or go to the <strong>"Deploy"</strong> tab. Click <strong>"Connect to GitHub"</strong>. Authorize Firebase to access your GitHub. Select the repository: <code>launchfive-studio</code>. Click <strong>"Connect"</strong>.</p></div>
+   269→   269→  </div>
+   270→   270→
+   271→   271→  <div class="div-a"></div>
+   272→   272→
+   273→   273→  <div class="ph">
+   274→   274→    <div class="ph-label">Phase 4</div>
+   275→   275→    <h2 class="ph-title">Configure Build Settings</h2>
+   276→   276→    <p class="ph-desc">Tell Firebase how to build your Next.js project.</p>
+   277→   277→  </div>
+   278→   278→
+   279→   279→  <div class="step">
+   280→   280→    <div class="st"><span class="sn">8</span>Set Up Auto-Deploy Configuration</div>
+   281→   281→    <div class="sb">
+   282→   282→      <p>In the Firebase Hosting settings, fill in the build configuration fields:</p>
+   283→   283→      <table class="dt">
+   284→   284→        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+   285→   285→        <tbody>
+   286→   286→          <tr><td class="vb">Branch</td><td><code>main</code></td></tr>
+   287→   287→          <tr><td class="vb">Build command</td><td><code>npm run build</code></td></tr>
+   288→   288→          <tr><td class="vb">Output directory</td><td><code>out</code></td></tr>
+   289→   289→          <tr><td class="vb">Install command</td><td><code>npm install</code></td></tr>
+   290→   290→        </tbody>
+   291→   291→      </table>
+   292→   292→      <p>Check <strong>"Automatically re-deploy on push"</strong> and click <strong>"Save"</strong>.</p>
+   293→   293→    </div>
+   294→   294→  </div>
+   295→   295→
+   296→   296→  <div class="step">
+   297→   297→    <div class="st"><span class="sn">9</span>Edit next.config.ts for Static Export</div>
+   298→   298→    <div class="sb">
+   299→   299→      <p>Go to your GitHub repo, open <code>next.config.ts</code>, click the pencil icon to edit. Replace the entire file with:</p>
+   300→   300→      <div class="code"><span class="kw">import</span> type { NextConfig } <span class="kw">from</span> <span class="str">"next"</span>;
+   301→   301→
+   302→   302→<span class="kw">const</span> nextConfig: NextConfig = {
+   303→   303→  output: <span class="str">"export"</span>,
+   304→   304→  images: { unoptimized: <span class="kw">true</span> },
+   305→   305→  typescript: { ignoreBuildErrors: <span class="kw">true</span> },
+   306→   306→  reactStrictMode: <span class="kw">false</span>,
+   307→   307→};
+   308→   308→
+   309→   309→<span class="kw">export default</span> nextConfig;</div>
+   310→   310→      <p>Click <strong>"Commit changes"</strong> with message: <code>Configure for Firebase static export</code>.</p>
+   311→   311→    </div>
+   312→   312→  </div>
+   313→   313→
+   314→   314→  <div class="step">
+   315→   315→    <div class="st"><span class="sn">10</span>Add .nojekyll File</div>
+   316→   316→    <div class="sb">
+   317→   317→      <p>In your GitHub repo root, click <strong>"Add file"</strong> then <strong>"Create new file"</strong>. Name it <code>public/.nojekyll</code>. Leave content empty. Click <strong>"Commit new file"</strong>.</p>
+   318→   318→      <div class="ib info"><div class="ibt">Why .nojekyll?</div>This prevents Firebase from ignoring files starting with underscore (like <code>_next/</code>), ensuring all assets load correctly.</div>
+   319→   319→    </div>
+   320→   320→  </div>
+   321→   321→
+   322→   322→  <footer><span class="b">LaunchFive Studio</span><span>Page 4</span></footer>
+   323→   323→</div>
+   324→   324→
+   325→   325→<!-- ══════ SHEET 5: PHASE 5 + PHASE 6 ══════ -->
+   326→   326→<div class="sheet">
+   327→   327→  <div class="ph">
+   328→   328→    <div class="ph-label">Phase 5</div>
+   329→   329→    <h2 class="ph-title">Deploy Your Website!</h2>
+   330→   330→    <p class="ph-desc">Firebase will automatically build and deploy your site after detecting the code push.</p>
+   331→   331→  </div>
+   332→   332→
+   333→   333→  <div class="step">
+   334→   334→    <div class="st"><span class="sn">11</span>Trigger the Deploy</div>
+   335→   335→    <div class="sb"><p>After committing the <code>next.config.ts</code> change in Step 9, Firebase auto-detects the push and starts building. Go to <strong>Firebase Console &rarr; Hosting</strong>. You should see a build in progress under "Deploy history". Wait 2-3 minutes for the build to complete. Once done, you will see: <strong>Deploy successful!</strong></p></div>
+   336→   336→  </div>
+   337→   337→
+   338→   338→  <div class="success-banner">
+   339→   339→    <div class="ibt" style="font-size:14px;color:#10B981;">Your site is now LIVE!</div>
+   340→   340→    <div class="url"><code style="font-size:13px;">https://launchfive-studio.web.app</code></div>
+   341→   341→    <div class="note">Click the URL to see your live website</div>
+   342→   342→  </div>
+   343→   343→
+   344→   344→  <div class="div-a"></div>
+   345→   345→
+   346→   346→  <div class="ph">
+   347→   347→    <div class="ph-label">Phase 6</div>
+   348→   348→    <h2 class="ph-title">Connect Custom Domain</h2>
+   349→   349→    <p class="ph-desc">Add your own professional domain name with free HTTPS.</p>
+   350→   350→  </div>
+   351→   351→
+   352→   352→  <div class="step">
+   353→   353→    <div class="st"><span class="sn">12</span>Add Custom Domain in Firebase</div>
+   354→   354→    <div class="sb"><p>In Firebase Console, go to <strong>Hosting</strong> and click <strong>"Add custom domain"</strong>. Enter your domain (e.g., <code>launchfive.studio</code>). Optionally check <strong>"Redirect to www"</strong>. Click <strong>"Continue"</strong>.</p></div>
+   355→   355→  </div>
+   356→   356→
+   357→   357→  <div class="step">
+   358→   358→    <div class="st"><span class="sn">13</span>Update DNS Records at Your Registrar</div>
+   359→   359→    <div class="sb">
+   360→   360→      <p>Firebase will display DNS records to add. Go to your domain registrar (Namecheap, GoDaddy, etc.) and add:</p>
+   361→   361→      <table class="dt">
+   362→   362→        <thead><tr><th>Type</th><th>Name</th><th>Value</th></tr></thead>
+   363→   363→        <tbody>
+   364→   364→          <tr><td class="vb">TXT</td><td>@</td><td>google-site-verification=XXXXX (from Firebase)</td></tr>
+   365→   365→          <tr><td class="vb">A</td><td>@</td><td>199.36.158.100</td></tr>
+   366→   366→          <tr><td class="vb">A</td><td>@</td><td>199.36.158.101</td></tr>
+   367→   367→          <tr><td class="vb">A</td><td>@</td><td>199.36.158.102</td></tr>
+   368→   368→          <tr><td class="vb">A</td><td>@</td><td>199.36.158.103</td></tr>
+   369→   369→        </tbody>
+   370→   370→      </table>
+   371→   371→      <p>Go back to Firebase and click <strong>"Finish"</strong>. DNS propagation takes 1-24 hours. Firebase auto-provisions a <strong>free SSL certificate</strong> via Let's Encrypt.</p>
+   372→   372→    </div>
+   373→   373→  </div>
+   374→   374→
+   375→   375→  <footer><span class="b">LaunchFive Studio</span><span>Page 5</span></footer>
+   376→   376→</div>
+   377→   377→
+   378→   378→<!-- ══════ SHEET 6: LIMITATIONS + CONTACT FORM FIX ══════ -->
+   379→   379→<div class="sheet">
+   380→   380→  <div class="ph">
+   381→   381→    <div class="ph-label">Important</div>
+   382→   382→    <h2 class="ph-title">Static Export Limitations</h2>
+   383→   383→    <p class="ph-desc">Firebase Hosting serves static files. Here is what works and what needs adjustment.</p>
+   384→   384→  </div>
+   385→   385→
+   386→   386→  <table class="dt">
+   387→   387→    <thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead>
+   388→   388→    <tbody>
+   389→   389→      <tr><td>All pages and sections</td><td class="vg">Works</td><td>Hero, Services, Team, Portfolio, Contact, Footer</td></tr>
+   390→   390→      <tr><td>Framer Motion animations</td><td class="vg">Works</td><td>All client-side animations render correctly</td></tr>
+   391→   391→      <tr><td>3D Hero Scene</td><td class="vg">Works</td><td>Three.js renders client-side via WebGL</td></tr>
+   392→   392→      <tr><td>Responsive / Mobile layout</td><td class="vg">Works</td><td>All Tailwind CSS breakpoints active</td></tr>
+   393→   393→      <tr><td>Dark theme + glassmorphism</td><td class="vg">Works</td><td>CSS backdrop-filter, gradients all work</td></tr>
+   394→   394→      <tr><td>/api/contact route</td><td class="vr">No</td><td>Static export has no server for API routes</td></tr>
+   395→   395→      <tr><td>Contact form submissions</td><td class="vy">Needs fix</td><td>Use Firestore directly from the client (see below)</td></tr>
+   396→   396→    </tbody>
+   397→   397→  </table>
+   398→   398→
+   399→   399→  <div class="div-a"></div>
+   400→   400→
+   401→   401→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Fix Contact Form with Firestore (Phase 2)</h3>
+   402→   402→  <p style="font-size:11.5px;color:var(--text2);margin-bottom:10px">Replace the server API route with Firestore written directly from the browser. No backend needed.</p>
+   403→   403→
+   404→   404→  <div class="step">
+   405→   405→    <div class="st"><span class="sn">A</span>Create Firestore Database</div>
+   406→   406→    <div class="sb"><p>Go to Firebase Console &rarr; <strong>Build</strong> &rarr; <strong>Firestore Database</strong> &rarr; <strong>Create database</strong>. Choose <strong>"Start in test mode"</strong>. Select location: <code>asia-south1</code>. Click <strong>"Create"</strong>.</p></div>
+   407→   407→  </div>
+   408→   408→
+   409→   409→  <div class="step">
+   410→   410→    <div class="st"><span class="sn">B</span>Get Your Firebase Config</div>
+   411→   411→    <div class="sb"><p>Go to Firebase Console &rarr; <strong>gear icon</strong> &rarr; <strong>Project Settings</strong> &rarr; <strong>General</strong> &rarr; <strong>Your apps</strong> &rarr; <strong>Web app</strong> &rarr; <strong>Config</strong>. Copy the <code>firebaseConfig</code> object.</p></div>
+   412→   412→  </div>
+   413→   413→
+   414→   414→  <div class="step">
+   415→   415→    <div class="st"><span class="sn">C</span>Update Contact Form Component</div>
+   416→   416→    <div class="sb">
+   417→   417→      <p>Install <code>firebase</code> package and update the contact form to write directly to Firestore. Form data will be saved to a <code>contacts</code> collection, visible in Firebase Console.</p>
+   418→   418→      <div class="code"><span class="kw">import</span> { initializeApp } <span class="kw">from</span> <span class="str">"firebase/app"</span>;
+   419→   419→<span class="kw">import</span> { getFirestore, collection, addDoc } <span class="kw">from</span> <span class="str">"firebase/firestore"</span>;
+   420→   420→
+   421→   421→<span class="cm">// Paste your config from Firebase Console</span>
+   422→   422→<span class="kw">const</span> app = initializeApp({ apiKey: <span class="str">"YOUR_KEY"</span>, ... });
+   423→   423→<span class="kw">const</span> db = getFirestore(app);
+   424→   424→
+   425→   425→<span class="cm">// In your form submit handler:</span>
+   426→   426→<span class="kw">await</span> addDoc(collection(db, <span class="str">"contacts"</span>), {
+   427→   427→  name, email, phone, company, service,
+   428→   428→  budget, timeline, description, referenceLink,
+   429→   429→  createdAt: <span class="kw">new</span> Date().toISOString(),
+   430→   430→});</div>
+   431→   431→    </div>
+   432→   432→  </div>
+   433→   433→
+   434→   434→  <footer><span class="b">LaunchFive Studio</span><span>Page 6</span></footer>
+   435→   435→</div>
+   436→   436→
+   437→   437→<!-- ══════ SHEET 7: QUICK REFERENCE + FUTURE ══════ -->
+   438→   438→<div class="sheet">
+   439→   439→  <div class="ph">
+   440→   440→    <div class="ph-label">Quick Reference</div>
+   441→   441→    <h2 class="ph-title">All Steps at a Glance</h2>
+   442→   442→    <p class="ph-desc">Print this page and check off each step as you complete it.</p>
+   443→   443→  </div>
+   444→   444→
+   445→   445→  <table class="dt">
+   446→   446→    <thead><tr><th style="width:32px">#</th><th>Where</th><th>Action</th><th style="width:40px">Done</th></tr></thead>
+   447→   447→    <tbody>
+   448→   448→      <tr><td class="vb">1</td><td>github.com</td><td>Create repository: <code>launchfive-studio</code></td><td style="text-align:center">[ ]</td></tr>
+   449→   449→      <tr><td class="vb">2</td><td>Local</td><td>Download project ZIP from Z.AI workspace</td><td style="text-align:center">[ ]</td></tr>
+   450→   450→      <tr><td class="vb">3</td><td>github.com</td><td>Upload all project files to repository</td><td style="text-align:center">[ ]</td></tr>
+   451→   451→      <tr><td class="vb">4</td><td>Firebase</td><td>Open <code>console.firebase.google.com</code></td><td style="text-align:center">[ ]</td></tr>
+   452→   452→      <tr><td class="vb">5</td><td>Firebase</td><td>Create project: <code>launchfive-studio</code></td><td style="text-align:center">[ ]</td></tr>
+   453→   453→      <tr><td class="vb">6</td><td>Firebase</td><td>Click "Get started" in Hosting section</td><td style="text-align:center">[ ]</td></tr>
+   454→   454→      <tr><td class="vb">7</td><td>Firebase</td><td>Connect GitHub, select repository</td><td style="text-align:center">[ ]</td></tr>
+   455→   455→      <tr><td class="vb">8</td><td>Firebase</td><td>Set build config (branch, build cmd, output dir)</td><td style="text-align:center">[ ]</td></tr>
+   456→   456→      <tr><td class="vb">9</td><td>github.com</td><td>Edit <code>next.config.ts</code>: output to "export"</td><td style="text-align:center">[ ]</td></tr>
+   457→   457→      <tr><td class="vb">10</td><td>github.com</td><td>Add <code>public/.nojekyll</code> empty file</td><td style="text-align:center">[ ]</td></tr>
+   458→   458→      <tr><td class="vb">11</td><td>Firebase</td><td>Wait for auto-deploy to complete (2-3 min)</td><td style="text-align:center">[ ]</td></tr>
+   459→   459→      <tr><td class="vb">12</td><td>Firebase</td><td>Add custom domain (optional)</td><td style="text-align:center">[ ]</td></tr>
+   460→   460→      <tr><td class="vb">13</td><td>Registrar</td><td>Add DNS A + TXT records from Firebase</td><td style="text-align:center">[ ]</td></tr>
+   461→   461→    </tbody>
+   462→   462→  </table>
+   463→   463→
+   464→   464→  <div class="div-a"></div>
+   465→   465→
+   466→   466→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Recommended Domain Registrars</h3>
+   467→   467→  <table class="dt">
+   468→   468→    <thead><tr><th>Registrar</th><th>URL</th><th>Price</th><th>Best For</th></tr></thead>
+   469→   469→    <tbody>
+   470→   470→      <tr><td class="vb">Google Domains</td><td>domains.google</td><td>~$12/yr</td><td>Seamless Firebase integration</td></tr>
+   471→   471→      <tr><td class="vb">Namecheap</td><td>namecheap.com</td><td>~$10/yr</td><td>Affordable, good DNS management</td></tr>
+   472→   472→      <tr><td class="vb">Cloudflare</td><td>cloudflare.com</td><td>At-cost</td><td>Fast DNS propagation</td></tr>
+   473→   473→    </tbody>
+   474→   474→  </table>
+   475→   475→  <div class="ib info" style="margin-top:8px"><div class="ibt">Top Pick</div>Domain: <strong>launchfive.studio</strong> (~$10-15/year) - perfectly brand-aligned and professional.</div>
+   476→   476→
+   477→   477→  <div class="div"></div>
+   478→   478→
+   479→   479→  <h3 style="font-size:15px;font-weight:700;margin-bottom:10px">Future Enhancements (After Deployment)</h3>
+   480→   480→  <table class="dt">
+   481→   481→    <thead><tr><th>Feature</th><th>Firebase Service</th><th>Cost</th></tr></thead>
+   482→   482→    <tbody>
+   483→   483→      <tr><td class="vb">Client portal (login)</td><td>Firebase Authentication</td><td class="vg">Free</td></tr>
+   484→   484→      <tr><td class="vb">Portfolio image uploads</td><td>Firebase Storage</td><td class="vg">Free</td></tr>
+   485→   485→      <tr><td class="vb">Real-time notifications</td><td>Cloud Messaging</td><td class="vg">Free</td></tr>
+   486→   486→      <tr><td class="vb">Visitor analytics</td><td>Firebase Analytics</td><td class="vg">Free</td></tr>
+   487→   487→      <tr><td class="vb">Contact form emails</td><td>Cloud Functions + Resend</td><td class="vg">Free</td></tr>
+   488→   488→      <tr><td class="vb">Project management DB</td><td>Firestore</td><td class="vg">Free</td></tr>
+   489→   489→    </tbody>
+   490→   490→  </table>
+   491→   491→
+   492→   492→  <div class="ib ok" style="margin-top:10px"><div class="ibt">You Are All Set!</div>Follow the 13 steps above and your LaunchFive Studio website will be live on Firebase at zero cost. Every future push to GitHub will automatically trigger a new deployment.</div>
+   493→   493→
+   494→   494→  <footer><span class="b">LaunchFive Studio</span><span>Page 7</span></footer>
+   495→   495→</div>
+   496→   496→
+   497→   497→</body>
+   498→   498→</html>
+   499→   499→
