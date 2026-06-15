@@ -5,10 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
+import { ProjectModal } from "@/components/home/ProjectModal";
 import { ExternalLink, Layers, ArrowRight, Calendar } from "lucide-react";
+import type { Project } from "@/data/portfolio";
 
 export default function PortfolioPreview() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects =
     activeCategory === "All"
@@ -76,7 +79,8 @@ export default function PortfolioPreview() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ y: -8 }}
-                className="group rounded-2xl glass overflow-hidden hover:border-[#7C3AED]/30 transition-all duration-300"
+                onClick={() => setSelectedProject(project)}
+                className="group rounded-2xl glass overflow-hidden hover:border-[#7C3AED]/30 transition-all duration-300 cursor-pointer"
                 data-cursor-hover
               >
                 {/* Project thumbnail */}
@@ -112,6 +116,13 @@ export default function PortfolioPreview() {
 
                   {/* Gradient overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
+
+                  {/* "View Details" overlay on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="px-4 py-2 text-xs font-semibold text-white rounded-xl bg-[#7C3AED]/80 backdrop-blur-sm">
+                      View Details
+                    </span>
+                  </div>
 
                   {/* Top badges */}
                   <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex items-center gap-1 sm:gap-1.5">
@@ -154,13 +165,13 @@ export default function PortfolioPreview() {
                   <h3 className="text-white font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:gradient-text transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2.5 sm:mb-3">
+                  <p className="text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-2.5 sm:mb-3 line-clamp-2">
                     {project.description}
                   </p>
 
                   {/* Tools */}
                   <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-3">
-                    {project.tools.map((tool) => (
+                    {project.tools.slice(0, 3).map((tool) => (
                       <span
                         key={tool}
                         className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-white/5 text-[#94A3B8]"
@@ -168,67 +179,34 @@ export default function PortfolioPreview() {
                         {tool}
                       </span>
                     ))}
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1 mb-2.5 sm:mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-1 py-0.5 text-[8px] sm:text-[9px] rounded-sm font-medium"
-                        style={{
-                          backgroundColor: `${project.color}12`,
-                          color: `${project.color}CC`,
-                          border: `1px solid ${project.color}20`,
-                        }}
-                      >
-                        {tag}
+                    {project.tools.length > 3 && (
+                      <span className="px-1.5 py-0.5 text-[9px] sm:text-[10px] rounded-md bg-white/5 text-[#94A3B8]">
+                        +{project.tools.length - 3}
                       </span>
-                    ))}
+                    )}
                   </div>
 
-                  {/* Takeaway */}
-                  <div className="flex items-start gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-                    <div
-                      className="w-1 h-1 rounded-full mt-1.5 shrink-0"
-                      style={{ backgroundColor: project.color }}
-                    />
-                    <span className="text-[11px] sm:text-xs text-[#94A3B8] leading-relaxed">
-                      {project.takeaway}
-                    </span>
+                  {/* CTA */}
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] group-hover:text-[#06B6D4] transition-colors">
+                    View Details
+                    <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
                   </div>
-
-                  {/* CTA — View Live / View Design / View Concept */}
-                  {project.projectUrl ? (
-                    <motion.a
-                      href={project.projectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors min-h-[44px] sm:min-h-0"
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.96 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    >
-                      {project.projectUrlLabel || "View Project"}
-                      <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-                    </motion.a>
-                  ) : (
-                    <motion.button
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#06B6D4] transition-colors min-h-[44px] sm:min-h-0"
-                      whileHover={{ x: 4 }}
-                      whileTap={{ scale: 0.96 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    >
-                      View Concept
-                      <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5" />
-                    </motion.button>
-                  )}
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Project Detail Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

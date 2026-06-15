@@ -5,6 +5,8 @@ import Footer from "@/components/common/Footer";
 import CustomCursor from "@/components/common/CustomCursor";
 import ScrollProgress from "@/components/common/ScrollProgress";
 import BackToTop from "@/components/common/BackToTop";
+import PageLoader from "@/components/common/PageLoader";
+import CookieConsent from "@/components/common/CookieConsent";
 import HeroSection from "@/components/home/HeroSection";
 import ServicesPreview from "@/components/home/ServicesPreview";
 import WhyUs from "@/components/home/WhyUs";
@@ -18,6 +20,7 @@ import ContactForm from "@/components/contact/ContactForm";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#070A13] overflow-x-hidden max-w-full">
+      <PageLoader />
       <CustomCursor />
       <ScrollProgress />
       <Navbar />
@@ -34,6 +37,7 @@ export default function Home() {
       </main>
       <Footer />
       <BackToTop />
+      <CookieConsent />
     </div>
   );
 }
