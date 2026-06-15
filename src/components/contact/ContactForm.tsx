@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations";
+import { db } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { services } from "@/data/services";
 import SectionHeading from "@/components/common/SectionHeading";
 import {
@@ -145,17 +147,21 @@ export default function ContactForm() {
     setFormError("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      // Save inquiry directly to Firebase Firestore
+      // No server/API route needed — Firestore writes from the client
+      await addDoc(collection(db, "contacts"), {
+        name: data.name,
+        email: data.email,
+        phone: data.phone || null,
+        company: data.company || null,
+        service: data.service,
+        budget: data.budget,
+        timeline: data.timeline,
+        description: data.description,
+        referenceLink: data.referenceLink || null,
+        status: "new",
+        createdAt: new Date().toISOString(),
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Something went wrong. Please try again.");
-      }
 
       setFormSuccess(true);
       reset();
