@@ -12,6 +12,8 @@ export interface TeamMember {
     portfolio?: string;
   };
   avatarInitials: string;
+  /** Profile photo path served from /public/team/. Falls back to initials if missing. */
+  image?: string;
   color: string;
   gradient: string;
 }
@@ -31,6 +33,7 @@ export const teamMembers: TeamMember[] = [
       portfolio: "https://portfolio-dipeshkumar.vercel.app/",
     },
     avatarInitials: "DB",
+    image: "/team/dipesh.jpg",
     color: "#7C3AED",
     gradient: "from-[#7C3AED] to-[#3B82F6]",
   },
@@ -48,6 +51,7 @@ export const teamMembers: TeamMember[] = [
       portfolio: "https://ronak-jain-ai-ml-por-7mcu.bolt.host/",
     },
     avatarInitials: "RJ",
+    image: "/team/ronak.jpg",
     color: "#06B6D4",
     gradient: "from-[#06B6D4] to-[#10B981]",
   },
@@ -65,6 +69,7 @@ export const teamMembers: TeamMember[] = [
       portfolio: "https://princechouhan.netlify.app/",
     },
     avatarInitials: "PC",
+    image: "/team/prince.jpg",
     color: "#10B981",
     gradient: "from-[#10B981] to-[#06B6D4]",
   },
@@ -82,6 +87,7 @@ export const teamMembers: TeamMember[] = [
       portfolio: "https://www.mycvcreator.com/site/poojakumavatresume",
     },
     avatarInitials: "PK",
+    image: "/team/pooja.jpg",
     color: "#F43F5E",
     gradient: "from-[#F43F5E] to-[#EC4899]",
   },
@@ -99,6 +105,7 @@ export const teamMembers: TeamMember[] = [
       portfolio: "https://ai-ml-portfolio2.vercel.app/",
     },
     avatarInitials: "MK",
+    image: "/team/mehul.jpg",
     color: "#F97316",
     gradient: "from-[#F97316] to-[#F59E0B]",
   },

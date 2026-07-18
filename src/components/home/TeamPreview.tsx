@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { teamMembers } from "@/data/team";
 import SectionHeading from "@/components/common/SectionHeading";
 import Reveal, { RevealGroup } from "@/components/common/Reveal";
+import TeamAvatar from "@/components/home/TeamAvatar";
 import { Linkedin, Twitter, Globe, Star } from "lucide-react";
 
 const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
@@ -48,23 +49,13 @@ export default function TeamPreview() {
                 }}
               />
 
-              {/* Avatar with gradient ring */}
-              <div className="relative mx-auto mb-3 sm:mb-4 w-14 h-14 sm:w-16 sm:h-16">
-                <div
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
-                  style={{ backgroundColor: `${member.color}40` }}
-                />
-                <div
-                  className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-base sm:text-lg font-bold transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    backgroundColor: `${member.color}20`,
-                    color: member.color,
-                    border: `2px solid ${member.color}40`,
-                  }}
-                >
-                  {member.avatarInitials}
-                </div>
-              </div>
+              {/* Avatar — profile photo with initials fallback */}
+              <TeamAvatar
+                image={member.image}
+                fallback={member.avatarInitials}
+                color={member.color}
+                alt={member.name}
+              />
 
               <h3 className="text-section-light-foreground font-semibold text-sm sm:text-base mb-0.5">
                 {member.name}

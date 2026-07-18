@@ -17,7 +17,7 @@ import { MessageCircle } from "lucide-react";
 const contactDetails = [
   { icon: Mail, text: "launchfive.studio@gmail.com", href: "mailto:launchfive.studio@gmail.com" },
   { icon: Phone, text: "+919783569106", href: "tel:+919783569106" },
-  { icon: MapPin, text: "Remote-first, based in USA" },
+  { icon: MapPin, text: "Remote-first, based in India" },
 ];
 
 export default function ContactSection() {
