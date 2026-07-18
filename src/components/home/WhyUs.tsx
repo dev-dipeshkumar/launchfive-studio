@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { reasons, whyUsStats, trustSignals } from "@/data/whyUs";
 import SectionHeading from "@/components/common/SectionHeading";
+import Reveal, { RevealGroup } from "@/components/common/Reveal";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -63,20 +64,11 @@ function ReasonCard({
   index: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.08,
-      }}
-      className="group relative"
-    >
+    <Reveal direction="up" duration={0.6} delay={index * 0.1} className="group relative">
       <motion.div
-        whileHover={{ y: -4 }}
+        whileHover={{ y: -6 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className="relative rounded-2xl bg-section-light-card border border-section-light-border overflow-hidden hover:border-primary/30 transition-all duration-300"
+        className="relative rounded-2xl bg-section-light-card border border-section-light-border overflow-hidden hover:border-primary/30 transition-all duration-300 h-full"
         data-cursor-hover
       >
         {/* Subtle top accent line */}
@@ -184,9 +176,9 @@ function ReasonCard({
               />
             </motion.a>
           </div>
-        </div>
-      </motion.div>
-    </motion.div>
+          </div>
+        </motion.div>
+    </Reveal>
   );
 }
 
@@ -205,15 +197,11 @@ export default function WhyUs() {
       ref={sectionRef}
       className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground"
     >
-      {/* Subtle background accent */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none"
-      >
-        <div className="w-full h-full bg-primary/[0.04] dark:bg-primary/[0.03] rounded-full blur-[120px]" />
-      </motion.div>
+      {/* Calm static aura */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full bg-primary/[0.05] blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Why Choose Us"
           title="Why Clients Trust LaunchFive Studio"
@@ -254,11 +242,11 @@ export default function WhyUs() {
         </motion.div>
 
         {/* ─── Reason Cards Grid — 1 col mobile, 2 col md, 3 col lg ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10 sm:mb-14">
+        <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10 sm:mb-14">
           {reasons.map((reason, i) => (
             <ReasonCard key={reason.id} reason={reason} index={i} />
           ))}
-        </div>
+        </RevealGroup>
 
         {/* ─── Trust Signals ─── */}
         <motion.div

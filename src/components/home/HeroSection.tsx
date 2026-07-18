@@ -1,16 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import dynamic from "next/dynamic";
 import { ArrowRight, Sparkles, ChevronDown, Code2, Palette, Smartphone, Megaphone, PenTool, Rocket } from "lucide-react";
 import CTAButton from "@/components/common/CTAButton";
 import { Button } from "@/components/ui/button";
-
-const Hero3DScene = dynamic(() => import("@/components/3d/Hero3DScene"), {
-  ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
-  ),
-});
 
 const rotatingServices = [
   { icon: Code2, label: "Full-Stack Development", color: "#7C3AED" },
@@ -88,15 +80,10 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-section-dark-bg text-section-dark-foreground border-b border-section-dark-border"
     >
-      {/* 3D Background — hidden on small mobile for performance */}
-      <div className="hidden sm:block">
-        <Hero3DScene />
-      </div>
-      {/* Fallback gradient for mobile */}
-      <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary/10 via-section-dark-bg to-secondary/10 z-0" />
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-section-dark-bg via-transparent to-section-dark-bg z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-section-dark-bg/80 via-transparent to-section-dark-bg/80 z-[1]" />
+      {/* Calm static aura — no heavy canvas / moving blobs */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute -top-32 -right-20 w-[36rem] h-[36rem] rounded-full bg-primary/[0.08] blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-20 w-[32rem] h-[32rem] rounded-full bg-secondary/[0.08] blur-[140px] pointer-events-none" />
       {/* Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}

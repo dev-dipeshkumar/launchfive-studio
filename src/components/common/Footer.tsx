@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import Logo from '@/components/common/Logo';
+import Reveal from '@/components/common/Reveal';
 
 const footerLinks = {
   services: [
@@ -37,7 +38,7 @@ export default function Footer() {
 
   return (
     <footer className='relative border-t border-border bg-muted/50 overflow-x-hidden'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16'>
+      <Reveal direction='up' duration={0.6} className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16'>
         {/* Mobile: 1-col stacked, Tablet: 2-col, Desktop: 4-col */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8 lg:gap-10'>
           {/* Brand */}
@@ -137,7 +138,7 @@ export default function Footer() {
             Made with <Heart size={14} className='text-[#F43F5E] fill-[#F43F5E]' /> by LaunchFive Studio
           </p>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

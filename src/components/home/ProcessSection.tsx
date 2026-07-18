@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { workProcess } from "@/data/process";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -16,11 +15,6 @@ import {
   Clock,
   Check,
 } from "lucide-react";
-
-// 3D animated workflow scene (client-only, no SSR to avoid WebGL errors on static export)
-const Process3DScene = dynamic(() => import("@/components/3d/Process3DScene"), {
-  ssr: false,
-});
 
 const iconMap: Record<
   string,
@@ -107,14 +101,10 @@ export default function ProcessSection() {
       className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground"
       ref={containerRef}
     >
-      {/* 3D animated workflow background */}
-      <Process3DScene />
-
-      {/* Soft radial gradients + low-opacity geometric shapes */}
-      <div className="absolute -top-20 left-1/4 w-[40rem] h-[40rem] bg-primary/[0.10] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[32rem] h-[32rem] bg-secondary/[0.10] rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute top-1/3 left-10 w-40 h-40 border border-primary/10 rounded-3xl rotate-12 pointer-events-none" />
-      <div className="absolute bottom-1/4 right-16 w-28 h-28 border border-secondary/10 rounded-full pointer-events-none" />
+      {/* Calm static aura — no heavy canvas / moving blobs */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute -top-20 left-1/4 w-[40rem] h-[40rem] bg-primary/[0.08] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[32rem] h-[32rem] bg-secondary/[0.08] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading

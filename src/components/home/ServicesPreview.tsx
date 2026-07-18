@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { services } from "@/data/services";
 import type { Service } from "@/data/services";
 import SectionHeading from "@/components/common/SectionHeading";
+import Reveal, { RevealGroup } from "@/components/common/Reveal";
 import ServiceModal from "@/components/home/ServiceModal";
 import { ArrowRight, Clock, Package, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,12 +15,12 @@ export default function ServicesPreview() {
   const visibleServices = showAll ? services : services.slice(0, 6);
 
   return (
-    <section id="services" className="section-padding relative overflow-hidden bg-section-light-bg">
-      {/* Background accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.07] dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="services" className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground">
+      {/* Calm static aura */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute -top-20 right-1/4 w-[34rem] h-[34rem] bg-primary/[0.06] rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Our Services"
           title="What We Build"
@@ -27,22 +28,18 @@ export default function ServicesPreview() {
         />
 
         {/* Responsive grid: 1 col mobile → 2 col tablet → 3 col desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+        <RevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           <AnimatePresence mode="popLayout">
             {visibleServices.map((service, i) => (
-              <motion.div
-                key={service.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                onClick={() => setSelectedService(service)}
-                className="group relative rounded-2xl p-5 sm:p-6 bg-section-light-card border border-section-light-border hover:border-primary/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer"
-                data-cursor-hover
-              >
+              <Reveal key={service.id} direction="up" duration={0.6}>
+                <motion.div
+                  layout
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  onClick={() => setSelectedService(service)}
+                  className="group relative rounded-2xl p-5 sm:p-6 bg-section-light-card border border-section-light-border hover:border-primary/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer h-full"
+                  data-cursor-hover
+                >
                 {/* Popular badge */}
                 {service.popular && (
                   <div className="absolute -top-2.5 right-3 sm:right-4 z-10">
@@ -139,9 +136,10 @@ export default function ServicesPreview() {
                   }}
                 />
               </motion.div>
+              </Reveal>
             ))}
           </AnimatePresence>
-        </div>
+        </RevealGroup>
 
         {/* Show all / Show less toggle */}
         <motion.div

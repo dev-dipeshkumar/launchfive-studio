@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
+import Reveal from "@/components/common/Reveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -63,8 +64,12 @@ export default function ContactSection() {
     }
   };
   return (
-    <section id="contact" className="section-padding relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section id="contact" className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground">
+      {/* Calm static aura */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute -top-20 right-1/4 w-[34rem] h-[34rem] bg-primary/[0.07] rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Contact Us"
           title="Let's Build Together"
@@ -73,90 +78,90 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <Input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-              />
-              <Textarea
-                name="message"
-                placeholder="Your Message"
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-              <div className="text-right">
-                <Button type="submit">
-                  Send Message
-                  <ArrowRight size={16} className="ml-2" />
-                </Button>
-              </div>
-            </form>
-          </motion.div>
+          <Reveal direction="up" delay={0.05} className="lg:col-span-2">
+            <div className="card-premium p-6 sm:p-8">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <Reveal direction="up" delay={0.05}>
+                    <Input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Reveal>
+                  <Reveal direction="up" delay={0.1}>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Reveal>
+                </div>
+                <Reveal direction="up" delay={0.15}>
+                  <Input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                  />
+                </Reveal>
+                <Reveal direction="up" delay={0.2}>
+                  <Textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </Reveal>
+                <Reveal direction="up" delay={0.25}>
+                  <div className="text-right">
+                    <Button type="submit" className="btn-primary">
+                      Send Message
+                      <ArrowRight size={16} className="ml-2" />
+                    </Button>
+                  </div>
+                </Reveal>
+              </form>
+            </div>
+          </Reveal>
 
           {/* Contact Details */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
-          >
+          <Reveal direction="right" delay={0.15} className="space-y-5">
             {contactDetails.map((item, index) => (
-              <motion.div
+              <Reveal
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10"
+                direction="right"
+                delay={0.1 + index * 0.1}
+                className="flex items-start gap-4 p-4 rounded-xl bg-section-light-card border border-section-light-border hover:border-primary/30 transition-colors"
               >
-                <item.icon className="w-5 h-5 text-primary mt-1" />
-                <div>
+                <div className="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center bg-primary/10 border border-primary/20">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div className="pt-1.5">
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-white hover:text-primary transition-colors"
+                      className="text-section-light-foreground hover:text-primary transition-colors font-medium"
                     >
                       {item.text}
                     </a>
                   ) : (
-                    <span className="text-slate-300">{item.text}</span>
+                    <span className="text-section-light-foreground/80">{item.text}</span>
                   )}
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

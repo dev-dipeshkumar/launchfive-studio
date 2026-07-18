@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { projects, portfolioCategories } from "@/data/portfolio";
 import SectionHeading from "@/components/common/SectionHeading";
+import Reveal, { RevealGroup } from "@/components/common/Reveal";
 import { ProjectModal } from "@/components/home/ProjectModal";
 import { ExternalLink, Layers, ArrowRight, Calendar } from "lucide-react";
 import type { Project } from "@/data/portfolio";
@@ -22,10 +23,11 @@ export default function PortfolioPreview() {
 
   return (
     <section id="portfolio" className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground">
-      {/* Background accent */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/[0.07] rounded-full blur-[120px] pointer-events-none" />
+      {/* Calm static aura */}
+      <div className="absolute inset-0 bg-aura pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/[0.05] rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Our Work"
           title="Selected Work"
@@ -68,21 +70,18 @@ export default function PortfolioPreview() {
         </div>
 
         {/* Projects grid — 1 col mobile → 2 col tablet → 3 col desktop */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+        <RevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                whileHover={{ y: -8 }}
-                onClick={() => setSelectedProject(project)}
-                className="group rounded-2xl bg-section-light-card border border-section-light-border overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer"
-                data-cursor-hover
-              >
+              <Reveal key={project.id} direction="up" duration={0.6} delay={i * 0.08}>
+                <motion.div
+                  layout
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  whileHover={{ y: -8 }}
+                  onClick={() => setSelectedProject(project)}
+                  className="group rounded-2xl bg-section-light-card border border-section-light-border overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer h-full"
+                  data-cursor-hover
+                >
                 {/* Project thumbnail */}
                 <div className="h-40 sm:h-48 md:h-52 relative overflow-hidden">
                   {project.thumbnail ? (
@@ -193,9 +192,10 @@ export default function PortfolioPreview() {
                   </div>
                 </div>
               </motion.div>
+              </Reveal>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </RevealGroup>
       </div>
 
       {/* Project Detail Modal */}
