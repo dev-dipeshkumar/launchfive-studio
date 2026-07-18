@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { db } from "@/lib/firebase";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -19,10 +20,7 @@ export async function POST(request: Request) {
     const data = contactSchema.parse(body);
 
     // In a production environment, you would:
-    // 1. Save to Firebase Firestore / Supabase
-    // 2. Send email via Resend / EmailJS
-    // 3. Send WhatsApp notification
-    // For now, we log the inquiry and return success
+    await db.collection('contacts').add(data);
 
     console.log("New contact inquiry received:", {
       name: data.name,
@@ -51,13 +49,14 @@ export async function POST(request: Request) {
         {
           success: false,
           error: "Invalid form data. Please check your inputs and try again.",
-          details: error.errors.map((e) => e.message),
+          details: (error as any).errors.map((e) => e.message),
         },
         { status: 400 }
       );
     }
 
-    console.error("Contact form error:", error);
+    // Handle database errors or other exceptions
+    console.error("Database error:", error);
     return NextResponse.json(
       {
         success: false,

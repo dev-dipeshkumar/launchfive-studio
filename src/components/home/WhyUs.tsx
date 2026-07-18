@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { reasons, whyUsStats, trustSignals } from "@/data/whyUs";
 import SectionHeading from "@/components/common/SectionHeading";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 /* ───────────── Animated Counter ───────────── */
 function AnimatedCounter({
@@ -75,7 +76,7 @@ function ReasonCard({
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className="relative rounded-2xl glass overflow-hidden hover:border-primary/30 transition-all duration-300"
+        className="relative rounded-2xl bg-section-light-card border border-section-light-border overflow-hidden hover:border-primary/30 transition-all duration-300"
         data-cursor-hover
       >
         {/* Subtle top accent line */}
@@ -102,7 +103,7 @@ function ReasonCard({
               </div>
 
               <div className="min-w-0">
-                <h3 className="text-foreground font-semibold text-sm leading-tight mb-0.5">
+                <h3 className="text-section-light-foreground font-semibold text-sm leading-tight mb-0.5">
                   {reason.title}
                 </h3>
                 <p
@@ -128,14 +129,14 @@ function ReasonCard({
               >
                 {reason.stat.value}
               </span>
-              <span className="text-[7px] sm:text-[8px] text-muted-foreground leading-none">
+              <span className="text-[9px] sm:text-[10px] text-section-light-foreground/70 leading-none">
                 {reason.stat.label}
               </span>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+          <p className="text-section-light-foreground/60 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
             {reason.description}
           </p>
 
@@ -147,18 +148,18 @@ function ReasonCard({
                   className="w-1 h-1 rounded-full shrink-0"
                   style={{ backgroundColor: `${reason.color}80` }}
                 />
-                <span className="text-[11px] sm:text-xs text-muted-foreground">{feature}</span>
+                <span className="text-[11px] sm:text-xs text-section-light-foreground/70">{feature}</span>
               </div>
             ))}
           </div>
 
           {/* Bottom: Badge + CTA */}
-          <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-border">
+          <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-section-light-border">
             <span
               className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[8px] sm:text-[9px] font-semibold rounded uppercase tracking-wider"
               style={{
-                backgroundColor: `${reason.color}0A`,
-                color: `${reason.color}BB`,
+                backgroundColor: `${reason.color}1A`,
+                color: `${reason.color}ff`,
               }}
             >
               {reason.badge}
@@ -171,7 +172,7 @@ function ReasonCard({
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-section-light-foreground/70 hover:text-section-light-foreground transition-colors"
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -202,7 +203,7 @@ export default function WhyUs() {
     <section
       id="why-us"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground"
     >
       {/* Subtle background accent */}
       <motion.div
@@ -234,7 +235,7 @@ export default function WhyUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="group text-center p-3 sm:p-4 rounded-xl glass"
+              className="group text-center p-3 sm:p-4 rounded-xl bg-section-light-card border border-section-light-border"
             >
               <div
                 className="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5"
@@ -245,7 +246,7 @@ export default function WhyUs() {
                   suffix={stat.suffix}
                 />
               </div>
-              <p className="text-muted-foreground text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
+              <p className="text-section-light-foreground/60 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
                 {stat.label}
               </p>
             </motion.div>
@@ -281,30 +282,20 @@ export default function WhyUs() {
               >
                 <signal.icon size={11} style={{ color: signal.color }} className="sm:!w-[12px] sm:!h-[12px]" />
               </div>
-              <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+              <span className="text-xs sm:text-sm font-medium text-section-light-foreground/60 group-hover:text-section-light-foreground transition-colors duration-300">
                 {signal.text}
               </span>
             </div>
           ))}
+          
+          <div className="hidden md:block w-px h-5 bg-section-light-border" />
 
-          <div className="hidden md:block w-px h-5 bg-border" />
-
-          <motion.a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-primary/15 transition-shadow duration-300 w-full sm:w-auto justify-center"
-            whileHover={{ scale: 1.04, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-            Start a Project
-            <ArrowRight size={13} className="sm:!w-[14px] sm:!h-[14px]" />
-          </motion.a>
+          <Button asChild>
+            <a href="#contact">
+              Start a Project
+              <ArrowRight size={14} className="ml-2" />
+            </a>
+          </Button>
         </motion.div>
       </div>
     </section>

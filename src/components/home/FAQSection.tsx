@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { faqItems } from "@/data/faq";
 import SectionHeading from "@/components/common/SectionHeading";
+import { Button } from "@/components/ui/button";
 
 /* ───────────── Category Badge ───────────── */
 function CategoryBadge({ category }: { category: string }) {
@@ -26,9 +27,8 @@ function CategoryBadge({ category }: { category: string }) {
     <span
       className="px-1.5 py-0.5 text-[8px] sm:text-[9px] font-semibold rounded uppercase tracking-wider shrink-0"
       style={{
-        backgroundColor: `${color}0A`,
-        color: `${color}BB`,
-        border: `1px solid ${color}15`,
+        backgroundColor: `${color}1A`,
+        color: `${color}ff`,
       }}
     >
       {category}
@@ -45,11 +45,11 @@ export default function FAQSection() {
     <section
       id="faq"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground"
     >
       {/* Background accent */}
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full pointer-events-none">
-        <div className="w-full h-full bg-accent/[0.04] dark:bg-accent/[0.02] rounded-full blur-[120px]" />
+        <div className="w-full h-full bg-primary/[0.04] dark:bg-primary/[0.02] rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -81,9 +81,9 @@ export default function FAQSection() {
               >
                 <AccordionItem
                   value={faq.id}
-                  className="rounded-xl glass border-0 overflow-hidden data-[state=open]:border-border transition-all duration-300 px-4 sm:px-6"
+                  className="rounded-xl bg-section-light-card border border-section-light-border overflow-hidden data-[state=open]:border-primary/30 transition-all duration-300 px-4 sm:px-6"
                 >
-                  <AccordionTrigger className="hover:no-underline py-4 sm:py-5 text-foreground text-sm sm:text-base font-medium text-left gap-3">
+                  <AccordionTrigger className="hover:no-underline py-4 sm:py-5 text-section-light-foreground text-sm sm:text-base font-medium text-left gap-3">
                     <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                       <HelpCircle
                         size={16}
@@ -93,7 +93,7 @@ export default function FAQSection() {
                     </div>
                     <CategoryBadge category={faq.category} />
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-xs sm:text-sm leading-relaxed pb-4 sm:pb-5">
+                  <AccordionContent className="text-section-light-foreground/60 text-xs sm:text-sm leading-relaxed pb-4 sm:pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -110,25 +110,15 @@ export default function FAQSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
         >
-          <p className="text-muted-foreground text-sm">
+          <p className="text-section-light-foreground/60 text-sm">
             Still have questions?
           </p>
-          <motion.a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-primary/15 transition-shadow duration-300"
-            whileHover={{ scale: 1.04, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-            Ask Us Anything
-            <ArrowRight size={14} />
-          </motion.a>
+          <Button asChild>
+            <a href="#contact">
+              Ask Us Anything
+              <ArrowRight size={14} className="ml-2" />
+            </a>
+          </Button>
         </motion.div>
       </div>
     </section>

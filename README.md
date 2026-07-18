@@ -189,6 +189,7 @@ flowchart TB
 | **Framework** | ![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js) ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript) |
 | **Styling** | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss) ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-Latest-000000?style=flat-square) |
 | **Animation** | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?style=flat-square&logo=framer) ![React Three Fiber](https://img.shields.io/badge/Three_Fiber-9-000000?style=flat-square&logo=three.js) |
+| **Interactive UI** | 3D-animated hero + premium "Our Workflow" guided journey (glassmorphism cards, scroll-triggered alternating animations, active-step glow, gradient timeline) |
 | **Backend** | ![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=flat-square&logo=firebase) ![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square&logo=prisma) |
 | **Validation** | ![Zod](https://img.shields.io/badge/Zod-4-3068B7?style=flat-square) ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7-EC5990?style=flat-square) |
 | **Deployment** | ![Firebase Hosting](https://img.shields.io/badge/Firebase_Hosting-Static-FFCA28?style=flat-square&logo=firebase) |
@@ -212,15 +213,17 @@ launchfive-studio/
 │   │   ├── globals.css         # Global styles + utilities
 │   │   └── 📁 api/contact/     # (Legacy API route)
 │   ├── 📁 components/
-│   │   ├── 📁 common/          # Navbar, Footer, Logo, CTA, SectionHeading
-│   │   ├── 📁 contact/         # ContactForm (Firestore-powered)
-│   │   ├── 📁 home/            # Hero, Services, WhyUs, Team, Portfolio, Process, ContactCTA
-│   │   └── 📁 3d/              # Hero3DScene, AnimatedSphere, FloatingIcons
-│   ├── 📁 data/                # Static data (services, team, portfolio, whyUs)
+│   │   ├── 📁 common/          # Navbar, Footer, Logo, CTA, SectionHeading, ThemeToggle
+│   │   ├── 📁 home/            # Hero, Services, WhyUs, Team, Portfolio, Process, FAQ, Contact
+│   │   └── 📁 3d/              # Hero3DScene, Process3DScene, AnimatedSphere, FloatingIcons
+│   ├── 📁 data/                # Static data (services, team, portfolio, whyUs, process)
 │   ├── 📁 lib/                 # Firebase config, Prisma client, validations (Zod)
+│   ├── 📁 hooks/               # Custom hooks (use-toast, use-mobile)
 │   └── 📁 ui/                  # shadcn/ui components
-├── .env.example                # Environment variable template
+├── .env                        # Firebase env vars (NEXT_PUBLIC_FIREBASE_*)
 ├── next.config.ts              # Static export for Firebase
+├── firebase.json               # Hosting (public: out) + Firestore rules
+├── firestore.rules            # Firestore security rules (contacts: create allowed)
 ├── tailwind.config.ts          # Tailwind CSS configuration
 └── package.json                # Dependencies & scripts
 ```
@@ -237,7 +240,7 @@ launchfive-studio/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/launchfive-studio.git
+git clone https://github.com/dev-dipeshkumar/launchfive-studio.git
 cd launchfive-studio
 ```
 
@@ -249,10 +252,10 @@ npm install
 
 ### 3. Set Up Firebase
 
-Copy the environment template and add your Firebase credentials:
+The project ships with a `.env` file containing the Firebase web config. If you need to re-create it, add your Firebase credentials:
 
 ```bash
-cp .env.example .env
+cp .env .env.local   # or just edit .env directly
 ```
 
 Edit `.env` with your Firebase project values from:
@@ -265,7 +268,10 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
+
+> The contact form (`src/components/home/ContactSection.tsx`) writes submissions directly to Firestore via the Firebase JS SDK (`addDoc`), governed by `firestore.rules` (anonymous `create` allowed on `/contacts`).
 
 ### 4. Set Up Firestore
 
@@ -280,7 +286,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Visit [http://localhost:9002](http://localhost:9002)
 
 ### 6. Build for Production
 

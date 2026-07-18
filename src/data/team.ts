@@ -9,7 +9,6 @@ export interface TeamMember {
   highlight: string;
   socials: {
     linkedin?: string;
-    twitter?: string;
     portfolio?: string;
   };
   avatarInitials: string;
@@ -20,7 +19,7 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: "member-1",
-    name: "Dipesh Borana",
+    name: "Dipesh Kumar",
     role: "Full-Stack Developer",
     tagline: "Builds it. Ships it. Owns it.",
     specialty: "Web apps, dashboards & deployment-ready builds",
@@ -29,8 +28,7 @@ export const teamMembers: TeamMember[] = [
     highlight: "3+ years building production web apps",
     socials: {
       linkedin: "https://www.linkedin.com/in/dipeshkumar-dev/",
-      twitter: "#",
-      portfolio: "#",
+      portfolio: "https://portfolio-dipeshkumar.vercel.app/",
     },
     avatarInitials: "DB",
     color: "#7C3AED",
@@ -47,8 +45,7 @@ export const teamMembers: TeamMember[] = [
     highlight: "Published apps on Play Store & App Store",
     socials: {
       linkedin: "https://www.linkedin.com/in/ronak-jain-b49955289/",
-      twitter: "#",
-      portfolio: "#",
+      portfolio: "https://ronak-jain-ai-ml-por-7mcu.bolt.host/",
     },
     avatarInitials: "RJ",
     color: "#06B6D4",
@@ -65,8 +62,7 @@ export const teamMembers: TeamMember[] = [
     highlight: "Designed interfaces for 10+ product concepts",
     socials: {
       linkedin: "https://www.linkedin.com/in/prince-chouhan06/",
-      twitter: "#",
-      portfolio: "#",
+      portfolio: "https://princechouhan.netlify.app/",
     },
     avatarInitials: "PC",
     color: "#10B981",
@@ -83,8 +79,7 @@ export const teamMembers: TeamMember[] = [
     highlight: "Created brand identities for 8+ businesses",
     socials: {
       linkedin: "https://www.linkedin.com/in/pooja-kumavat-139b21302/",
-      twitter: "#",
-      portfolio: "#",
+      portfolio: "https://www.mycvcreator.com/site/poojakumavatresume",
     },
     avatarInitials: "PK",
     color: "#F43F5E",
@@ -101,8 +96,7 @@ export const teamMembers: TeamMember[] = [
     highlight: "Designed ad campaigns with 2M+ impressions",
     socials: {
       linkedin: "https://www.linkedin.com/in/mehul-kumar-195939289/",
-      twitter: "#",
-      portfolio: "#",
+      portfolio: "https://ai-ml-portfolio2.vercel.app/",
     },
     avatarInitials: "MK",
     color: "#F97316",
@@ -159,7 +153,7 @@ export const workProcess: ProcessStep[] = [
   {
     step: 4,
     title: "Build",
-    description: "We develop the website, app structure, creative assets, or campaign materials using modern tools and clean implementation practices.",
+    description: "We develop the website, app, creative assets, or campaign materials using modern tools and clean implementation practices.",
     icon: "Code2",
     engagement: "low",
     clientAction: "Sit back — we handle the build",

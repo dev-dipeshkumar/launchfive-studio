@@ -1,72 +1,70 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { workProcess } from "@/data/team";
+import { workProcess } from "@/data/process";
 import SectionHeading from "@/components/common/SectionHeading";
 import {
-  Search,
-  ClipboardList,
-  Palette,
-  Code2,
-  CheckCircle2,
-  GitBranch,
+  Compass,
+  Map,
+  PenTool,
+  Braces,
+  MonitorCheck,
+  Wand2,
   Rocket,
-  User,
-  Users,
   Clock,
+  Check,
 } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
-  Search,
-  ClipboardList,
-  Palette,
-  Code2,
-  CheckCircle2,
-  GitBranch,
+// 3D animated workflow scene (client-only, no SSR to avoid WebGL errors on static export)
+const Process3DScene = dynamic(() => import("@/components/3d/Process3DScene"), {
+  ssr: false,
+});
+
+const iconMap: Record<
+  string,
+  React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>
+> = {
+  Compass,
+  Map,
+  PenTool,
+  Braces,
+  MonitorCheck,
+  Wand2,
   Rocket,
 };
 
-const engagementConfig = {
-  high: {
-    label: "High",
-    bars: 3,
-    color: "#7C3AED",
-    dotPulse: true,
-  },
-  medium: {
-    label: "Medium",
-    bars: 2,
-    color: "#06B6D4",
-    dotPulse: false,
-  },
-  low: {
-    label: "Low",
-    bars: 1,
-    color: "#10B981",
-    dotPulse: false,
-  },
+// Client involvement visualization (filled / empty blocks)
+const involvementMeta: Record<
+  "low" | "medium" | "high",
+  { label: string; filled: number; color: string }
+> = {
+  high: { label: "High", filled: 5, color: "#7C3AED" },
+  medium: { label: "Medium", filled: 3, color: "#06B6D4" },
+  low: { label: "Low", filled: 2, color: "#10B981" },
 };
 
-function EngagementBar({ level, color }: { level: "low" | "medium" | "high"; color: string }) {
-  const config = engagementConfig[level];
+function InvolvementBar({ level }: { level: "low" | "medium" | "high" }) {
+  const meta = involvementMeta[level];
   return (
-    <div className="flex items-center gap-1">
-      {[1, 2, 3].map((bar) => (
-        <motion.div
-          key={bar}
-          className="h-1.5 rounded-full w-2.5 sm:w-3"
-          style={{
-            backgroundColor: bar <= config.bars ? color : "var(--border)",
-          }}
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: bar * 0.1 }}
-        />
-      ))}
-      <span className="text-[9px] sm:text-[10px] font-medium ml-1" style={{ color }}>
-        {config.label}
+    <div className="flex items-center gap-2">
+      <span className="text-[11px] uppercase tracking-wider text-section-light-foreground/50">
+        Client
+      </span>
+      <div className="flex gap-1" aria-label={`Client involvement: ${meta.label}`}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span
+            key={i}
+            className="h-1.5 w-3 rounded-full transition-colors duration-500"
+            style={{
+              backgroundColor: i < meta.filled ? meta.color : "rgba(127,127,127,0.2)",
+            }}
+          />
+        ))}
+      </div>
+      <span className="text-[11px] font-semibold" style={{ color: meta.color }}>
+        {meta.label}
       </span>
     </div>
   );
@@ -74,185 +72,194 @@ function EngagementBar({ level, color }: { level: "low" | "medium" | "high"; col
 
 export default function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end center"],
   });
+  const lineHeight = useSpring(
+    useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
+    { stiffness: 90, damping: 28 }
+  );
 
-  const lineHeight = useSpring(useTransform(scrollYProgress, [0.1, 0.8], ["0%", "100%"]), {
-    stiffness: 100,
-    damping: 30,
-  });
+  // Track active step based on which card is centered in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number((entry.target as HTMLElement).dataset.index);
+            setActiveStep(idx);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    const nodes = containerRef.current?.querySelectorAll("[data-index]");
+    nodes?.forEach((n) => observer.observe(n));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="process" className="section-padding relative overflow-hidden" ref={containerRef}>
-      {/* Background accents */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/[0.07] dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+    <section
+      id="process"
+      className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground"
+      ref={containerRef}
+    >
+      {/* 3D animated workflow background */}
+      <Process3DScene />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      {/* Soft radial gradients + low-opacity geometric shapes */}
+      <div className="absolute -top-20 left-1/4 w-[40rem] h-[40rem] bg-primary/[0.10] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[32rem] h-[32rem] bg-secondary/[0.10] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-40 h-40 border border-primary/10 rounded-3xl rotate-12 pointer-events-none" />
+      <div className="absolute bottom-1/4 right-16 w-28 h-28 border border-secondary/10 rounded-full pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           label="Our Workflow"
-          title="A Clear Process From Idea to Launch"
-          description="A transparent, step-by-step workflow showing exactly when you're involved and when we handle things. No guesswork."
+          title="A Guided Journey From Idea to Launch"
+          description="A transparent, collaborative process you can actually follow. Here's exactly where you're involved — and where we take the wheel."
         />
 
-        {/* Engagement Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-8 sm:mb-12"
-        >
-          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted-foreground">
-            <User size={12} className="text-[#7C3AED] sm:!w-[14px] sm:!h-[14px]" />
-            <span>Your involvement:</span>
-          </div>
-          {(["high", "medium", "low"] as const).map((level) => {
-            const config = engagementConfig[level];
-            return (
-              <div key={level} className="flex items-center gap-1">
-                <div className="flex gap-0.5">
-                  {[1, 2, 3].map((bar) => (
-                    <div
-                      key={bar}
-                      className="w-1.5 h-1.5 sm:w-2 sm:h-1.5 rounded-full"
-                      style={{
-                        backgroundColor: bar <= config.bars ? config.color : "var(--border)",
-                      }}
-                    />
-                  ))}
-                </div>
-                <span className="text-[9px] sm:text-[10px]" style={{ color: config.color }}>{config.label}</span>
-              </div>
-            );
-          })}
-        </motion.div>
+        {/* Desktop: timeline left-of-center, cards on right. Mobile: single column */}
+        <div className="relative mt-14 sm:mt-20">
+          {/* Animated gradient timeline spine (desktop/tablet) */}
+          <div className="hidden sm:block absolute left-[31px] lg:left-[39px] top-2 bottom-2 w-[2px] bg-section-light-border/60 rounded-full" />
+          <motion.div
+            className="hidden sm:block absolute left-[31px] lg:left-[39px] top-2 w-[2px] rounded-full origin-top"
+            style={{
+              height: lineHeight,
+              background: "linear-gradient(180deg, #7C3AED 0%, #8B5CF6 45%, #06B6D4 100%)",
+              boxShadow: "0 0 12px rgba(124,58,237,0.5)",
+            }}
+          />
 
-        {/* ─── Desktop Timeline: Alternating Left/Right ─── */}
-        <div className="hidden lg:block relative">
-          {/* Center vertical line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
-            <div className="absolute inset-0 bg-border" />
-            <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-secondary to-[#3B82F6] origin-top"
-              style={{ height: lineHeight }}
-            />
-          </div>
-
-          <div className="space-y-12">
+          <div className="space-y-6 sm:space-y-10">
             {workProcess.map((step, i) => {
-              const isLeft = i % 2 === 0;
-              const IconComponent = iconMap[step.icon] || Search;
-              const engConfig = engagementConfig[step.engagement];
+              const Icon = iconMap[step.icon] ?? Clock;
+              const isActive = activeStep === i;
+              const isPast = i < activeStep;
+              const fromLeft = i % 2 === 0;
 
               return (
-                <div key={step.step} className="relative flex items-center">
-                  {/* ─── LEFT COLUMN ─── */}
-                  <div className="w-[calc(50%-32px)] pr-8">
-                    {isLeft ? (
-                      <StepCard step={step} index={i} IconComponent={IconComponent} engConfig={engConfig} align="right" />
-                    ) : (
-                      <StepMeta step={step} engConfig={engConfig} align="right" />
-                    )}
-                  </div>
-
-                  {/* ─── CENTER DOT ─── */}
-                  <div className="w-16 flex justify-center shrink-0 relative z-10">
+                <div
+                  key={step.step}
+                  data-index={i}
+                  className="relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8"
+                >
+                  {/* Timeline node + icon */}
+                  <div className="flex sm:flex-col items-center sm:w-[78px] lg:w-[94px] shrink-0">
                     <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20, delay: i * 0.06 }}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${engConfig.dotPulse ? "animate-pulse-glow" : ""}`}
-                      style={{
-                        backgroundColor: `${step.color}15`,
-                        borderColor: `${step.color}40`,
-                        boxShadow: engConfig.dotPulse ? `0 0 20px ${step.color}30` : "none",
-                      }}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative"
                     >
-                      <IconComponent size={18} style={{ color: step.color }} />
-                    </motion.div>
-                  </div>
-
-                  {/* ─── RIGHT COLUMN ─── */}
-                  <div className="w-[calc(50%-32px)] pl-8">
-                    {isLeft ? (
-                      <StepMeta step={step} engConfig={engConfig} align="left" />
-                    ) : (
-                      <StepCard step={step} index={i} IconComponent={IconComponent} engConfig={engConfig} align="left" />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ─── Mobile/Tablet Timeline: Left dots + cards ─── */}
-        <div className="lg:hidden relative">
-          {/* Left vertical line */}
-          <div className="absolute left-[18px] top-0 bottom-0 w-px bg-border" />
-
-          <div className="space-y-4 sm:space-y-6">
-            {workProcess.map((step, i) => {
-              const IconComponent = iconMap[step.icon] || Search;
-              const engConfig = engagementConfig[step.engagement];
-
-              return (
-                <div key={step.step} className="flex gap-3 sm:gap-4">
-                  {/* Dot */}
-                  <div className="flex flex-col items-center shrink-0 pt-3 relative z-10">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20, delay: i * 0.06 }}
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border-2 ${engConfig.dotPulse ? "animate-pulse-glow" : ""}`}
-                      style={{
-                        backgroundColor: `${step.color}15`,
-                        borderColor: `${step.color}40`,
-                        boxShadow: engConfig.dotPulse ? `0 0 16px ${step.color}30` : "none",
-                      }}
-                    >
-                      <IconComponent size={14} style={{ color: step.color }} className="sm:!w-[15px] sm:!h-[15px]" />
-                    </motion.div>
-                  </div>
-
-                  {/* Card */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-30px" }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="flex-1 rounded-2xl glass p-4 sm:p-5 group hover:border-primary/30 transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                      {/* Glowing node on the spine */}
                       <span
-                        className="text-[10px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md"
-                        style={{ backgroundColor: `${step.color}20`, color: step.color }}
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full transition-all duration-500"
+                        style={{
+                          backgroundColor: isActive || isPast ? step.color : "rgba(127,127,127,0.3)",
+                          boxShadow: isActive ? `0 0 16px 3px ${step.color}` : "none",
+                        }}
+                      />
+                      {/* Icon container */}
+                      <div
+                        className="relative w-16 h-16 lg:w-[72px] lg:h-[72px] rounded-2xl flex items-center justify-center transition-all duration-500"
+                        style={{
+                          background: `linear-gradient(135deg, ${step.color}, ${step.color}aa)`,
+                          boxShadow: isActive
+                            ? `0 0 28px -2px ${step.color}, 0 10px 30px -10px ${step.color}`
+                            : "0 8px 24px -10px rgba(0,0,0,0.4)",
+                          transform: isActive ? "rotate(-3deg)" : "rotate(0deg)",
+                        }}
                       >
-                        Step {step.step}
-                      </span>
-                      <EngagementBar level={step.engagement} color={engConfig.color} />
-                    </div>
+                        <span
+                          className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500"
+                          style={{
+                            boxShadow: `0 0 0 1px ${step.color}55, 0 0 22px ${step.color}66`,
+                            opacity: isActive ? 1 : 0,
+                          }}
+                        />
+                        <Icon
+                          size={26}
+                          className="text-white relative z-10 transition-transform duration-500"
+                          style={{ transform: isActive ? "rotate(3deg)" : "none" }}
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
 
-                    <h4 className="text-foreground font-semibold text-sm sm:text-base mb-1 sm:mb-1.5">{step.title}</h4>
-                    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">{step.description}</p>
+                  {/* Glassmorphism card — alternates slide direction */}
+                  <motion.div
+                    initial={{ opacity: 0, x: fromLeft ? -70 : 70 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{
+                      duration: 0.75,
+                      delay: (i % 3) * 0.13,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="flex-1 group"
+                  >
+                    <div
+                      className="relative rounded-2xl lg:rounded-3xl p-5 sm:p-6 lg:p-7 border backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5"
+                      style={{
+                        background: "rgba(255,255,255,0.04)",
+                        borderColor: isActive ? `${step.color}55` : "rgba(255,255,255,0.08)",
+                        boxShadow: isActive
+                          ? `0 20px 50px -20px ${step.color}66, 0 0 0 1px ${step.color}22`
+                          : "0 10px 30px -20px rgba(0,0,0,0.5)",
+                      }}
+                    >
+                      {/* Gradient accent strip */}
+                      <span
+                        className="absolute left-0 top-6 bottom-6 w-1 rounded-full transition-all duration-500"
+                        style={{
+                          background: `linear-gradient(180deg, ${step.color}, transparent)`,
+                          opacity: isActive ? 1 : 0.4,
+                        }}
+                      />
 
-                    <div className="space-y-1 sm:space-y-1.5">
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <Clock size={10} className="text-muted-foreground shrink-0 sm:!w-[11px] sm:!h-[11px]" />
-                        <span className="text-[10px] sm:text-[11px] text-muted-foreground">{step.duration}</span>
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="text-[12px] font-bold tracking-widest uppercase"
+                            style={{ color: step.color }}
+                          >
+                            Step {String(step.step).padStart(2, "0")}
+                          </span>
+                          <h4 className="text-section-light-foreground font-semibold text-xl lg:text-2xl">
+                            {step.title}
+                          </h4>
+                        </div>
+                        <span className="hidden sm:inline-flex items-center gap-1.5 text-[12px] text-section-light-foreground/50">
+                          <Clock size={13} /> {step.duration}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <User size={10} style={{ color: engConfig.color }} className="shrink-0 sm:!w-[11px] sm:!h-[11px]" />
-                        <span className="text-[10px] sm:text-[11px]" style={{ color: engConfig.color }}>{step.clientAction}</span>
+
+                      <p className="text-section-light-foreground/70 text-sm sm:text-[15px] leading-relaxed mb-4 max-w-2xl">
+                        {step.description}
+                      </p>
+
+                      {/* Deliverables */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {step.deliverables.map((d) => (
+                          <span
+                            key={d}
+                            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] text-section-light-foreground/70 bg-white/5 border border-white/10"
+                          >
+                            <Check size={12} style={{ color: step.color }} />
+                            {d}
+                          </span>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <Users size={10} className="text-muted-foreground shrink-0 sm:!w-[11px] sm:!h-[11px]" />
-                        <span className="text-[10px] sm:text-[11px] text-muted-foreground">{step.teamAction}</span>
-                      </div>
+
+                      {/* Client involvement */}
+                      <InvolvementBar level={step.engagement} />
                     </div>
                   </motion.div>
                 </div>
@@ -262,105 +269,5 @@ export default function ProcessSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ─── Step Card (Desktop — the main content card) ─── */
-function StepCard({
-  step,
-  index,
-  IconComponent,
-  engConfig,
-  align,
-}: {
-  step: typeof workProcess[number];
-  index: number;
-  IconComponent: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
-  engConfig: typeof engagementConfig.high;
-  align: "left" | "right";
-}) {
-  const isRight = align === "right";
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: isRight ? -30 : 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      whileHover={{ y: -4, scale: 1.01 }}
-      className={`rounded-2xl glass p-6 group hover:border-primary/30 transition-all duration-300 ${engConfig.dotPulse ? "shadow-[0_0_12px_rgba(124,58,237,0.15)]" : ""}`}
-      data-cursor-hover
-    >
-      <div className={`flex items-center gap-3 mb-3 ${isRight ? "justify-end" : ""}`}>
-        <EngagementBar level={step.engagement} color={engConfig.color} />
-        <span
-          className="text-xs font-bold px-2.5 py-1 rounded-md"
-          style={{ backgroundColor: `${step.color}20`, color: step.color }}
-        >
-          Step {step.step}
-        </span>
-      </div>
-
-      <h4 className={`text-foreground font-semibold text-lg mb-2 ${isRight ? "text-right" : ""}`}>
-        {step.title}
-      </h4>
-      <p className={`text-muted-foreground text-sm leading-relaxed ${isRight ? "text-right" : ""}`}>
-        {step.description}
-      </p>
-
-      {/* Progress bar */}
-      <motion.div
-        className="mt-4 h-1 rounded-full overflow-hidden bg-muted"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.08 + 0.3 }}
-      >
-        <motion.div
-          className="h-full rounded-full"
-          style={{ backgroundColor: step.color }}
-          initial={{ width: "0%" }}
-          whileInView={{ width: `${(step.step / 7) * 100}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: index * 0.08 + 0.4, ease: "easeOut" }}
-        />
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ─── Step Meta (Desktop — the small details on the opposite side) ─── */
-function StepMeta({
-  step,
-  engConfig,
-  align,
-}: {
-  step: typeof workProcess[number];
-  engConfig: typeof engagementConfig.high;
-  align: "left" | "right";
-}) {
-  const isRight = align === "right";
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: isRight ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className={`space-y-2.5 py-4 ${isRight ? "text-right" : ""}`}
-    >
-      <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
-        <Clock size={13} className="text-muted-foreground shrink-0" />
-        <span className="text-[12px] text-muted-foreground">{step.duration}</span>
-      </div>
-      <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
-        <User size={13} style={{ color: engConfig.color }} className="shrink-0" />
-        <span className="text-[12px] font-medium" style={{ color: engConfig.color }}>
-          {step.clientAction}
-        </span>
-      </div>
-      <div className={`flex items-center gap-2 ${isRight ? "justify-end" : ""}`}>
-        <Users size={13} className="text-muted-foreground shrink-0" />
-        <span className="text-[12px] text-muted-foreground">{step.teamAction}</span>
-      </div>
-    </motion.div>
   );
 }

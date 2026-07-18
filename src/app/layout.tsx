@@ -89,8 +89,8 @@ export default function RootLayout({
               description:
                 "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
               url: "https://launchfive-studio.web.app",
-              telephone: "+919876543210",
-              email: "hello@launchfivestudio.com",
+              telephone: "+919783569106",
+              email: "launchfive.studio@gmail.com",
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "IN",

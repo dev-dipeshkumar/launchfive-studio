@@ -1,13 +1,11 @@
-"use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { services } from "@/data/services";
 import type { Service } from "@/data/services";
 import SectionHeading from "@/components/common/SectionHeading";
-import CTAButton from "@/components/common/CTAButton";
 import ServiceModal from "@/components/home/ServiceModal";
 import { ArrowRight, Clock, Package, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function ServicesPreview() {
   const [showAll, setShowAll] = useState(false);
@@ -16,8 +14,8 @@ export default function ServicesPreview() {
   const visibleServices = showAll ? services : services.slice(0, 6);
 
   return (
-    <section id="services" className="section-padding relative overflow-hidden">
-      {/* Background accent */}
+    <section id="services" className="section-padding relative overflow-hidden bg-section-light-bg">
+      {/* Background accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.07] dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/[0.07] dark:bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -42,7 +40,7 @@ export default function ServicesPreview() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 onClick={() => setSelectedService(service)}
-                className="group relative rounded-2xl glass p-5 sm:p-6 hover:border-primary/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer"
+                className="group relative rounded-2xl p-5 sm:p-6 bg-section-light-card border border-section-light-border hover:border-primary/30 transition-all duration-300 min-h-0 flex flex-col cursor-pointer"
                 data-cursor-hover
               >
                 {/* Popular badge */}
@@ -59,15 +57,14 @@ export default function ServicesPreview() {
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <div
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
-                    style={{
-                      background: `linear-gradient(135deg, ${service.color}20, ${service.color}08)`,
-                      border: `1px solid ${service.color}30`,
+                    style={{ 
+                      background: `linear-gradient(135deg, ${service.color}20, ${service.color}08)` 
                     }}
                   >
                     <service.icon size={18} style={{ color: service.color }} className="sm:!w-[22px] sm:!h-[22px]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-foreground font-semibold text-base sm:text-lg mb-0.5 group-hover:gradient-text transition-all">
+                    <h3 className="text-section-light-foreground font-semibold text-base sm:text-lg mb-0.5 group-hover:text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary transition-all">
                       {service.title}
                     </h3>
                     <p className="text-[11px] sm:text-xs font-medium" style={{ color: service.color }}>
@@ -76,7 +73,8 @@ export default function ServicesPreview() {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed mb-3 sm:mb-4">
+                {/* Description */}
+                <p className="text-section-light-foreground/60 text-sm leading-relaxed mb-3 sm:mb-4">
                   {service.description}
                 </p>
 
@@ -85,7 +83,7 @@ export default function ServicesPreview() {
                   {service.features.slice(0, 4).map((feature) => (
                     <li
                       key={feature}
-                      className="text-xs text-muted-foreground flex items-center gap-2"
+                      className="text-xs text-section-light-foreground/60 flex items-center gap-2"
                     >
                       <span
                         className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0"
@@ -95,8 +93,8 @@ export default function ServicesPreview() {
                     </li>
                   ))}
                   {service.features.length > 4 && (
-                    <li className="text-xs" style={{ color: service.color }}>
-                      +{service.features.length - 4} more
+                    <li className="text-xs" style={{ color: service.color }}>+
+                      {service.features.length - 4}
                     </li>
                   )}
                 </ul>
@@ -106,38 +104,38 @@ export default function ServicesPreview() {
                   <div className="flex items-center gap-1 font-semibold" style={{ color: service.color }}>
                     {service.priceRange}
                   </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <Clock size={10} className="sm:!w-[11px] sm:!h-[11px]" />
-                    <span>{service.timeline}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
-                    <Package size={10} className="sm:!w-[11px] sm:!h-[11px]" />
-                    <span>{service.deliverables.length} deliverables</span>
-                  </div>
+                  <div className="flex items-center gap-1 text-section-light-foreground/60">
+                     <Clock size={10} className="sm:!w-[11px] sm:!h-[11px]" />
+                     <span>{service.timeline}</span>
+                   </div>
+                   <div className="flex items-center gap-1 text-section-light-foreground/60">
+                     <Package size={10} className="sm:!w-[11px] sm:!h-[11px]" />
+                     <span>{service.deliverables.length} deliverables</span>
+                   </div>
                 </div>
 
                 {/* Gradient divider */}
                 <div
                   className="h-px mb-3 sm:mb-4 opacity-20"
-                  style={{
-                    background: `linear-gradient(90deg, ${service.color}, transparent)`,
+                  style={{ 
+                    background: `linear-gradient(90deg, ${service.color}, transparent)` 
                   }}
                 />
 
                 {/* CTA */}
-                <div className="flex items-center gap-1.5 text-sm font-medium transition-colors min-h-[44px] py-2" style={{ color: service.color }}>
-                  View Details
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </div>
+                 <div className="flex items-center gap-1.5 text-sm font-medium transition-colors min-h-[44px] py-2 text-section-light-foreground">
+                   View Details
+                   <ArrowRight
+                     size={14}
+                     className="transition-transform group-hover:translate-x-1"
+                   />
+                 </div>
 
                 {/* Hover glow */}
                 <div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    boxShadow: `0 0 30px ${service.color}15, 0 0 60px ${service.color}08`,
+                  style={{ 
+                    boxShadow: `0 0 30px ${service.color}15, 0 0 60px ${service.color}08` 
                   }}
                 />
               </motion.div>
@@ -152,26 +150,26 @@ export default function ServicesPreview() {
           viewport={{ once: true }}
           className="text-center mt-8 sm:mt-10"
         >
-          <CTAButton
+          <Button
             onClick={() => setShowAll(!showAll)}
             variant="outline"
             className="w-full sm:w-auto justify-center"
           >
             {showAll ? "Show Less" : `Explore All ${services.length} Services`}
-            <ArrowRight size={16} className={showAll ? "rotate-[-90deg]" : "rotate-90"} />
-          </CTAButton>
+            <ArrowRight size={16} className={`ml-2 transition-transform ${showAll ? "rotate-[-90deg]" : "rotate-90"}`} />
+          </Button>
         </motion.div>
-      </div>
 
-      {/* Service Detail Modal */}
-      <AnimatePresence>
-        {selectedService && (
-          <ServiceModal
-            service={selectedService}
-            onClose={() => setSelectedService(null)}
-          />
-        )}
-      </AnimatePresence>
-    </section>
+        {/* Service Detail Modal */}
+        <AnimatePresence>
+          {selectedService && (
+            <ServiceModal
+              service={selectedService}
+              onClose={() => setSelectedService(null)}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+      </section>
   );
 }

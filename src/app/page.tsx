@@ -14,9 +14,7 @@ import TeamPreview from "@/components/home/TeamPreview";
 import PortfolioPreview from "@/components/home/PortfolioPreview";
 import ProcessSection from "@/components/home/ProcessSection";
 import FAQSection from "@/components/home/FAQSection";
-import ContactCTA from "@/components/home/ContactCTA";
-import ContactForm from "@/components/contact/ContactForm";
-
+import ContactSection from "@/components/home/ContactSection";
 import FloatingCTA from "@/components/common/FloatingCTA";
 
 export default function Home() {
@@ -34,8 +32,7 @@ export default function Home() {
         <PortfolioPreview />
         <ProcessSection />
         <FAQSection />
-        <ContactCTA />
-        <ContactForm />
+        <ContactSection />
       </main>
       <Footer />
       <BackToTop />
