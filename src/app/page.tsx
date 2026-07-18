@@ -16,6 +16,7 @@ import ProcessSection from "@/components/home/ProcessSection";
 import FAQSection from "@/components/home/FAQSection";
 import ContactSection from "@/components/home/ContactSection";
 import FloatingCTA from "@/components/common/FloatingCTA";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <Footer />
       <BackToTop />
       <FloatingCTA />
+      <WhatsAppButton />
       <CookieConsent />
     </div>
   );

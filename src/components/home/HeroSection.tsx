@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, ChevronDown, Code2, Palette, Smartphone, Megaphone, PenTool, Rocket } from "lucide-react";
+import { ArrowRight, Sparkles, ChevronDown, Code2, Palette, Smartphone, Megaphone, PenTool, Rocket, MessageCircle } from "lucide-react";
 import CTAButton from "@/components/common/CTAButton";
 import { Button } from "@/components/ui/button";
+import { WHATSAPP_URL, WHATSAPP_ARIA } from "@/lib/whatsapp";
 
 const rotatingServices = [
   { icon: Code2, label: "Full-Stack Development", color: "#7C3AED" },
@@ -167,6 +168,12 @@ export default function HeroSection() {
           <Button asChild variant="outline" size="lg" className="w-full sm:w-auto justify-center btn-secondary">
             <a href="#services">
               View Our Capabilities
+            </a>
+          </Button>
+          <Button asChild size="lg" className="w-full sm:w-auto justify-center rounded-full px-6 py-3 text-sm font-semibold border-2 border-[#25D366]/40 text-[#25D366] bg-white/5 backdrop-blur-sm hover:bg-[#25D366]/10 hover:border-[#25D366]/70 hover:shadow-[0_0_24px_rgba(37,211,102,0.35)] transition-all">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={WHATSAPP_ARIA}>
+              Chat on WhatsApp
+              <MessageCircle size={18} />
             </a>
           </Button>
         </motion.div>

@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { WHATSAPP_URL, WHATSAPP_DISPLAY, WHATSAPP_ARIA } from "@/lib/whatsapp";
+import { MessageCircle } from "lucide-react";
 
 const contactDetails = [
   { icon: Mail, text: "launchfive.studio@gmail.com", href: "mailto:launchfive.studio@gmail.com" },
@@ -161,6 +163,33 @@ export default function ContactSection() {
                 </div>
               </Reveal>
             ))}
+
+            {/* Premium WhatsApp communication card */}
+            <Reveal direction="right" delay={0.2} className="mt-1">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={WHATSAPP_ARIA}
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-md border border-[#25D366]/30 hover:border-[#25D366]/60 hover:shadow-[0_0_28px_rgba(37,211,102,0.3)] transition-all duration-300"
+              >
+                <div className="w-12 h-12 shrink-0 rounded-xl flex items-center justify-center bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366]">
+                  <MessageCircle size={22} strokeWidth={2} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-section-light-foreground font-semibold text-sm">
+                    Prefer WhatsApp?
+                  </p>
+                  <p className="text-section-light-foreground/70 text-xs leading-relaxed mb-1">
+                    Need a quick discussion before filling out the project form? Chat directly with our team.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-[#25D366] text-xs font-semibold group-hover:gap-2.5 transition-all">
+                    Open WhatsApp
+                    <span className="tabular-nums">{WHATSAPP_DISPLAY}</span>
+                  </span>
+                </div>
+              </a>
+            </Reveal>
           </Reveal>
         </div>
       </div>
