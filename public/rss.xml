@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LaunchFive Studio</title>
+    <link>https://launchfive-studio.web.app</link>
+    <atom:link href="https://launchfive-studio.web.app/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Case studies, project write-ups, and studio updates from LaunchFive Studio — a focused 5-member creative-tech studio building websites, apps, UI/UX, branding, and ad creatives.</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <generator>LaunchFive Studio</generator>
+    <docs>https://www.rssboard.org/rss-specification</docs>
+    <managingEditor>launchfive.studio@gmail.com (LaunchFive Studio)</managingEditor>
+    <webMaster>launchfive.studio@gmail.com (LaunchFive Studio)</webMaster>
+    <copyright>Copyright © 2025 LaunchFive Studio. All rights reserved.</copyright>
+    <image>
+      <url>https://launchfive-studio.web.app/og-image.png</url>
+      <title>LaunchFive Studio</title>
+      <link>https://launchfive-studio.web.app</link>
+    </image>
+    <!--
+      No blog posts or case studies have been published yet.
+      To add an entry, append an <item> block inside <channel>:
+
+      <item>
+        <title>Case Study: Project Name</title>
+        <link>https://launchfive-studio.web.app/#portfolio</link>
+        <guid isPermaLink="false">proj-unique-id</guid>
+        <description>Short summary of the work.</description>
+        <content:encoded><![CDATA[Full HTML write-up here.]]></content:encoded>
+        <pubDate>Wed, 18 Jul 2025 00:00:00 +0000</pubDate>
+        <category>Case Study</category>
+      </item>
+    -->
+  </channel>
+</rss>

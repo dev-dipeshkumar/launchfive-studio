@@ -1,14 +1,11 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# AI crawler guidance
+Allow: /llms.txt
+Allow: /humans.txt
+Allow: /rss.xml
+Allow: /sitemap.xml
+Allow: /manifest.webmanifest
+
+Sitemap: https://launchfive-studio.web.app/sitemap.xml

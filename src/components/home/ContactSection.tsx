@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowRight, Loader2 } from "lucide-react";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MapPin, ArrowRight, Loader2, Check } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
 import Reveal from "@/components/common/Reveal";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,30 @@ import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { WHATSAPP_URL, WHATSAPP_DISPLAY, WHATSAPP_ARIA } from "@/lib/whatsapp";
 import { MessageCircle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
+
+/** Subtle confetti burst — max 12 particles, GPU transform/opacity only. */
+const CONFETTI_COLORS = ["#7C3AED", "#06B6D4", "#F97316", "#10B981", "#EC4899"];
+function useConfetti() {
+  const prefersReduced = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  const particles = useMemo(() => {
+    if (prefersReduced) return [];
+    return Array.from({ length: 12 }).map((_, i) => ({
+      id: i,
+      x: (Math.random() - 0.5) * 160,
+      y: -40 - Math.random() * 80,
+      rotate: Math.random() * 360,
+      color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      delay: Math.random() * 0.08,
+    }));
+  }, [prefersReduced]);
+
+  return { particles, prefersReduced };
+}
 
 const contactDetails = [
   { icon: Mail, text: "launchfive.studio@gmail.com", href: "mailto:launchfive.studio@gmail.com" },
@@ -20,8 +44,10 @@ const contactDetails = [
   { icon: MapPin, text: "Remote-first, based in India" },
 ];
 
+type SubmitState = "idle" | "submitting" | "success" | "error";
+
 export default function ContactSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<SubmitState>("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,33 +64,36 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (status === "submitting") return;
+    setStatus("submitting");
 
     try {
       // Save to Firebase
       await addDoc(collection(db, "contacts"), formData);
+      trackEvent("contact_submit", { subject: formData.subject });
 
-      // Show notification
+      setStatus("success");
       toast({
         title: "Message Sent Successfully!",
-        description: "Your message has been sent and stored in our database. We'll get back to you within 24 hours.",
+        description: "We'll get back to you within 24 hours.",
         variant: "default",
       });
 
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("Firebase error:", error);
-      // Show more detailed error for debugging
-      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      setStatus("error");
       toast({
-        title: "Error",
-        description: `Failed to send message: ${errorMessage}. Please try again later.`,
+        title: "Couldn't send your message",
+        description: "Something went wrong on our end. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
+
+  const isSubmitting = status === "submitting";
+  const { particles } = useConfetti();
+
   return (
     <section id="contact" className="section-padding relative overflow-hidden bg-section-light-bg text-section-light-foreground">
       {/* Calm static aura */}
@@ -82,39 +111,98 @@ export default function ContactSection() {
           {/* Contact Form */}
           <Reveal direction="up" delay={0.05} className="lg:col-span-2">
             <div className="card-premium p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Reveal direction="up" delay={0.05}>
-                    <Input
-                      type="text"
-                      name="name"
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Reveal>
-                  <Reveal direction="up" delay={0.1}>
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Reveal>
-                </div>
-                <Reveal direction="up" delay={0.15}>
-                  <Input
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </Reveal>
+              <AnimatePresence mode="wait">
+                {status === "success" ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative flex flex-col items-center justify-center text-center py-10"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {/* Subtle confetti burst — max 12 particles, transform/opacity only */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-visible" aria-hidden="true">
+                      {particles.map((p) => (
+                        <motion.span
+                          key={p.id}
+                          initial={{ opacity: 0, x: 0, y: 0, scale: 0.6, rotate: 0 }}
+                          animate={{ opacity: [0, 1, 1, 0], x: p.x, y: p.y, scale: 1, rotate: p.rotate }}
+                          transition={{ duration: 0.9, delay: p.delay, ease: "easeOut" }}
+                          className="absolute w-2 h-2 rounded-[2px]"
+                          style={{ backgroundColor: p.color }}
+                        />
+                      ))}
+                    </div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+                      className="w-16 h-16 rounded-full bg-[#25D366]/15 border border-[#25D366]/40 flex items-center justify-center text-[#25D366] mb-4"
+                    >
+                      <Check size={32} strokeWidth={3} />
+                    </motion.div>
+                    <h3 className="text-lg font-semibold text-section-light-foreground mb-1">
+                      Your message is on its way!
+                    </h3>
+                    <p className="text-section-light-foreground/70 text-sm max-w-sm">
+                      We&apos;ve received your message and a real human from our team will reply within 24 hours.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="mt-5 text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                    >
+                      Send another message
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-5"
+                    noValidate
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <Reveal direction="up" delay={0.05}>
+                        <Input
+                          type="text"
+                          name="name"
+                          placeholder="Your Name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          aria-label="Your Name"
+                        />
+                      </Reveal>
+                      <Reveal direction="up" delay={0.1}>
+                        <Input
+                          type="email"
+                          name="email"
+                          placeholder="Your Email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          aria-label="Your Email"
+                        />
+                      </Reveal>
+                    </div>
+                    <Reveal direction="up" delay={0.15}>
+                      <Input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        aria-label="Subject"
+                      />
+                    </Reveal>
                 <Reveal direction="up" delay={0.2}>
                   <Textarea
                     name="message"
@@ -123,17 +211,43 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    aria-label="Your Message"
                   />
                 </Reveal>
                 <Reveal direction="up" delay={0.25}>
                   <div className="text-right">
-                    <Button type="submit" className="btn-primary">
-                      Send Message
-                      <ArrowRight size={16} className="ml-2" />
+                    <Button
+                      type="submit"
+                      className="btn-primary"
+                      disabled={isSubmitting}
+                      aria-disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className="mr-2 animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <ArrowRight size={16} className="ml-2" />
+                        </>
+                      )}
                     </Button>
+                    {status === "error" && (
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+                        className="ml-4 text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                      >
+                        Retry
+                      </button>
+                    )}
                   </div>
                 </Reveal>
-              </form>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
           </Reveal>
 

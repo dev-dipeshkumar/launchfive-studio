@@ -7,6 +7,7 @@ import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/common/Logo";
 import ThemeToggle from "@/components/common/ThemeToggle";
+import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -171,20 +172,26 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("#hero");
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 40);
 
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
-            setActiveSection(`#${sections[i]}`);
-            break;
+        const sections = navLinks.map((l) => l.href.replace("#", ""));
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i]);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 120) {
+              setActiveSection(`#${sections[i]}`);
+              break;
+            }
           }
         }
-      }
+        ticking = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -263,6 +270,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={(e) => {
                     e.preventDefault();
+                    trackEvent("nav_click", { target: link.href });
                     handleNavClick(link.href);
                   }}
                   className={cn(

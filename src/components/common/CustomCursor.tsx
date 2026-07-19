@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -22,13 +22,41 @@ export default function CustomCursor() {
   useEffect(() => {
     if (isMobile) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
+    // Position is written directly to the DOM via refs so mousemove never
+    // triggers a React re-render (keeps scrolling/animation at 60fps).
+    let raf = 0;
+    let pendingX = 0;
+    let pendingY = 0;
+
+    const apply = () => {
+      raf = 0;
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${pendingX - 4}px, ${pendingY - 4}px, 0) scale(${isClicking ? 0.8 : 1})`;
+      }
+      if (ringRef.current) {
+        const size = isHovering ? 48 : 32;
+        const offset = isHovering ? 24 : 16;
+        ringRef.current.style.width = `${size}px`;
+        ringRef.current.style.height = `${size}px`;
+        ringRef.current.style.transform = `translate3d(${pendingX - offset}px, ${pendingY - offset}px, 0) scale(${isClicking ? 0.9 : 1})`;
+      }
     };
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseMove = (e: MouseEvent) => {
+      pendingX = e.clientX;
+      pendingY = e.clientY;
+      setIsVisible(true);
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+
+    const handleMouseDown = () => {
+      setIsClicking(true);
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    const handleMouseUp = () => {
+      setIsClicking(false);
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
     const handleMouseLeave = () => setIsVisible(false);
     const handleMouseEnter = () => setIsVisible(true);
 
@@ -37,8 +65,14 @@ export default function CustomCursor() {
         "a, button, [role='button'], input, textarea, select, [data-cursor-hover]"
       );
       interactiveElements.forEach((el) => {
-        el.addEventListener("mouseenter", () => setIsHovering(true));
-        el.addEventListener("mouseleave", () => setIsHovering(false));
+        el.addEventListener("mouseenter", () => {
+          setIsHovering(true);
+          if (!raf) raf = requestAnimationFrame(apply);
+        });
+        el.addEventListener("mouseleave", () => {
+          setIsHovering(false);
+          if (!raf) raf = requestAnimationFrame(apply);
+        });
       });
     };
 
@@ -64,39 +98,28 @@ export default function CustomCursor() {
       document.removeEventListener("mouseenter", handleMouseEnter);
       observer.disconnect();
       clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
     };
-  }, [isMobile]);
+  }, [isMobile, isHovering, isClicking]);
 
   if (isMobile || !isVisible) return null;
 
   return (
     <>
       {/* Inner dot */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
-        animate={{
-          x: position.x - 4,
-          y: position.y - 4,
-          scale: isClicking ? 0.8 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 30, mass: 0.5 }}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference will-change-transform"
+        aria-hidden="true"
       >
-        <div
-          className="w-2 h-2 rounded-full bg-white"
-        />
-      </motion.div>
+        <div className="w-2 h-2 rounded-full bg-white" />
+      </div>
 
       {/* Outer ring */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
-        animate={{
-          x: position.x - (isHovering ? 24 : 16),
-          y: position.y - (isHovering ? 24 : 16),
-          width: isHovering ? 48 : 32,
-          height: isHovering ? 48 : 32,
-          scale: isClicking ? 0.9 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 250, damping: 20, mass: 0.8 }}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] will-change-transform"
+        aria-hidden="true"
       >
         <div
           className={`w-full h-full rounded-full border transition-colors duration-200 ${
@@ -105,7 +128,7 @@ export default function CustomCursor() {
               : "border-foreground/40 bg-transparent"
           }`}
         />
-      </motion.div>
+      </div>
     </>
   );
 }

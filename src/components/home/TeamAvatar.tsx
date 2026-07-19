@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TeamAvatarProps {
@@ -80,10 +81,10 @@ export default function TeamAvatar({
                   style={{ backgroundColor: `${color}20` }}
                 />
               )}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={image}
+              <Image
+                src={image!}
                 alt={alt}
+                fill
                 loading="lazy"
                 decoding="async"
                 sizes="(max-width: 640px) 96px, (max-width: 1024px) 110px, 120px"

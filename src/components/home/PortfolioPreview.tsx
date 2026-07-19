@@ -89,6 +89,9 @@ export default function PortfolioPreview() {
                       src={project.thumbnail}
                       alt={project.title}
                       fill
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/webp;base64,UklGRhIAAABXRUJQVlA4TAYAAAAvAAAAAAfQ//73AABQZ2JjZGVmZg=="
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />

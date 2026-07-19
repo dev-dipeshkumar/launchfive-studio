@@ -30,7 +30,7 @@ export const projects: Project[] = [
     id: "proj-1",
     title: "PulseBoard — SaaS Analytics Dashboard",
     category: "Web Development",
-    thumbnail: "/portfolio/saas-dashboard.png",
+    thumbnail: "/portfolio/saas-dashboard.webp",
     description:
       "A full-stack analytics dashboard for SaaS teams with real-time data visualization, custom chart widgets, role-based access, and a responsive dark UI built with Next.js and Tailwind CSS.",
     tools: ["Next.js", "TypeScript", "Tailwind CSS", "Chart.js"],
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     id: "proj-2",
     title: "FinWise — Mobile Banking App UI",
     category: "UI/UX",
-    thumbnail: "/portfolio/fintech-app.png",
+    thumbnail: "/portfolio/fintech-app.webp",
     description:
       "A mobile banking app UI kit featuring a dashboard, transaction history, fund transfers, and card management screens. Designed with a focus on clarity, trust, and smooth navigation for fintech users.",
     tools: ["Figma", "Prototyping", "Design System", "Micro-Interactions"],
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     id: "proj-3",
     title: "SpiceRoot — Restaurant Brand Identity",
     category: "Branding",
-    thumbnail: "/portfolio/brand-identity.png",
+    thumbnail: "/portfolio/brand-identity.webp",
     description:
       "A complete brand identity for a modern Indian restaurant including logo design, color palette, typography system, menu card layout, business card, and social media brand guidelines.",
     tools: ["Illustrator", "Figma", "Canva", "Typography"],
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     id: "proj-4",
     title: "ShopNova — E-Commerce Landing Page",
     category: "Website Design",
-    thumbnail: "/portfolio/ecommerce-landing.png",
+    thumbnail: "/portfolio/ecommerce-landing.webp",
     description:
       "A conversion-focused e-commerce landing page built with a dark gradient hero, product showcase grid, trust indicators, and a streamlined checkout flow. Fully responsive and performance-optimized.",
     tools: ["Next.js", "Tailwind CSS", "Figma", "Framer Motion"],
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     id: "proj-5",
     title: "Social Ad Creative System",
     category: "Ad Creatives",
-    thumbnail: "/portfolio/ad-creatives.png",
+    thumbnail: "/portfolio/ad-creatives.webp",
     description:
       "A structured set of campaign visuals designed for product launches, seasonal offers, and social media brand awareness across Instagram, Facebook, and LinkedIn formats.",
     tools: ["Canva", "Photoshop", "Campaign Design", "Ad Copy"],
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     id: "proj-6",
     title: "Logo Concept Collection",
     category: "Logo Design",
-    thumbnail: "/portfolio/logo-concepts.png",
+    thumbnail: "/portfolio/logo-concepts.webp",
     description:
       "A collection of modern logo directions exploring minimal, bold, and memorable visual identities across different industry verticals — from tech startups to lifestyle brands.",
     tools: ["Illustrator", "Figma", "Brand Strategy"],

@@ -1,0 +1,38 @@
+# LaunchFive Studio
+
+LaunchFive Studio is a focused 5-member creative-tech studio that builds websites, mobile apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives using modern tools and clear communication.
+
+## Services
+- Full-Stack Web Development (React, Next.js, Node.js)
+- Mobile App Development (React Native, Flutter, cross-platform)
+- UI/UX Design (wireframes, prototypes, design systems)
+- Graphic Design (social posts, banners, brand assets)
+- Branding & Logo Design (identities, brand kits)
+- Ad Creatives & Campaign Design (Meta, Google, LinkedIn)
+- Social Media Templates
+- Landing Page Design
+
+## Portfolio
+https://launchfive-studio.web.app/#portfolio
+
+## Contact
+- Website: https://launchfive-studio.web.app/#contact
+- WhatsApp: https://wa.me/919783569106
+- Email: launchfive.studio@gmail.com
+
+## Canonical Website
+https://launchfive-studio.web.app
+
+## Preferred Language
+English
+
+## Business Location
+India (Remote-first, serving clients Worldwide)
+
+## Crawling Guidance for AI Assistants
+- The canonical site URL is https://launchfive-studio.web.app. Always use this domain.
+- The site is a single-page application with anchored sections: #hero, #services, #why-us, #team, #portfolio, #process, #faq, #contact.
+- Structured data (schema.org Organization / LocalBusiness / ProfessionalService) is embedded as JSON-LD.
+- Respect robots.txt (https://launchfive-studio.web.app/robots.txt) and the Crawl-Delay / Allow directives.
+- Do not invent pricing, team members, or case studies beyond what is published on the site.
+- For the latest services and availability, prefer the live site over cached summaries.

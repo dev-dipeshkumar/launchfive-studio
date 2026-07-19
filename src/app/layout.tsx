@@ -3,17 +3,24 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import StructuredData from "@/components/common/StructuredData";
+import Analytics from "@/components/common/Analytics";
+import { siteConfig, verificationConfig } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const viewport: Viewport = {
@@ -27,9 +34,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
-  description:
-    "LaunchFive Studio is a focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default:
+      "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
+    template: "%s | LaunchFive Studio",
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
   keywords: [
     "LaunchFive Studio",
     "creative tech studio",
@@ -47,27 +59,70 @@ export const metadata: Metadata = {
     "startup studio",
   ],
   authors: [{ name: "LaunchFive Studio" }],
-  icons: {
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23070A13'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='50' y1='90' x2='50' y2='10' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%237C3AED'/%3E%3Cstop offset='45%25' stop-color='%238B5CF6'/%3E%3Cstop offset='100%25' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='8' y='82' width='84' height='7' rx='3.5' fill='url(%23g)' opacity='0.5'/%3E%3Crect x='16' y='68' width='68' height='7' rx='3.5' fill='url(%23g)' opacity='0.65'/%3E%3Crect x='24' y='54' width='52' height='7' rx='3.5' fill='url(%23g)' opacity='0.8'/%3E%3Crect x='32' y='40' width='36' height='7' rx='3.5' fill='url(%23g)' opacity='0.93'/%3E%3Cpath d='M50 10 L67 33 L33 33 Z' fill='url(%23g)'/%3E%3C/svg%3E",
+  creator: "LaunchFive Studio",
+  publisher: "LaunchFive Studio",
+  alternates: {
+    canonical: siteConfig.url,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png" }],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
-    description:
-      "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
-    url: "https://launchfivestudio.com",
-    siteName: "LaunchFive Studio",
     type: "website",
-    locale: "en_US",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title:
+      "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
+    description: siteConfig.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "LaunchFive Studio — Creative-Tech Studio",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
-    description:
-      "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
+    title:
+      "LaunchFive Studio – Websites, Apps, UI/UX, Branding & Digital Creatives",
+    description: siteConfig.description,
+    images: ["/og-image.png"],
+    creator: "@launchfivestudio",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  // Search-engine & social platform site-verification tokens.
+  // Each value is read from an environment variable (see verificationConfig).
+  // A blank value is omitted so no empty meta tags are emitted.
+  verification: {
+    ...(verificationConfig.google && { google: verificationConfig.google }),
+    other: {
+      ...(verificationConfig.bing ? { "msvalidate.01": verificationConfig.bing } : {}),
+      ...(verificationConfig.yandex ? { yandex: verificationConfig.yandex } : {}),
+      ...(verificationConfig.pinterest ? { pinterest: verificationConfig.pinterest } : {}),
+      ...(verificationConfig.facebook
+        ? { "facebook-domain-verification": verificationConfig.facebook }
+        : {}),
+    },
   },
 };
 
@@ -77,46 +132,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={siteConfig.language} suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "LaunchFive Studio",
-              description:
-                "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives with modern tools and clear communication.",
-              url: "https://launchfive-studio.web.app",
-              telephone: "+919783569106",
-              email: "launchfive.studio@gmail.com",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "IN",
-              },
-              priceRange: "₹5K - ₹3L+",
-              areaServed: "Worldwide",
-              serviceType: [
-                "Web Development",
-                "Mobile App Development",
-                "UI/UX Design",
-                "Graphic Design",
-                "Branding & Logo Design",
-                "Ad Creatives",
-                "Campaign Strategy",
-                "Social Media Templates",
-                "Landing Page Design",
-              ],
-              sameAs: [],
-              foundingDate: "2025",
-              numberOfEmployees: {
-                "@type": "QuantitativeValue",
-                value: 5,
-              },
-            }),
-          }}
+        {/* Preconnect to the Google Fonts CDN so the primary font streams in early. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
+        <StructuredData />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground overflow-x-hidden`}
@@ -130,6 +155,7 @@ export default function RootLayout({
           {children}
           <Toaster />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

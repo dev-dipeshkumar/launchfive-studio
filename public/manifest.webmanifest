@@ -1,0 +1,45 @@
+{
+  "id": "/",
+  "name": "LaunchFive Studio",
+  "short_name": "LaunchFive",
+  "description": "A focused 5-member creative-tech studio creating websites, apps, UI/UX designs, branding, logos, graphics, templates, and ad creatives.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070A13",
+  "theme_color": "#070A13",
+  "orientation": "portrait-primary",
+  "categories": ["business", "design", "development"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contact LaunchFive Studio",
+      "url": "/#contact",
+      "description": "Start a project or ask a question"
+    },
+    {
+      "name": "View Our Work",
+      "url": "/#portfolio",
+      "description": "Browse selected projects and concepts"
+    }
+  ]
+}

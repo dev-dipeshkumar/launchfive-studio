@@ -7,6 +7,7 @@ import {
   WHATSAPP_URL,
   WHATSAPP_ARIA,
 } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Premium floating WhatsApp button — part of the LaunchFive design system.
@@ -49,6 +50,7 @@ export default function WhatsAppButton() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={WHATSAPP_ARIA}
+          onClick={() => trackEvent("whatsapp_click")}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}

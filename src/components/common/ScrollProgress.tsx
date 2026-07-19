@@ -14,6 +14,7 @@ export default function ScrollProgress() {
     <motion.div
       style={{ scaleX }}
       className="fixed top-0 left-0 right-0 h-[3px] z-[60] origin-left"
+      aria-hidden="true"
     >
       <div className="h-full w-full bg-gradient-to-r from-primary via-secondary to-primary" />
     </motion.div>

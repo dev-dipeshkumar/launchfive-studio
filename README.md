@@ -273,6 +273,37 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
 
 > The contact form (`src/components/home/ContactSection.tsx`) writes submissions directly to Firestore via the Firebase JS SDK (`addDoc`), governed by `firestore.rules` (anonymous `create` allowed on `/contacts`).
 
+### 3b. Analytics, Monitoring & Search-Engine Verification
+
+All configuration is centralized through environment variables and the single
+site config file (`src/lib/site.ts`). Copy `.env.example` → `.env` and fill in
+only what you need — every value is optional and blank values are skipped.
+
+| Concern | Variable | Where to get the token |
+| --- | --- | --- |
+| **Canonical URL** | `NEXT_PUBLIC_SITE_URL` | Your production domain (no trailing slash) |
+| **Google Analytics 4** | `NEXT_PUBLIC_GA4_ID` | GA4 → Admin → Data Streams → Measurement ID (`G-XXXX`) |
+| **Microsoft Clarity** | `NEXT_PUBLIC_CLARITY_ID` | Clarity → Settings → Setup → Project ID |
+| **Google Search Console** | `NEXT_PUBLIC_VERIFICATION_GOOGLE` | Search Console → Settings → Ownership verification → HTML tag → `content` value |
+| **Bing Webmaster Tools** | `NEXT_PUBLIC_VERIFICATION_BING` | Bing Webmaster → Verify → Meta tag → `content` value |
+| **Yandex Webmaster** | `NEXT_PUBLIC_VERIFICATION_YANDEX` | Yandex Webmaster → Site management → Meta tag → `content` value |
+| **Pinterest** | `NEXT_PUBLIC_VERIFICATION_PINTEREST` | Pinterest Business → Settings → Claim → HTML tag → `content` value |
+| **Facebook Domain** | `NEXT_PUBLIC_VERIFICATION_FACEBOOK` | Business Manager → Brand Safety → Domains → `content` value |
+
+- **Analytics** load only in production and only when an ID is present
+  (`src/components/common/Analytics.tsx`). Events tracked: CTA clicks, WhatsApp
+  clicks, portfolio clicks, nav clicks, theme toggle, form submission, and
+  scroll depth (`src/lib/analytics.ts`).
+- **Verification tokens** are emitted as `<meta>` tags in `src/app/layout.tsx`
+  via the `verification` metadata field, so they survive every future deploy.
+- **AI / LLM discoverability**: `public/llms.txt` (llms.txt convention),
+  `public/humans.txt` (team + stack), and `public/rss.xml` (empty, extensible
+  feed) are served at the site root and allowed in `public/robots.txt`.
+- **SEO essentials** are centralized in `src/lib/site.ts` and `src/app/layout.tsx`:
+  canonical URL, Open Graph, Twitter Card, JSON-LD structured data
+  (`src/components/common/StructuredData.tsx`), `sitemap.xml`, and `robots.txt`.
+
+
 ### 4. Set Up Firestore
 
 1. Go to Firebase Console → **Build** → **Firestore Database** → **Create database**

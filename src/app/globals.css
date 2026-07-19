@@ -369,7 +369,13 @@ html {
 
 .animated-gradient {
   background-size: 200% 200%;
+  /* Paused until the browser is idle (.idle-ready added via JS) to avoid
+     starting decorative work during initial render / LCP. */
   animation: gradient-shift 8s ease infinite;
+  animation-play-state: paused;
+}
+.idle-ready .animated-gradient {
+  animation-play-state: running;
 }
 
 /* Floating animation */
@@ -380,6 +386,10 @@ html {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.idle-ready .animate-float {
+  animation-play-state: running;
 }
 
 /* Pulse glow */
@@ -390,6 +400,10 @@ html {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.idle-ready .animate-pulse-glow {
+  animation-play-state: running;
 }
 
 /* Button shimmer effect on hover */

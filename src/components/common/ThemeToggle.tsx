@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon, Monitor } from "lucide-react";
 import { useSyncExternalStore, useState, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -84,6 +85,7 @@ export default function ThemeToggle() {
                   key={t.value}
                   onClick={() => {
                     setTheme(t.value);
+                    trackEvent("theme_switch", { theme: t.value });
                     setIsOpen(false);
                   }}
                   className={`

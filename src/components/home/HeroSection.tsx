@@ -1,7 +1,8 @@
+"use client";
+
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, ChevronDown, Code2, Palette, Smartphone, Megaphone, PenTool, Rocket, MessageCircle } from "lucide-react";
-import CTAButton from "@/components/common/CTAButton";
+import { ArrowRight, Sparkles, ChevronDown, Code2, Smartphone, Palette, PenTool, Megaphone, Rocket, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WHATSAPP_URL, WHATSAPP_ARIA } from "@/lib/whatsapp";
 
@@ -21,8 +22,8 @@ function AnimatedWords({ text, className, delay = 0 }) {
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: delay + i * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="inline-block mr-[0.3em]"
         >
@@ -75,6 +76,23 @@ export default function HeroSection() {
   });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  // Defer decorative animations until the browser is idle so the LCP
+  // (headline + CTAs) paints immediately without waiting on JS.
+  const [decorReady, setDecorReady] = useState(false);
+  useEffect(() => {
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (typeof w.requestIdleCallback === "function") {
+      const id = w.requestIdleCallback(() => setDecorReady(true), { timeout: 1200 });
+      return () => w.cancelIdleCallback?.(id);
+    }
+    const t = setTimeout(() => setDecorReady(true), 600);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -90,75 +108,43 @@ export default function HeroSection() {
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-28 lg:pt-0"
       >
-        {/* Top badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-4 sm:mb-6"
-        >
+        {/* Top badge — rendered immediately, subtle fade only after idle */}
+        <div className={`mb-4 sm:mb-6 ${decorReady ? "" : "opacity-0"} transition-opacity duration-500`}>
           <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] sm:text-sm font-medium">
             <Sparkles size={12} className="sm:w-[14px] sm:h-[14px]" />
             5-Member Creative-Tech Studio
           </span>
-        </motion.div>
-        {/* Rotating service badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mb-5 sm:mb-8"
-        >
-          <RotatingBadge />
-        </motion.div>
-        {/* Headline — fluid typography with proper mobile sizing */}
+        </div>
+        {/* Rotating service badge — deferred */}
+        {decorReady && (
+          <div className="mb-5 sm:mb-8">
+            <RotatingBadge />
+          </div>
+        )}
+        {/* Headline — fluid typography, server-rendered immediately for LCP */}
         <div className="mb-3 sm:mb-6">
           <h1 className="text-[1.75rem] leading-[1.15] sm:text-[2.75rem] sm:leading-[1.1] md:text-5xl lg:text-6xl xl:text-[5.25rem] font-bold text-section-dark-foreground mb-1 sm:mb-2">
-            <AnimatedWords
-              text="Focused Creative-Tech Studio"
-              className=""
-              delay={0.5}
-            />
+            {decorReady ? (
+              <AnimatedWords text="Focused Creative-Tech Studio" className="" delay={0.1} />
+            ) : (
+              "Focused Creative-Tech Studio"
+            )}
           </h1>
-          <h1 className="text-[1.75rem] leading-[1.15] sm:text-[2.75rem] sm:leading-[1.1] md:text-5xl lg:text-6xl xl:text-[5.25rem] font-bold">
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="gradient-text"
-            >
-              for Websites, Apps,
-            </motion.span>
+          <p className="text-[1.75rem] leading-[1.15] sm:text-[2.75rem] sm:leading-[1.1] md:text-5xl lg:text-6xl xl:text-[5.25rem] font-bold" aria-hidden="true">
+            <span className="gradient-text">for Websites, Apps,</span>
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.1 }}
-              className="gradient-text-accent"
-            >
-              Brands & Campaigns
-            </motion.span>
-          </h1>
+            <span className="gradient-text-accent">Brands & Campaigns</span>
+          </p>
         </div>
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.3 }}
-          className="text-section-dark-foreground/70 text-sm sm:text-base md:text-lg max-w-md sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
-        >
+        {/* Description — immediate */}
+        <p className="text-section-dark-foreground/70 text-sm sm:text-base md:text-lg max-w-md sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
           We help startups, creators, and businesses turn ideas into clean digital
           experiences — from websites and apps to UI/UX, branding, graphics, logos,
           templates, and ad creatives.
-        </motion.p>
-        {/* CTAs — stacked on mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6 px-2 sm:px-0"
-        >
+        </p>
+        {/* CTAs — immediate, no entrance delay (critical for interaction) */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6 px-2 sm:px-0">
           <Button asChild size="lg" className="w-full sm:w-auto justify-center btn-primary">
             <a href="#contact">
               Discuss Your Project
@@ -176,78 +162,63 @@ export default function HeroSection() {
               <MessageCircle size={18} />
             </a>
           </Button>
-        </motion.div>
-        {/* Micro-trust line */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.7 }}
-          className="text-section-dark-foreground/50 text-[10px] sm:text-xs max-w-xs sm:max-w-md mx-auto mb-6 sm:mb-10"
-        >
-          Clean design, clear communication, reliable execution.
-        </motion.p>
-        {/* Service tags — hidden on small mobile, shown on sm+ */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.8 }}
-          className="hidden sm:flex flex-wrap items-center justify-center gap-2 mb-10"
-        >
-          {rotatingServices.map((service, i) => (
+        </div>
+        {/* Micro-trust line — deferred */}
+        {decorReady && (
+          <p className="text-section-dark-foreground/50 text-[10px] sm:text-xs max-w-xs sm:max-w-md mx-auto mb-6 sm:mb-10">
+            Clean design, clear communication, reliable execution.
+          </p>
+        )}
+        {/* Service tags — deferred */}
+        {decorReady && (
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-2 mb-10">
+            {rotatingServices.map((service) => (
+              <div
+                key={service.label}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-section-dark-muted border border-section-dark-border hover:border-primary/30 transition-colors cursor-default"
+              >
+                <service.icon size={11} style={{ color: service.color }} />
+                <span className="text-[11px] font-medium text-section-dark-foreground/70">
+                  {service.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+        {/* Stats row — deferred */}
+        {decorReady && (
+          <div className="stat-bar">
+            {[
+              { value: "5", label: "Specialists" },
+              { value: "7 Steps", label: "Process" },
+              { value: "24h", label: "Response" },
+              { value: "0", label: "Middlemen" },
+            ].map((stat) => (
+              <div key={stat.label} className="stat-item">
+                <div className="stat-value text-section-dark-foreground/90">
+                  {stat.value}
+                </div>
+                <div className="stat-label text-section-dark-foreground/50">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {/* Scroll indicator — deferred */}
+        {decorReady && (
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5">
+            <span className="text-[9px] sm:text-[10px] text-section-dark-foreground/40 uppercase tracking-widest">
+              Scroll
+            </span>
             <motion.div
-              key={service.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.9 + i * 0.06, duration: 0.3 }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-section-dark-muted border border-section-dark-border hover:border-primary/30 transition-colors cursor-default"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <service.icon size={11} style={{ color: service.color }} />
-              <span className="text-[11px] font-medium text-section-dark-foreground/70">
-                {service.label}
-              </span>
+              <ChevronDown size={16} className="text-section-dark-foreground/30" />
             </motion.div>
-          ))}
-        </motion.div>
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 2.2 }}
-          className="stat-bar"
-        >
-          {[
-            { value: "5", label: "Specialists" },
-            { value: "7 Steps", label: "Process" },
-            { value: "24h", label: "Response" },
-            { value: "0", label: "Middlemen" },
-          ].map((stat, i) => (
-            <div key={stat.label} className="stat-item">
-              <div className="stat-value text-section-dark-foreground/90">
-                {stat.value}
-              </div>
-              <div className="stat-label text-section-dark-foreground/50">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.8, duration: 1 }}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
-        >
-          <span className="text-[9px] sm:text-[10px] text-section-dark-foreground/40 uppercase tracking-widest">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown size={16} className="text-section-dark-foreground/30" />
-          </motion.div>
-        </motion.div>
+          </div>
+        )}
       </motion.div>
     </section>
   );

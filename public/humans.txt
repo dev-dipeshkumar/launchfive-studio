@@ -1,0 +1,29 @@
+/* LaunchFive Studio — humans.txt */
+/* https://humanstxt.org/ */
+
+/* TEAM */
+Dipesh Kumar — Full-Stack Developer
+Ronak Jain — App Developer
+Prince Chauhan — UI/UX Designer
+Pooja Kumawat — Graphic Designer
+Mehul Kumar — Ads & Campaign Designer
+
+/* TECHNOLOGY STACK */
+Next.js, React, TypeScript, Tailwind CSS, Framer Motion
+Firebase (Firestore, Auth, Hosting)
+Figma, Adobe Illustrator, Photoshop, InDesign
+Vercel / Firebase deployment
+
+/* SITE */
+Site: https://launchfive-studio.web.app
+Contact: launchfive.studio@gmail.com
+WhatsApp: https://wa.me/919783569106
+
+/* THANKS */
+Thanks to the open-source community and our clients for making LaunchFive Studio possible.
+
+/* COPYRIGHT */
+Copyright © 2025 LaunchFive Studio. All rights reserved.
+
+/* LAST UPDATED */
+Last updated: 2025-07-18
